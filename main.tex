@@ -1,0 +1,163 @@
+\documentclass[11pt]{report}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[portuges]{babel}
+\usepackage{graphicx, wrapfig}
+\usepackage{float}
+\usepackage{geometry}
+\usepackage{csquotes}
+\usepackage{url}
+\usepackage{indentfirst}
+\usepackage{tocbibind}
+\usepackage[toc]{glossaries}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage[normalem]{ulem}
+\usepackage{datetime}
+\usepackage{fancyhdr}
+\usepackage{afterpage}
+\usepackage{titlesec}
+\usepackage{lipsum}
+\usepackage{acronym}
+\usepackage{listings}
+\definecolor{NavyBlue}{RGB}{32,42,150}
+\definecolor{Black}{RGB}{0,0,0}
+\usepackage{tabularx}
+\usepackage{etoolbox}
+\usepackage{appendix}
+\makeatletter
+\patchcmd \TX@trial
+          { \let\hbadness\@tempcnta }
+          {\let\AC@placelabel\@gobble\let\hbadness\@tempcnta }{}{\fail}
+\makeatother
+
+\usepackage{setspace} % Add the setspace package
+%\onehalfspacing
+\setstretch{1.15}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=Black,
+    citecolor=Black,  
+    filecolor=Black,
+    urlcolor=Black,
+    pdftitle={Relatório de Estágio - 1211289}
+}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} 
+
+\newcommand{\HRuleFront}{\rule{.98\textwidth}{.3pt}}
+
+\newcommand{\textbetweenrules}[2][.3pt]{%
+  \par\vspace{\topsep}
+  \noindent\makebox[0.98\textwidth]{%
+    \sbox0{#2}%
+    \dimen0=.5\dimexpr\ht0+#1\relax
+    \dimen2=-.5\dimexpr\ht0-#1\relax
+    \leaders\hrule height \dimen0 depth \dimen2\hfill
+    \quad #2\quad
+    \leaders\hrule height \dimen0 depth \dimen2\hfill
+  }\par\nopagebreak\vspace{\topsep}
+}
+
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
+
+\newdateformat{monthyeardate}{
+  \monthname[\THEMONTH], \THEYEAR
+  }
+
+\newcommand{\oddPageStart}{
+  \ifodd\value{page}
+    % command to execute when page number is odd
+  \else
+    \afterpage{
+      \begingroup
+      \thispagestyle{empty}
+      \null
+      \newpage
+      \endgroup
+    }
+  \fi
+}
+
+\fancyhf{}
+\fancypagestyle{myfooter}{%
+  \fancyhf{}% Clear all header and footer fields
+  \renewcommand{\headrulewidth}{0pt}% Remove the header rule
+  \renewcommand{\footrulewidth}{0pt}% Remove the footer rule
+  \addtolength{\headheight}{1.54847pt}
+\addtolength{\topmargin}{-1.54847pt}
+  \fancyfoot[C]{\thepage}% Display only the page number in the center of the footer
+}
+
+\fancypagestyle{default}{%
+  \fancyhf{}% Clear all header and footer fields
+  \renewcommand{\headrulewidth}{0.4pt}% Restore the header rule to its default width
+  \renewcommand{\footrulewidth}{0.4pt}% Restore the footer rule to its default width
+  \fancyfoot[C]{\thepage}% Display only the page number in the center of the footer
+}
+
+\begin{document}
+\pagenumbering{gobble}
+\include{chapters/composicao/1-frontPage}
+\include{chapters/composicao/2-secondPage}
+
+%Numeração Romana para os capítulos de estrutura
+\pagenumbering{roman}
+\setcounter{page}{1}
+
+\include{chapters/composicao/3-dedicatoria}
+\include{chapters/composicao/4-agradecimentos}
+\oddPageStart
+\include{chapters/composicao/5-resumo}
+
+% Listas de Conteúdos
+\addtocontents{toc}{\protect\setcounter{tocdepth}{-1}}
+\tableofcontents
+\addtocontents{toc}{\protect\setcounter{tocdepth}{3}}
+\listoffigures
+{\renewcommand{\addvspace}[1]{}\listoftables}
+
+\include{chapters/composicao/7-abbreviations}
+\printglossary
+
+
+\pagestyle{default}
+\pagestyle{fancy}
+\setlength{\headheight}{13.59999pt}
+\addtolength{\topmargin}{-1.59999pt}
+\fancyhf{}
+\fancyfoot[L]{Tomás Lopes}
+\fancyfoot[R]{\thepage}
+\fancyhead[R]{Ignite Innovation by Upgrading Applications with Apache Storm's Latest Advancements}
+
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\oddPageStart
+\include{chapters/conteudo/1-Introducao}
+\oddPageStart
+\include{chapters/conteudo/2-EstadoArte}
+\oddPageStart
+\include{chapters/conteudo/3-Analise}
+\oddPageStart
+\include{chapters/conteudo/4-Implementacao}
+\oddPageStart
+\include{chapters/conteudo/5-Conclusoes}
+
+% Referências
+\newpage
+\bibliographystyle{plain}
+\nocite{*}\bibliography{ref.bib}
+
+\begin{appendices}
+\end{appendices}
+
+\end{document}
