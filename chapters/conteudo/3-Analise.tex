@@ -1,22 +1,106 @@
 \chapter{Análise e Desenho da Solução}
 \label{sec:3-Analise}
 
-
+Depois de contextualizados os temas e assuntos relevantes, este capítulo concentra-se
+na análise e elucidação do problema que sustenta o presente relatório e na apresentação do
+desenho da solução criada.
 
 \section{Domínio do Problema}
 
 
 \section{Engenharia de Requisitos}
 
+A Engenharia de Requisitos é uma área muito relevanto no desenvolvimento de \textit{software}, pois 
+sustenta o sucesso dos projetos. Representa o processo de obtenção de requisitos através de uma análise 
+do problema e pressupõe a definição das necessidades do cliente na procura de uma solução clara 
+que valide a proposta e a gestão dos requisitos até ser atingido um sistema funcional. Seguindo um 
+processo estruturado e adotando as melhores práticas, promovemos uma melhor comunicação entre as 
+várias partes interessadas.
 
+Considerando os aspetos mencionados anteriormente, nesta secção serão apresentados todos os 
+requisitos do sistema identificados e requisitados no início do projeto de maneira a garantir a 
+qualidade da solução desenvolvida. Estes requisitos podem ser categorizados em funcionais - 
+funcionalidades distintas e essenciais que o sistema deve realizar, e não funcionais - 
+restrições impostas para que o sistema realize os requisitos funcionais corretamente.
 
 \subsection{Requisitos Não Funcionais}
 
+Os requisitos não funcionais não se concentram no que um sistema de software faz, mas sim em como 
+ele funciona. São essenciais para a qualidade geral, desempenho e usabilidade do software e 
+consideram fatores como o desempenho, a segurança, a confiabilidade e a usabilidade.
+
+Os requisitos não funcionais apresentados em seguida, guiam-se pelo modelo FURPS+, um padrão de 
+classificação qualitativa das características de um \textit{software}
+(\textbf{F}unctionality, \textbf{U}sability, \textbf{R}eliability, \textbf{P}erformance, \textbf{S}upportability), 
+para uma melhor experiência do utilizador. O "\textbf{+}" refere-se a métodos de classificação 
+diferentes, como por exemplo, restrições de design, implementação, interface ou físicos.
+
+\vspace{5mm}
+
+\textbf{Funcionalidade}
+\begin{itemize}
+  \item Encontram-se especificados na subsecção \nameref{sec:3-rf}.
+\end{itemize}
+
+\textbf{Usabilidade}
+\begin{itemize}
+  \item xxx
+\end{itemize}
+
+\textbf{Desempenho}
+\begin{itemize}
+  \item xxx
+\end{itemize}
+
+\textbf{Suportabilidade}
+\begin{itemize}
+  \item xxx
+\end{itemize}
+
+\textbf{Restrições de Design}
+\begin{itemize}
+  \item xxxx
+\end{itemize}
+
+\textbf{Segurança}
+\begin{itemize}
+  \item xxxx
+\end{itemize}
 
 \subsection{Requisitos Funcionais}
 \label{sec:3-rf}
 
+Os requisitos funcionais especificam as unidades e recursos funcionais de um sistema de software, 
+concentrando-se nas funções que ele deve realizar. Eles descrevem as funcionalidades, comportamentos
+e operações específicas que os utilizadores devem conseguir executar podendo variar entre ações básicas, 
+como entrada e saída de dados, a algoritmos complexos e processos de negócios.
 
+De forma a facilitar a compreensão por parte do leitor os requisitos funcionais,
+encontram-se descritos, na Tabela \ref{tab:reqfun} e na Figura \ref{dcu}, na forma de \textit{User Stories}, 
+seguindo a estrutura apresentada no artigo “(User) Stories for Analytics Projects – Part 1” \cite{us}.
+
+\begin{table}[H]
+  \begin{center}
+    \caption{Requisitos Funcionais}
+    \vspace{5mm}
+    \label{tab:reqfun}
+    \begin{tabular}{|c|l|}
+      \hline
+      ID & User Story                                                                                                           \\ \hline
+      1  & \begin{tabular}[c]{@{}l@{}}Como XXX, quero XXX.\end{tabular} \\ \hline
+      2  & \begin{tabular}[c]{@{}l@{}}Como XXX, quero XXX.\end{tabular} \\ \hline
+    \end{tabular}
+  \end{center}
+\end{table}
+
+\begin{figure}[H]
+%  \centerline{\includegraphics[scale=0.55]{media/plantuml.png}}
+  \caption{Diagrama de Casos de Uso}
+  \label{dcu}
+\end{figure}
 
 \section{Desenho da Solução}
 
+Através da análise do problema definido, em conjunto com os requisitos funcionais e
+não funcionais delineados anteriormente, o principal objetivo desta secção é documentar
+cada fase distinta que compõe o desenho da solução idealizada.
