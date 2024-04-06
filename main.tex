@@ -29,8 +29,8 @@
 \usepackage{appendix}
 \makeatletter
 \patchcmd \TX@trial
-          { \let\hbadness\@tempcnta }
-          {\let\AC@placelabel\@gobble\let\hbadness\@tempcnta }{}{\fail}
+{ \let\hbadness\@tempcnta }
+{\let\AC@placelabel\@gobble\let\hbadness\@tempcnta }{}{\fail}
 \makeatother
 
 \usepackage{setspace} % Add the setspace package
@@ -38,12 +38,12 @@
 \setstretch{1.15}
 
 \hypersetup{
-    colorlinks=true,
-    linkcolor=Black,
-    citecolor=Black,  
-    filecolor=Black,
-    urlcolor=Black,
-    pdftitle={Relatório de Estágio - 1211289}
+  colorlinks=true,
+  linkcolor=Black,
+  citecolor=Black,  
+  filecolor=Black,
+  urlcolor=Black,
+  pdftitle={Relatório de Estágio - 1211289}
 }
 
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}} 
@@ -63,14 +63,14 @@
 }
 
 \newcommand\blankpage{%
-    \null
-    \thispagestyle{empty}%
-    \addtocounter{page}{-1}%
-    \newpage}
+  \null
+  \thispagestyle{empty}%
+  \addtocounter{page}{-1}%
+\newpage}
 
 \newdateformat{monthyeardate}{
   \monthname[\THEMONTH], \THEYEAR
-  }
+}
 
 \newcommand{\oddPageStart}{
   \ifodd\value{page}
@@ -92,7 +92,7 @@
   \renewcommand{\headrulewidth}{0pt}% Remove the header rule
   \renewcommand{\footrulewidth}{0pt}% Remove the footer rule
   \addtolength{\headheight}{1.54847pt}
-\addtolength{\topmargin}{-1.54847pt}
+  \addtolength{\topmargin}{-1.54847pt}
   \fancyfoot[C]{\thepage}% Display only the page number in the center of the footer
 }
 
