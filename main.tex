@@ -105,28 +105,29 @@
 
 \begin{document}
 \pagenumbering{gobble}
-\include{chapters/composicao/1-frontPage}
-\include{chapters/composicao/2-secondPage}
+\include{chapters/first-pages/1-frontPage}
+\include{chapters/first-pages/2-secondPage}
 
 %Numeração Romana para os capítulos de estrutura
 \pagenumbering{roman}
 \setcounter{page}{1}
 
-\include{chapters/composicao/3-dedicatoria}
-\include{chapters/composicao/4-agradecimentos}
+\include{chapters/first-pages/3-dedicatoria}
+\include{chapters/first-pages/4-agradecimentos}
 \oddPageStart
-\include{chapters/composicao/5-resumo}
+\include{chapters/first-pages/5-resumo}
+\include{chapters/first-pages/6-abstract}
 
 % Listas de Conteúdos
 \addtocontents{toc}{\protect\setcounter{tocdepth}{-1}}
 \tableofcontents
 \addtocontents{toc}{\protect\setcounter{tocdepth}{3}}
 \listoffigures
+\printglossaries
 {\renewcommand{\addvspace}[1]{}\listoftables}
 
-\include{chapters/composicao/7-abbreviations}
-\printglossary
-
+\include{chapters/first-pages/7-abbreviations}
+\include{chapters/first-pages/glossary}
 
 \pagestyle{default}
 \pagestyle{fancy}
@@ -137,20 +138,19 @@
 \fancyfoot[R]{\thepage}
 \fancyhead[R]{Ignite Innovation by Upgrading Applications with Apache Storm's Latest Advancements}
 
-
 \pagenumbering{arabic}
 \setcounter{page}{1}
 
 \oddPageStart
-\include{chapters/conteudo/1-Introducao}
+\include{chapters/content/1-Introducao}
 \oddPageStart
-\include{chapters/conteudo/2-EstadoArte}
+\include{chapters/content/2-EstadoArte}
 \oddPageStart
-\include{chapters/conteudo/3-Analise}
+\include{chapters/content/3-Analise}
 \oddPageStart
-\include{chapters/conteudo/4-Implementacao}
+\include{chapters/content/4-Implementacao}
 \oddPageStart
-\include{chapters/conteudo/5-Conclusoes}
+\include{chapters/content/5-Conclusoes}
 
 % Referências
 \newpage
