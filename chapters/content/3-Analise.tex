@@ -7,14 +7,20 @@ solução criada.
 
 \section{Domínio do Problema}
 
+\todo[inline]{Contextualizar o problema, possivelmente alguns tópicos da introdução transitam
+para esta secção}
+
+\todo[inline]{Introduzir OFS, OFSEC - clusters de serviços}
+
+\todo[inline]{Introduzir abordagem de 3 clusters}
 
 \section{Engenharia de Requisitos}
 
-A Engenharia de Requisitos é uma área muito relevanto no desenvolvimento de \textit{software}, pois 
-sustenta o sucesso dos projetos. Representa o processo de obtenção de requisitos através de uma análise 
-do problema e pressupõe a definição das necessidades do cliente na procura de uma solução clara 
-que valide a proposta. Seguindo um processo estruturado e adotando as melhores práticas, 
-promovemos uma melhor comunicação entre as várias partes interessadas.
+A Engenharia de Requisitos é uma área muito relevante no desenvolvimento de \textit{software}, pois 
+sustenta a análise dos projetos. Este passo representa o processo de obtenção de requisitos através 
+de uma análise do problema e pressupõe a definição das necessidades do cliente na procura de uma 
+solução clara que valide a proposta apresentada. Seguindo um processo estruturado e adotando as 
+melhores práticas, promovemos uma melhor comunicação entre as várias partes interessadas.
 
 Considerando os aspetos mencionados, nesta secção serão apresentados todos os 
 requisitos do sistema identificados e requisitados no início do projeto de maneira a garantir a 
@@ -24,15 +30,16 @@ restrições impostas para que o sistema realize os requisitos funcionais corret
 
 \subsection{Requisitos Não Funcionais}
 
-Os requisitos não funcionais não se concentram no que um sistema de software faz, mas sim em como 
-ele funciona. São essenciais para a qualidade geral, desempenho e usabilidade do software e 
-consideram fatores como o desempenho, a segurança, a confiabilidade e a usabilidade.
+Os requisitos não funcionais não se concentram no que o sistema faz, mas sim em como é esperado que
+ele funcione. Estes requisitos são essenciais para a qualidade geral, desempenho e usabilidade do 
+\textit{software} e têm em conta fatores como o desempenho, a segurança, a confiabilidade e a 
+usabilidade.
 
 Os requisitos não funcionais apresentados em seguida, guiam-se pelo modelo FURPS+, um padrão de 
-classificação qualitativa das características de um \textit{software}
-(\textbf{F}unctionality, \textbf{U}sability, \textbf{R}eliability, \textbf{P}erformance, \textbf{S}upportability), 
-para uma melhor experiência do utilizador. O "\textbf{+}" refere-se a métodos de classificação 
-diferentes, como por exemplo, restrições de design, implementação, interface ou físicos.
+classificação qualitativa das características de um \textit{software} (\textbf{F}unctionality, 
+\textbf{U}sability, \textbf{R}eliability, \textbf{P}erformance, \textbf{S}upportability), para uma 
+melhor experiência do utilizador. O "\textbf{+}" refere-se a métodos de classificação diferentes, 
+como por exemplo, restrições de design, implementação, interface ou físicos.
 
 \vspace{5mm}
 
@@ -44,6 +51,7 @@ diferentes, como por exemplo, restrições de design, implementação, interface
 \textbf{Usabilidade}
 \begin{itemize}
   \item xxx
+    \todo[inline]{Perguntar na Blip se há algum requisito enquadrado}
 \end{itemize}
 
 \textbf{Confiabilidade}
@@ -59,27 +67,31 @@ diferentes, como por exemplo, restrições de design, implementação, interface
   \item O sistema deve ser capaz de processar transações em dia de pico minimizando o tempo de resposta.
 \end{itemize}
 
-\textbf{Suportabilidade}
+\textbf{Suporte}
 \begin{itemize}
   \item xxx
+    \todo[inline]{Perguntar na Blip se há algum requisito enquadrado}
 \end{itemize}
 
 \textbf{Restrições de Design}
 \begin{itemize}
-  \item xxx
+  \item O sistema deve suportar quatro ambientes - \ac{QA}, desenvolvimento, 
+    performance e produção.
+  \item O sistema deve estar replicado em dois \textit{datacenters}.
 \end{itemize}
 
 \subsection{Requisitos Funcionais}
 \label{sec:3-rf}
 
-Os requisitos funcionais especificam as unidades e recursos funcionais de um sistema de software, 
-concentrando-se nas funções que ele deve realizar. Eles descrevem as funcionalidades, comportamentos
-e operações específicas que os utilizadores devem conseguir executar podendo variar entre ações básicas, 
-como entrada e saída de dados, a algoritmos complexos e processos de negócios.
+Os requisitos funcionais especificam as unidades e recursos funcionais de um sistema de 
+\textit{software}, concentrando-se nas funções que devem ser disponibilizadas. Estes requisitos 
+descrevem as funcionalidades, comportamentos e operações específicas que os utilizadores devem 
+conseguir executar podendo variar entre ações básicas, como entrada e saída de dados, a algoritmos 
+complexos e processos específicos de negócio.
 
-De forma a facilitar a compreensão por parte do leitor os requisitos funcionais,
-encontram-se descritos, na Tabela \ref{tab:reqfun} e na Figura \ref{dcu}, na forma de \textit{User Stories}, 
-seguindo a estrutura apresentada no artigo “(User) Stories for Analytics Projects – Part 1” \cite{us}.
+De forma a facilitar a compreensão por parte do leitor os requisitos funcionais encontram-se 
+descritos na Tabela \ref{tab:reqfun} e na Figura \ref{dcu}, na forma de \textit{User Stories}, 
+seguindo a estrutura apresentada no artigo "(User) Stories for Analytics Projects - Part 1". \cite{us}.
 
 \begin{table}[H]
   \begin{center}
@@ -95,15 +107,17 @@ seguindo a estrutura apresentada no artigo “(User) Stories for Analytics Proje
   \end{center}
 \end{table}
 
-\begin{figure}[H]
-%  \centerline{\includegraphics[scale=0.55]{media/plantuml.png}}
-  \caption{Diagrama de Casos de Uso}
-  \label{dcu}
-\end{figure}
+\missingfigure{
+  \begin{figure}[H]
+  % \centerline{\includegraphics[scale=0.55]{media/plantuml.png}}
+    \caption{Diagrama de Casos de Uso}
+    \label{dcu}
+  \end{figure}
+}
 
 \section{Desenho da Solução}
 
 Através da análise do problema definido, em conjunto com os requisitos funcionais e não funcionais 
-delineados anteriormente, o principal objetivo desta secção é documentar cada fase distinta que 
+apresentados anteriormente, o principal objetivo desta secção é documentar cada fase distinta que 
 compõe o desenho da solução idealizada.
 

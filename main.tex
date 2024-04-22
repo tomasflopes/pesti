@@ -3,6 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
 \usepackage[portuges]{babel}
+\usepackage{todonotes}
 \usepackage{graphicx, wrapfig}
 \usepackage{float}
 \usepackage{geometry}
@@ -32,6 +33,7 @@
 { \let\hbadness\@tempcnta }
 {\let\AC@placelabel\@gobble\let\hbadness\@tempcnta }{}{\fail}
 \makeatother
+\makeglossaries
 
 \usepackage{setspace} % Add the setspace package
 %\onehalfspacing
@@ -123,11 +125,10 @@
 \tableofcontents
 \addtocontents{toc}{\protect\setcounter{tocdepth}{3}}
 \listoffigures
-\printglossaries
 {\renewcommand{\addvspace}[1]{}\listoftables}
 
 \include{chapters/first-pages/7-abbreviations}
-\include{chapters/first-pages/glossary}
+\printglossaries
 
 \pagestyle{default}
 \pagestyle{fancy}

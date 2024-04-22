@@ -1,48 +1,52 @@
 \chapter{Introdução} 	
 \label{sec:1-Introducao} % For referencing the chapter elsewhere, usage \ref{Chapter1}
 
-Este primeiro capítulo estabelece as bases necessárias para uma compreensão sólida do trabalho 
-desenvolvido. Primeiramente é exposta a motivação do trabalho e o seu enquadramento no contexto
-da Blip. De seguida, são referidos os principais objetivos identificados, a abordagem adotada, 
-os contributos da realização do projeto e uma apresentação da estrutura do documento.
+Este primeiro capítulo estabelece as bases necessárias para a compreensão do trabalho desenvolvido. 
+Primeiramente, é exposta a motivação do trabalho e o seu enquadramento no contexto da Blip. 
+De seguida, são referidos os principais objetivos identificados, a abordagem adotada, os contributos 
+da realização do projeto e uma apresentação da estrutura que o documento segue.
 
 \section{Enquadramento}
 
-Este documento é o resultado do estágio desenvolvido na Blip durante o sexto semestre da Licenciatura 
-em Engenharia Informática do ISEP no âmbito da Unidade Curricular de Projeto / Estágio (PESTI) 
-no ano letivo de 2023/2024. A Blip é uma empresa tecnológica que pertence ao grupo Flutter
-que desenvolve soluções de \textit{software} para apostas desportivas online, sendo, 
+Este documento é o resultado do projeto de estágio desenvolvido na Blip durante o sexto semestre 
+da Licenciatura em Engenharia Informática do ISEP no âmbito da Unidade Curricular de Projeto / 
+Estágio (PESTI) no ano letivo de 2023/2024. A Blip é uma empresa tecnológica que pertence ao grupo 
+Flutter que desenvolve soluções de \textit{software} para apostas desportivas online, sendo, 
 neste momento, o maior grupo de apostas desportivas online a nível global \cite{blip}.
 
-Desta forma, o sistema que é usado pela Blip deve estar preparado para lidar com um grande volume
-é bastante complexo e deve ser capaz de processar grandes volumes de dados em tempo real. Ao longo
-deste relatório vai ser analisado o sistema que lida com os dados de catálogo que são recebidos de
-várias fontes e servem de base para a criação de eventos e informações dos mesmos. Este sistema é
-baseado em Apache Storm e Apache Kafka, que são tecnologias que permitem processar e armazenar os
-dados de forma eficiente tentando evitar ao máximo que haja constrangimentos no sistema.
+Desta forma, o sistema que é usado pela Blip deve estar preparado para lidar com um grande volume 
+de dados em tempo real e, por consequência, é bastante complexo. Ao longo deste relatório vai ser 
+analisado o sistema que lida com este dados que são recebidos de várias fontes e servem de base 
+para a criação de eventos e informações dos mesmos. Este sistema é baseado em Apache Storm e Apache 
+Kafka, que são tecnologias que permitem processar e armazenar os dados em tempo real de forma 
+eficiente tentando evitar ao máximo que haja constrangimentos no sistema.
 
 \section{Descrição do Problema}
 
-O \textit{cluster} que lida com os dados de catálogo é composto por várias máquinas que têm
-como função receber e transformar dados de vários eventos que são recebidos de várias fontes.
-Neste cluster é usado Apache Storm para fazer o processamento destes dados em tempo real.
+O \gls{cluster} que lida com os dados de catálogo é composto por várias máquinas que têm
+como função receber e transformar um grande volume de dados de vários eventos que são recebidos de 
+diversas fontes. Para controlar este \textit{cluster} é usada a tecnologia Apache Storm para fazer 
+o processamento destes dados.
 
-Com o crescimento da empresa, o volume de dados que é recebido e processado tem vindo a aumentar
-e, além disso, nos últimos meses o grupo Flutter adquiriu uma nova empresa para a divisão de \ac{UKI}
-o que fez com que o volume que o \textit{clister} tem que ser capaz de processar aumentasse
+Com o crescimento da empresa, o volume de dados que é processado tem vindo a aumentar e, além disso,
+nos últimos meses o grupo Flutter adquiriu uma nova empresa para a divisão de \ac{UKI} o que fez 
+com que o volume de dados que o \textit{cluster} tem que ser capaz de processar aumentasse 
 substancialmente.
 
 Desta forma, o problema que se apresenta é que este \textit{cluster} não tem capacidade para lidar
 com o volume de dados para o qual está a ser sujeito e, por isso, é necessário fazer algumas
-otimizações por forma a não haver constrangimentos no sistema. A solução simples poderia passar
-por aumentar apenas a capacidade de processamento do \textit{cluster}, mas isso seria uma solução
-bastante dispendiosa e, provavelmente, traria problemas de escalabilidade no futuro.
+otimizações por forma a não haver constrangimentos no sistema. A abordagem mais simplista poderia 
+passar por aumentar apenas a capacidade de processamento do \textit{cluster}, mas isso seria uma 
+solução bastante dispendiosa e, provavelmente, traria problemas de escalabilidade no futuro.
 
-Assim, é necessário fazer uma análise ao sistema e perceber onde estão os principais problemas
-de performance e escalabilidade e tentar encontrar soluções que possam ser implementadas para
-resolver estes problemas. Numa primeira fase, é necessário perceber como o sistema está implementado
-na infraestrutura da empresa e fazer uma análise aos recursos usados por cada máquina que compõe
-o \textit{cluster} de forma a perceber onde estão os principais problemas.
+Assim, é necessário fazer uma análise da utilização dos recursos do sistema e perceber onde estão 
+os principais problemas de performance e escalabilidade de forma a tentar encontrar soluções que 
+possam ser implementadas para resove-los. Numa primeira fase, é necessário perceber como o sistema 
+está implementado na infraestrutura da empresa e fazer uma análise aos recursos usados por cada 
+máquina que compõe o \textit{cluster} de forma a perceber onde estão os principais problemas. De 
+seguida, será realizada uma atualização da versão do Apache Storm que é usada no sistema de forma 
+a tentar tirar partido das funcionalidades e melhorias de desempenho que foram implementadas nas 
+versões mais recentes.
 
 \subsection{Objetivos}
 \label{sec:1-obj}
@@ -57,9 +61,25 @@ o \textit{cluster} de forma a perceber onde estão os principais problemas.
 
 \subsection{Abordagem}
 
+Primeiramente, será necessária fazer uma análise às métricas de sistema de forma a compreender
+o uso de recursos do \textit{cluster}. Para isso, é usada a ferramenta Grafana que permite
+monitorizar um conjunto de métricas de sistema e de aplicação, de forma a identificar os principais
+problemas de escalabilidade. Além disso, a monitorização destas métricas vai ser crucial para
+garantir que as alterações efetuadas no projeto não afetam o bom funcionamento do sistema.
+
+De seguida, será elaborado um plano de migração dos \textit{clusters} de forma a minimizar o 
+impacto destas alterações nos sistemas que se encontram em produção para os clientes destes serviços.
+
+No caso da Blip, os sistemas correm em vários ambientes e replicados em dois \textit{datacenters},
+logo, o plano de migração terá em conta estas questões de forma a tirar partido desta infraestrutura
+e minimizar a possibilidade de erros nos sistemas produtivos.
 
 \subsection{Contributos}
 
+Este trabalho irá ser crucial para ser possível manter o funcionamento destes sistemas na
+infraestrutura atual da empresa.
+
+\todo{TODO: Elaborar}
 
 \subsection{Planeamento do Trabalho}
 
@@ -75,10 +95,10 @@ a vista geral do planeamento elaborado.
     \begin{tabular}{|c|c|c|}
       \hline
       \textbf{Etapa} & \textbf{Data Início} & \textbf{Duração} \\ \hline
-      Familiarização com Apache Storm  & xx/xx/2024 & 2 semanas \\ \hline
-      Análise das otimizações de recursos & xx/xx/2024 & 4 semanas \\ \hline
-      Implementação das otimizações & xx/xx/2024 & 6 semanas \\ \hline
-      Upgrade Apache Storm & xx/xx/2024 & 4 semanas \\ \hline
+      Familiarização com Apache Storm  & 19/02/2024 & 2 semanas \\ \hline
+      Análise das otimizações de recursos & 04/03/2024 & 4 semanas \\ \hline
+      Implementação das otimizações & 01/04/2024 & 6 semanas \\ \hline
+      Upgrade Apache Storm & 13/05/2024 & 4 semanas \\ \hline
     \end{tabular}
   \end{center}
 \end{table}
@@ -92,24 +112,24 @@ O presente relatório apresenta cinco capítulos, sendo estes: \nameref{sec:1-In
 O primeiro capítulo – \nameref{sec:1-Introducao} – faz uma breve contextualização do projeto de
 forma a dar a conhecer a organização onde este foi realizado e uma descrição do problema que motivou
 a solução apresentada. São também explicitados os objetivos a alcançar, a abordagem a seguir, os
-contributos esperados, o planeamento do trabalho adotado e a estrutura do documento. Esta secção é 
+contributos efetuados, o planeamento do trabalho adotado e a estrutura do documento. Esta secção é 
 fundamental para que o leitor consiga acompanhar o processo de desenvolvimento do projeto.
 
-O segundo capítulo – \nameref{sec:2-EstadoArte} – visa realizar uma revisão de literatura,
-com o intuito de aprofundar assim alguns conceitos científicos e tecnologias relevantes para
-contextualizar o leitor no domínio teórico e prático do projeto. 
+O segundo capítulo – \nameref{sec:2-EstadoArte} – tem como objetivo realizar uma revisão da
+literatura, com o intuito de aprofundar assim alguns conceitos científicos e tecnologias relevantes 
+para contextualizar o leitor no domínio teórico do projeto.  
 
 O terceiro capítulo – \nameref{sec:3-Analise} – tem como propósito fornecer uma descrição completa 
 do desenvolvimento da solução e como o projeto funcionará na sua totalidade, abordando tanto conceitos
 de domínio do problema como também os requisitos funcionais e não funcionais.
 
-O quarto capítulo – \nameref{sec:4-Implementacao} – tem como objetivo apresentar a solução desenvolvida
-e descrever detalhes de implementação, assim como explicações sobre as decisões tomadas durante o
-desenvolvimento do projeto, possíveis alternativas e uma avaliação geral do sistema.
+O quarto capítulo – \nameref{sec:4-Implementacao} – visa apresentar a solução desenvolvida e 
+descrever detalhes de implementação, assim como explicações sobre as decisões tomadas durante o
+desenvolvimento do projeto e possíveis alternativas.
 
 O quinto, e último, capítulo – \nameref{sec:5-Conclusoes} – realiza uma síntese dos resultados 
-alcançados com o desenvolvimento do projeto, limitações encontradas bem como uma perspetiva de 
+alcançados com o desenvolvimento do projeto, limitações encontradas, bem como uma perspetiva de 
 futuras melhorias e considerações finais sobre o trabalho realizado.
 
-No final do documento são também disponibilizados alguns anexos e conteúdos bibliográficos 
-que suportam o trabalho desenvolvido apresentado ao longo do presente relatório.
+No final do documento são também disponibilizados alguns anexos e conteúdos bibliográficos que 
+suportam o trabalho desenvolvido apresentado ao longo deste relatório.
