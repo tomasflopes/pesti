@@ -9,17 +9,39 @@ desenvolvido se insere.
 
 \section{Sistemas Distribuídos}
 
-Os sistemas distribuídos são sistemas de \textit{software} que interagem entre si através de uma rede
-de computadores. Estes sistemas são compostos por um conjunto de computadores autónomos que
-apresentam uma visão única e coerente para os utilizadores. A comunicação entre os computadores
-é realizada através de mensagens, permitindo a partilha de recursos e a execução de tarefas em
-paralelo \cite{verissimo2001distributed}.
-
-\todo{TODO: Elaborar, + referências}
+Os sistemas distribuídos representam uma arquitetura de \textit{software} onde vários sistemas 
+interagem entre si através de uma rede de computadores. Estes sistemas são compostos por um conjunto 
+de computadores autónomos que apresentam uma visão unificada e consistente para os clientes que o 
+usam. A comunicação entre os computadores é establecida através de mensagens, permitindo a partilha 
+de recursos e a execução de tarefas em paralelo, contribuindo assim para uma maior eficiência
+e escalabilidade do sistema \cite{verissimo2001distributed}.
 
 \subsection{Arquitetura Cliente-Servidor}
 
-\todo[inline]{TODO: Falar sobre a arquitetura cliente-servidor, conceitos e aplicabilidade.}
+A arquitetura cliente-servidor \ref{fig:client-server} é um modelo amplamente utilizado na computação distribuída para a 
+troca de informações entre máquinas. Esta arquitetura envolve normalmente um servidor central que
+fornece recursos ou serviços a vários clientes \cite{clientserver2019}. A comunicação entre o cliente
+e o servidor é realizada através de um protocolo de comunicação, como o HTTP ou o TCP/IP.
+
+Além disso, a arquitetura cliente-servidor tem sido objeto de investigação em vários domínios, 
+incluindo as arquitecturas de jogos \cite{clientserver2018}, a computação móvel \cite{clientserver1999},
+e as infra-estruturas baseadas em \textit{cloud} \cite{clientserver2012}. A escalabilidade e o 
+desempenho da arquitetura têm sido investigados, com estudos centrados em mecanismos de sincronização
+\cite{clientserver2004}, aplicações interativas distribuídas sem tráfego \cite{clientserver2015} e
+alocamento dinâmico de recursos \cite{clientserver2012}.
+
+No contexto de arquiteturas multi-servidor, a criação de servidores regionais próximos dos clientes 
+tem sido explorada para resolver o problema da latência e atraso nas respostas ao cliente 
+\cite{clientserver2022b}. Além disso, a utilização de pseudónimos personalizados para servidores 
+na \textit{cloud} foi proposta para melhorar a segurança e reduzir os custos de comunicação entre
+sistemas distribuídos \cite{clientserver2017}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{media/content/estado-arte/client-server.png}
+    \caption{Arquitetura Cliente-Servidor}
+    \label{fig:client-server}
+\end{figure}
 
 \subsection{Arquitetura Streaming}
 
@@ -40,29 +62,138 @@ natureza distribuída dos sistemas de processamento de fluxos de dados.
 
 \section{Estratégias de implantação}
 
-\todo[inline]{Introdução sobre a importância de estratégias de implantação em sistemas distribuídos.}
+Esta secção explora algumas das abordagens de implantação e atualização de aplicações, com foco 
+especial em técnicas como canary \textit{deployment}, \textit{rolling update} e outras. Ao examinar 
+estas estratégias em detalhe, podemos capturar a essência das práticas de implantação, identificando 
+os seus benefícios, desafios e áreas de aplicação mais adequadas. 
 
 \subsection{Canary Deployment}
 
-\todo[inline]{Falar sobre canary deployment, conceitos, vantagens, desvantagens, etc.}
+A técnica de \textit{canary deployment} é uma estratégia de implantação de \textit{software} que 
+tem ganhado atenção na literatura. Esta técnica é brevemente introduzida no contexto da 
+implantação contínua de produtos e serviços com uso intensivo de \textit{software} \cite{canary2017}. 
+A estratégia de implantação \textit{canary} envolve lançar uma parte das atualizações do sistema a 
+um subconjunto de utilizadores, permitindo detetar problemas antes da implantação completa 
+\ref{fig:canary-before} \ref{fig:canary-after}. Esta estratégia permite uma implementação gradual 
+e segura das alterações, minimizando o impacto para a maior parte do utilizadores em caso de falha. 
+Esta estratégia é proposta para uma implantação bem sucedida no contexto de estratégias híbridas 
+de implantação de \textit{software} para sistemas complexos \cite{canary2022}. Além disso, 
+destaca-se a importância das \textit{pipelines} automatizadas de implantação no contexto da \ac{CI} 
+e \ac{CD}, onde o sucesso da adoção das alterações nas empresas depende fortemente das 
+\textit{pipelines} de implantação \cite{canary2017b}. Além disso, foi proposta a utilização da 
+implantação \textit{canary} como um padrão de implantação de \textit{software} para controlar a 
+implantação de novas versões de software, diminuindo o risco de falhas no processo e aumentando a 
+confiabilidade \cite{canary2021}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{media/content/estado-arte/canary-before.png}
+    \caption{Estratégia de implantação \textit{canary} antes da atualização}
+    \label{fig:canary-before}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{media/content/estado-arte/canary-after.png}
+    \caption{Estratégia de implantação \textit{canary} após a atualização}
+    \label{fig:canary-after}
+\end{figure}
 
 \subsection{Rolling Update}
 
-\todo[inline]{Falar sobre rolling update, conceitos, vantagens, desvantagens, etc.}
+A estratégia de implementação de \textit{rolling update}, ou atualizações contínuas, é um aspeto 
+crucial da manutenção e gestão de \textit{software}, em particular no contexto da computação em 
+\textit{cloud} \cite{rolling2014}. Esta estratégia envolve atualizar gradualmente as instâncias de 
+um serviço, substituindo cada instância antiga por uma nova, de forma sequencial, garantindo assim 
+a disponibilidade contínua do serviço durante o processo de atualização. Nesta estratégia é destacada 
+a importância da atualização contínua como uma técnica para a atualização dinâmica de \textit{software} 
+que se encontra a ser utilizado ativamente por clientes \cite{rolling2014}. 
+
+Além disso, é importante ter em conta a engenharia de tráfego e a necessidade de introduzir nós de 
+reserva e de sentinela nas redes do sistema \cite{canary2022}, salientando a relevância da 
+implementação de versões \textit{canary} como base para a estratégia de atualização do cliente 
+\cite{canary2022}. A presença deste tipo de nós na rede neste tipo de estratégias é crucial para
+garantir a disponibilidade contínua do serviço durante o processo de atualização e a deteção de
+problemas antes da implantação completa.
 
 \subsection{Blue-Green Deployment}
 
-\todo[inline]{Falar sobre blue-green deployment, conceitos, vantagens, desvantagens, etc. (este é o que é usado
-na Blip)}
+A implantação \textit{blue-green} é uma estratégia de implantação de \textit{software} que visa 
+minimizar o tempo de inatividade e os riscos associados às atualizações de \textit{software}, 
+garantindo a disponibilidade e fiabilidade contínuas do sistema. Esta estratégia envolve a
+manutenção de dois ambientes de produção idênticos \ref{fig:blue-green-before} - o ambiente atual 
+(\textit{blue}) e o novo (\textit{green}), e o encaminhamento do tráfego de utilizadores entre eles. 
+Quando se pretende implantar uma nova versão do sistema, o tráfego é gradualmente transferido do 
+ambiente "azul" para o ambiente "verde" \ref{fig:blue-green-after}, permitindo atualizações sem descontinuidades e reversões, se necessário 
+\cite{canary2022}.
+
+A abordagem híbrida da implantação de software, combina a implantação \textit{canary} e a técnica 
+\textit{blue-green} com a abordagem de lançamento \textit{dark} e o uso de \textit{flags} de 
+funcionalidades, melhorando a estratégia global de implantação \cite{canary2022}. Esta abordagem 
+assegura uma transição suave e permite a realização de testes num ambiente semelhante ao de 
+produção antes da implantação para a totalidade dos utilizadores.
+
+Além disso, a importância da técnica de implantação \textit{blue-green} baseada em descoberta de 
+serviço em ambientes em \textit{cloud}, é enfatizada em ambientes modernos de computação distribuída
+\cite{bluegreen}. Assim, fica destacada a aplicabilidade da implantação \textit{blue-green} em sistemas 
+baseados em \textit{cloud}, onde a alta disponibilidade e a interrupção mínima são cruciais.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.3\textwidth]{media/content/estado-arte/blue-green-before.png}
+    \caption{Estratégia de implantação \textit{blue-green} antes da atualização}
+    \label{fig:blue-green-before}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.3\textwidth]{media/content/estado-arte/blue-green-after.png}
+    \caption{Estratégia de implantação \textit{blue-green} após a atualização}
+    \label{fig:blue-green-after}
+\end{figure}
 
 \section{Monitorização de Sistemas}
 
-\todo[inline]{Falar sobre monitorização de sistemas, conceitos, ferramentas. Grafana, Splunk, etc.}
+A monitorização de sistemas de \textit{software} é uma prática essencial para garantir a saúde, 
+desempenho e segurança de aplicações. Esta atividade envolve a obtenção e análise contínua de métricas, 
+registos de eventos, \textit{logs} e outros dados relevantes para avaliar o estado e o comportamento 
+do sistema. Estas informações permitem tirar conclusões importantes sobre o desempenho da aplicação, 
+ajudando as equipas de operações a detetar problemas, identificar tendências de comportamento, 
+otimizar recursos e responder proativamente a eventos, contribuindo assim para a manutenção de 
+operações eficazes.
 
 \subsection{Métricas}
 
-\todo[inline]{Falar sobre monitorização de métricas, falar sobre métricas de sistema e aplicação}
+As métricas de monitorização são essenciais em projetos de \textit{software}, permitindo a descrição 
+quantitativa dos projetos e a avaliação de métodos e ferramentas para aumentar a produtividade e a 
+qualidade das soluções \cite{metrics2003}. Este tipo de monitorização é crucial para controlar 
+projetos, produtos e processos de software \cite{metrics2019}. As métricas permitem que os 
+gestores de projetos e desenvolvedores acompanhem e controlem os projetos em que estão a trabalhar,
+fornecendo informações sobre o estado e o progresso da solução \cite{metrics2016}. Além disso, as 
+métricas ajudam a estimar e a prever projectos futuros, incluindo técnicas, riscos e custos 
+\cite{metrics2016b}. A utilização de métricas é vital para determinar as características de 
+qualidade do \textit{software} e avaliar a saúde de um projeto \cite{metrics2015}.
+
+O \textit{Grafana}, juntamente com outras ferramentas como o \textit{Elastic Search}, é amplamente 
+utilizado para visualizar dados de séries temporais e monitorar a evolução de questões de dívida 
+técnica em projetos de \textit{software} \cite{metrics2019b}. Além disso, o \textit{Grafana} é 
+utilizado para obter, armazenar e visualizar metadados produzidos por sistemas de gestão de dados e
+fluxo de trabalho, demonstrando sua importância na monitorização de projetos \cite{metrics2021}.
+Além disso, o \textit{Grafana} serve como uma ferramenta de visualização para processar pontos de 
+dados brutos e interfaces de monitorização, destacando sua versatilidade na monitorização de projetos 
+de \textit{software} \cite{metrics2022}.
 
 \subsection{Registo de eventos}
 
-\todo[inline]{Falar sobre monitorização de logs, alertas}
+O registo de eventos desempenha um papel crucial na engenharia de \textit{software} uma vez que 
+fornece uma noção das atividades e dos eventos que ocorrem no sistema \cite{logs2022}. A profundidade 
+do conhecimento disponível nos \textit{logs} levou ao desenvolvimento de plataformas comerciais de 
+análise deste tipo de eventos, como o \textit{Splunk} \cite{splunk}, que são essenciais para 
+analisar e compreender os dados de \textit{log} \cite{logs2021}. No entanto, existem desafios nos 
+registos de eventos durante o desenvolvimento de projetos de \textit{software}, particularmente em 
+projetos \textit{open source}, o que leva a uma redução na rastreabilidade dos defeitos e à
+deteção de \textit{bugs} de \textit{software} \cite{logs2018}. Além disso, os \textit{logs} servem 
+diferentes propósitos, como deteção de anomalias, diagnóstico de problemas, verificação de programas, 
+análise de uso e monitorização  de segurança, destacando assim a sua importância em sistemas de 
+\textit{software} robustos e seguros \cite{logs2019}.
+

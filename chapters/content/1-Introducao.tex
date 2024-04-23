@@ -1,5 +1,5 @@
 \chapter{Introdução} 	
-\label{sec:1-Introducao} % For referencing the chapter elsewhere, usage \ref{Chapter1}
+\label{sec:1-Introducao}
 
 Este primeiro capítulo estabelece as bases necessárias para a compreensão do trabalho desenvolvido. 
 Primeiramente, é exposta a motivação do trabalho e o seu enquadramento no contexto da Blip. 
@@ -14,16 +14,20 @@ Estágio (PESTI) no ano letivo de 2023/2024. A Blip é uma empresa tecnológica 
 Flutter que desenvolve soluções de \textit{software} para apostas desportivas online, sendo, 
 neste momento, o maior grupo de apostas desportivas online a nível global \cite{blip}.
 
-Desta forma, o sistema que é usado pela Blip deve estar preparado para lidar com um grande volume 
-de dados em tempo real e, por consequência, é bastante complexo. Ao longo deste relatório vai ser 
-analisado o sistema que lida com este dados que são recebidos de várias fontes e servem de base 
-para a criação de eventos e informações dos mesmos. Este sistema é baseado em Apache Storm e Apache 
-Kafka, que são tecnologias que permitem processar e armazenar os dados em tempo real de forma 
-eficiente tentando evitar ao máximo que haja constrangimentos no sistema.
+O projeto apresentado está inserido na ordem de trabalhos na equipa de \textit{Application Engineering},
+\textit{Watchmen}, responsável por lidar com desafios técnicos de entrega dos produtos, de forma
+a libertar as equipas de desenvolvimento dos desafios ligados a infraestrutura.
+
+O sistema que é usado pela Blip deve estar preparado para lidar com um grande volume de dados em 
+tempo real e, por consequência, é bastante complexo. Ao longo deste relatório vai ser analisado 
+o sistema que lida com este dados que são recebidos de várias fontes e servem de base para a criação 
+de eventos e informações dos mesmos. Este sistema é baseado em Apache Storm e Apache Kafka, que são 
+tecnologias que permitem processar e armazenar os dados em tempo real de forma eficiente tentando 
+evitar ao máximo que haja constrangimentos no sistema.
 
 \section{Descrição do Problema}
 
-O \gls{cluster} que lida com os dados de catálogo é composto por várias máquinas que têm
+O \textit{\gls{cluster}} que lida com os dados de catálogo é composto por várias máquinas que têm
 como função receber e transformar um grande volume de dados de vários eventos que são recebidos de 
 diversas fontes. Para controlar este \textit{cluster} é usada a tecnologia Apache Storm para fazer 
 o processamento destes dados.
@@ -49,7 +53,9 @@ a tentar tirar partido das funcionalidades e melhorias de desempenho que foram i
 versões mais recentes.
 
 \subsection{Objetivos}
-\label{sec:1-obj}
+
+Os objetivos identificados têm como finalidade a resolução do problema apresentado e a melhoria do
+desempenho do sistema. Desta forma, os objetivos a atingir são os seguintes:
 
 \begin{itemize}
   \item Identificar desafios de escalabilidade e performance

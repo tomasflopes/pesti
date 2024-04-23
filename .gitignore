@@ -8,3 +8,7 @@
 *.lot
 *.fls
 *.fdb_latexmk
+*.glo
+*.ist
+*.glsdefs
+main.pdf
