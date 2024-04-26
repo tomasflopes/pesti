@@ -1,18 +1,32 @@
 \chapter{Análise e Desenho da Solução}
 \label{sec:3-Analise}
 
-Depois de contextualizados os temas e assuntos relevantes, este capítulo concentra-se na análise 
-e elucidação do problema que sustenta o presente relatório e na apresentação do desenho da 
-solução criada.
+Depois de contextualizados os temas relevantes, o presente capítulo foca-se na análise do problema 
+que sustenta este relatório e na apresentação do desenho da solução criada.
 
 \section{Domínio do Problema}
 
-\todo[inline]{Contextualizar o problema, possivelmente alguns tópicos da introdução transitam
-para esta secção}
+O fluxo que trata da informação de catálogo é dos mais sensíveis e cruciais para o bom funcionamento
+dos sistemas que integram os serviços do grupo Flutter. Este fluxo funciona em tempo-real recorrendo
+ao uso de \textit{streams} para conseguir atingir este objetivo. Esta abordagem permite garantir
+o processamento assíncrono dos dados relativos a este fluxo de uma forma otimizada.
 
-\todo[inline]{Introduzir OFS, OFSEC - clusters de serviços}
+De momento, os serviços responsáveis pelo processamento destes dados estão distribuídos em dois
+\textit{clusters} que usam Apache Storm para a gestão do mesmo. Esta solução apresenta alguns
+defeitos que são importantes de resolver por forma a melhorar a capacidade de escalabilidade destes
+serviços. 
 
-\todo[inline]{Introduzir abordagem de 3 clusters}
+O primeiro destes problemas é o elevado número de \acp{VM} presente em cada \textit{cluster},
+este problema impacta a solução na fase de lançamento de novas versões. Isto deve-se ao facto de
+toda a infraestrutura estar sob demanda constante com vários lançamentos paralelos de vários serviços
+em ao ser necessário criar novas \acp{VM} o processo responsável pela gestão de máquinas da
+infraestrutura pode não ser capaz de responder ao pedido. Desta forma, diminuir o número de \acp{VM}
+presentes no \textit{cluster} representaria uma melhoria na probabilidade da taxa de sucesso de
+lançamento de uma nova versão (em todos os ambientes).
+
+Além disso, o sistema está a usar um excesso de recursos para determinados serviços. Desta forma,
+se for possível alterar o \textit{\gls{flavour}} destes \textit{clusters} vai ser possível economizar
+recursos.
 
 \section{Engenharia de Requisitos}
 
