@@ -21,16 +21,16 @@ a libertar as equipas de desenvolvimento dos desafios ligados a infraestrutura.
 O sistema que é usado pela Blip deve estar preparado para lidar com um grande volume de dados em 
 tempo real e, por consequência, é bastante complexo. Ao longo deste relatório vai ser analisado 
 o sistema que lida com este dados que são recebidos de várias fontes e servem de base para a criação 
-de eventos e informações dos mesmos. Este sistema é baseado em Apache Storm e Apache Kafka, que são 
-tecnologias que permitem processar e armazenar os dados em tempo real de forma eficiente tentando 
-evitar ao máximo que haja constrangimentos no sistema.
+de eventos e informações dos mesmos. Este sistema é baseado em \textit{Apache Storm} e 
+\textit{Apache Kafka}, que são tecnologias que permitem processar e armazenar os dados em tempo 
+real de forma eficiente tentando evitar ao máximo que haja constrangimentos no sistema.
 
 \section{Descrição do Problema}
 
 O \textit{\gls{cluster}} que lida com os dados de catálogo é composto por várias máquinas que têm
 como função receber e transformar um grande volume de dados de vários eventos que são recebidos de 
-diversas fontes. Para controlar este \textit{cluster} é usada a tecnologia Apache Storm para fazer 
-o processamento destes dados.
+diversas fontes. Para controlar este \textit{cluster} é usada a tecnologia \textit{Apache Storm}
+para fazer o processamento destes dados.
 
 Com o crescimento da empresa, o volume de dados que é processado tem vindo a aumentar e, além disso,
 nos últimos meses o grupo Flutter adquiriu uma nova empresa para a divisão de \ac{UKI} o que fez 
@@ -48,9 +48,9 @@ os principais problemas de performance e escalabilidade de forma a tentar encont
 possam ser implementadas para resove-los. Numa primeira fase, é necessário perceber como o sistema 
 está implementado na infraestrutura da empresa e fazer uma análise aos recursos usados por cada 
 máquina que compõe o \textit{cluster} de forma a perceber onde estão os principais problemas. De 
-seguida, será realizada uma atualização da versão do Apache Storm que é usada no sistema de forma 
-a tentar tirar partido das funcionalidades e melhorias de desempenho que foram implementadas nas 
-versões mais recentes.
+seguida, será realizada uma atualização da versão do \textit{Apache Storm} que é usada no sistema 
+de forma a tentar tirar partido das funcionalidades e melhorias de desempenho que foram 
+implementadas nas versões mais recentes.
 
 \subsection{Objetivos}
 
@@ -59,9 +59,9 @@ desempenho do sistema. Desta forma, os objetivos a atingir são os seguintes:
 
 \begin{itemize}
   \item Identificar desafios de escalabilidade e performance
-  \item Familiarização com a ferramenta Apache Storm 
-  \item Testar e implementar Apps Storm (Java Tech Stack) 
-  \item Identificar e propor soluções de integração com Apache Kafka 
+  \item Familiarização com a ferramenta \textit{Apache Storm }
+  \item Testar e implementar Apps Storm \textit{(Java Tech Stack)}
+  \item Identificar e propor soluções de integração com \textit{Apache Kafka}
   \item Ajudar a definir o planeamento de atualização e \textit{rollback}
 \end{itemize}
 

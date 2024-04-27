@@ -12,7 +12,7 @@ ao uso de \textit{streams} para conseguir atingir este objetivo. Esta abordagem 
 o processamento assíncrono dos dados relativos a este fluxo de uma forma otimizada.
 
 De momento, os serviços responsáveis pelo processamento destes dados estão distribuídos em dois
-\textit{clusters} que usam Apache Storm para a gestão do mesmo. Esta solução apresenta alguns
+\textit{clusters} que usam \textit{Apache Storm} para a gestão do mesmo. Esta solução apresenta alguns
 defeitos que são importantes de resolver por forma a melhorar a capacidade de escalabilidade destes
 serviços. 
 
@@ -26,11 +26,16 @@ lançamento de uma nova versão (em todos os ambientes).
 
 Além disso, o sistema está a usar um excesso de recursos para determinados serviços. Desta forma,
 se for possível alterar o \textit{\gls{flavour}} destes \textit{clusters} vai ser possível economizar
-recursos.
+recursos. Para atingir este objetivo existem várias abordagens possíveis, como por exemplo, a
+alteração do número de \acp{VM} presentes em cada \textit{cluster}, a alteração do \textit{\gls{flavour}}
+de cada \textit{cluster} ou a alteração da distrubuição de serviços por \textit{cluster}.
+
+Por fim, vai ser efetuada a atualização da versão de \textit{Apache Storm} de forma a tirar partido
+das funcionalidades mais recentes da ferramenta. Assim como nas alterações anteriores, será também
+crucial fazer uma análise cuidada da forma como esta atualização vai ser levada a cabo, isto porque
+é importante garantir a disponibilidade de todos os serviços durante estas intervenções. 
 
 \todo[inline,color=blue!20]{? Faz sentido falar sobre a aquisiçaõ da nova marca again?}
-
-\todo[inline]{TODO: Falar sobre o upgrade de storm}
 
 \section{Engenharia de Requisitos}
 
@@ -95,21 +100,24 @@ como por exemplo, restrições de design, implementação, interface ou físicos
 \begin{itemize}
   \item O sistema deve suportar quatro ambientes - \ac{QA}, desenvolvimento, 
     performance e produção.
-  \item O sistema deve estar replicado em dois \textit{datacenters}.
+  \item O sistema deve estar replicado em dois \glspl{dc}.
+  \item Todas as \acp{VM} do mesmo \textit{cluster} devem ter o mesmo \textit{\gls{flavour}}.
+  \item A paralelização deve ser feita por \ac{VM} e não por processo. Ou seja, a mesma \ac{VM} 
+    não pode ter dois processos a correr em paralelo.
 \end{itemize}
 
 \subsection{Requisitos Funcionais}
 \label{sec:3-rf}
 
-Os requisitos funcionais especificam as unidades e recursos funcionais de um sistema de 
-\textit{software}, concentrando-se nas funções que devem ser disponibilizadas. Estes requisitos 
-descrevem as funcionalidades, comportamentos e operações específicas que os utilizadores devem 
-conseguir executar podendo variar entre ações básicas, como entrada e saída de dados, a algoritmos 
-complexos e processos específicos de negócio.
+Os requisitos funcionais especificam as unidades funcionais de um sistema de \textit{software}.
+Estes requisitos concentram-se nas funções que devem ser disponibilizadas, descrevem as funcionalidades, 
+comportamentos e operações específicas que os utilizadores devem ser capazes de executar, podendo 
+variar desde ações básicas, como entrada e saída de dados, a algorítmos específicos e processos 
+de negócio.
 
-De forma a facilitar a compreensão por parte do leitor os requisitos funcionais encontram-se 
-descritos na Tabela \ref{tab:reqfun} e na Figura \ref{dcu}, na forma de \textit{User Stories}, 
-seguindo a estrutura apresentada no artigo "(User) Stories for Analytics Projects - Part 1". \cite{us}.
+De forma a facilitar a compreensão dos requisitos funcionais estes encontram-se descritos na 
+Tabela \ref{tab:reqfun} e na Figura \ref{dcu}, na forma de \textit{User Stories}, seguindo a 
+estrutura apresentada no artigo "(User) Stories for Analytics Projects - Part 1". \cite{us}.
 
 \begin{table}[H]
   \begin{center}
@@ -139,3 +147,4 @@ Através da análise do problema definido, em conjunto com os requisitos funcion
 apresentados anteriormente, o principal objetivo desta secção é documentar cada fase distinta que 
 compõe o desenho da solução idealizada.
 
+\todo[inline]{TODO}
