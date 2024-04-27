@@ -12,23 +12,23 @@ ao uso de \textit{streams} para conseguir atingir este objetivo. Esta abordagem 
 o processamento assíncrono dos dados relativos a este fluxo de uma forma otimizada.
 
 De momento, os serviços responsáveis pelo processamento destes dados estão distribuídos em dois
-\textit{clusters} que usam \textit{Apache Storm} para a gestão do mesmo. Esta solução apresenta alguns
+\textit{\glspl{cluster}} que usam \textit{Apache Storm} para a gestão do mesmo. Esta solução apresenta alguns
 defeitos que são importantes de resolver por forma a melhorar a capacidade de escalabilidade destes
 serviços. 
 
-O primeiro destes problemas é o elevado número de \acp{VM} presente em cada \textit{cluster},
+O primeiro destes problemas é o elevado número de \acp{VM} presente em cada \textit{\gls{cluster}},
 este problema impacta a solução na fase de lançamento de novas versões. Isto deve-se ao facto de
 toda a infraestrutura estar sob demanda constante com vários lançamentos paralelos de vários serviços
 em ao ser necessário criar novas \acp{VM} o processo responsável pela gestão de máquinas da
 infraestrutura pode não ser capaz de responder ao pedido. Desta forma, diminuir o número de \acp{VM}
-presentes no \textit{cluster} representaria uma melhoria na probabilidade da taxa de sucesso de
+presentes no \textit{\gls{cluster}} representaria uma melhoria na probabilidade da taxa de sucesso de
 lançamento de uma nova versão (em todos os ambientes).
 
 Além disso, o sistema está a usar um excesso de recursos para determinados serviços. Desta forma,
-se for possível alterar o \textit{\gls{flavour}} destes \textit{clusters} vai ser possível economizar
+se for possível alterar o \textit{\gls{flavour}} destes \textit{\glspl{cluster}} vai ser possível economizar
 recursos. Para atingir este objetivo existem várias abordagens possíveis, como por exemplo, a
-alteração do número de \acp{VM} presentes em cada \textit{cluster}, a alteração do \textit{\gls{flavour}}
-de cada \textit{cluster} ou a alteração da distrubuição de serviços por \textit{cluster}.
+alteração do número de \acp{VM} presentes em cada \textit{\gls{cluster}}, a alteração do \textit{\gls{flavour}}
+de cada \textit{\gls{cluster}} ou a alteração da distrubuição de serviços por \textit{\gls{cluster}}.
 
 Por fim, vai ser efetuada a atualização da versão de \textit{Apache Storm} de forma a tirar partido
 das funcionalidades mais recentes da ferramenta. Assim como nas alterações anteriores, será também
@@ -101,7 +101,7 @@ como por exemplo, restrições de design, implementação, interface ou físicos
   \item O sistema deve suportar quatro ambientes - \ac{QA}, desenvolvimento, 
     performance e produção.
   \item O sistema deve estar replicado em dois \glspl{dc}.
-  \item Todas as \acp{VM} do mesmo \textit{cluster} devem ter o mesmo \textit{\gls{flavour}}.
+  \item Todas as \acp{VM} do mesmo \textit{\gls{cluster}} devem ter o mesmo \textit{\gls{flavour}}.
   \item A paralelização deve ser feita por \ac{VM} e não por processo. Ou seja, a mesma \ac{VM} 
     não pode ter dois processos a correr em paralelo.
 \end{itemize}
@@ -128,15 +128,15 @@ estrutura apresentada no artigo "(User) Stories for Analytics Projects - Part 1"
       \hline
       ID & User Story                                                                  \\ \hline
       1  & \begin{tabular}[c]{@{}l@{}}Como Engenheiro de Aplicações, pretendo que seja efetuado \\
-      um estudo que determine possíveis otimizações de recursos nos \textit{clusters} dos serviços \\
+        um estudo que determine possíveis otimizações de recursos nos \textit{\glspl{cluster}} dos serviços \\
       de catálogo .\end{tabular} \\ \hline
       2  & \begin{tabular}[c]{@{}l@{}}Como Engenheiro de Aplicações, pretendo que seja elaborado \\
-        um plano que defina como serão efetuadas as alterações nos recursos dos \textit{clusters} \\
+        um plano que defina como serão efetuadas as alterações nos recursos dos \textit{\glspl{cluster}} \\
         dos serviços de catálogo .\end{tabular} \\ \hline
       3  & \begin{tabular}[c]{@{}l@{}}Como Engenheiro de Aplicações, pretendo que sejam efetuadas \\
-        reduções de recursos nos \textit{clusters} dos serviços de catálogo atuais.\end{tabular} \\ \hline
+      reduções de recursos nos \textit{\glspl{cluster}} dos serviços de catálogo atuais.\end{tabular} \\ \hline
       4  & \begin{tabular}[c]{@{}l@{}}Como Engenheiro de Aplicações, pretendo que a versão de \\
-        \textit{Apache Storm} utilizada pelos \textit{clusters} dos serviços de catálogo seja atualizada \\
+        \textit{Apache Storm} utilizada pelos \textit{\glspl{cluster}} dos serviços de catálogo seja atualizada \\
         para a versão mais recente.\end{tabular} \\ \hline
       5  & \begin{tabular}[c]{@{}l@{}}Como XXX, quero XXX.\end{tabular} \\ \hline
     \end{tabular}

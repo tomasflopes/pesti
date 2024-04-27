@@ -29,25 +29,25 @@ real de forma eficiente tentando evitar ao máximo que haja constrangimentos no 
 
 O \textit{\gls{cluster}} que lida com os dados de catálogo é composto por várias máquinas que têm
 como função receber e transformar um grande volume de dados de vários eventos que são recebidos de 
-diversas fontes. Para controlar este \textit{cluster} é usada a tecnologia \textit{Apache Storm}
+diversas fontes. Para controlar este \textit{\gls{cluster}} é usada a tecnologia \textit{Apache Storm}
 para fazer o processamento destes dados.
 
 Com o crescimento da empresa, o volume de dados que é processado tem vindo a aumentar e, além disso,
 nos últimos meses o grupo Flutter adquiriu uma nova empresa para a divisão de \ac{UKI} o que fez 
-com que o volume de dados que o \textit{cluster} tem que ser capaz de processar aumentasse 
+com que o volume de dados que o \textit{\gls{cluster}} tem que ser capaz de processar aumentasse 
 substancialmente.
 
-Desta forma, o problema que se apresenta é que este \textit{cluster} não tem capacidade para lidar
+Desta forma, o problema que se apresenta é que este \textit{\gls{cluster}} não tem capacidade para lidar
 com o volume de dados para o qual está a ser sujeito e, por isso, é necessário fazer algumas
 otimizações por forma a não haver constrangimentos no sistema. A abordagem mais simplista poderia 
-passar por aumentar apenas a capacidade de processamento do \textit{cluster}, mas isso seria uma 
+passar por aumentar apenas a capacidade de processamento do \textit{\gls{cluster}}, mas isso seria uma 
 solução bastante dispendiosa e, provavelmente, traria problemas de escalabilidade no futuro.
 
 Assim, é necessário fazer uma análise da utilização dos recursos do sistema e perceber onde estão 
 os principais problemas de performance e escalabilidade de forma a tentar encontrar soluções que 
 possam ser implementadas para resove-los. Numa primeira fase, é necessário perceber como o sistema 
 está implementado na infraestrutura da empresa e fazer uma análise aos recursos usados por cada 
-máquina que compõe o \textit{cluster} de forma a perceber onde estão os principais problemas. De 
+máquina que compõe o \textit{\gls{cluster}} de forma a perceber onde estão os principais problemas. De 
 seguida, será realizada uma atualização da versão do \textit{Apache Storm} que é usada no sistema 
 de forma a tentar tirar partido das funcionalidades e melhorias de desempenho que foram 
 implementadas nas versões mais recentes.
@@ -68,17 +68,22 @@ desempenho do sistema. Desta forma, os objetivos a atingir são os seguintes:
 \subsection{Abordagem}
 
 Primeiramente, será necessária fazer uma análise às métricas de sistema de forma a compreender
-o uso de recursos do \textit{cluster}. Para isso, é usada a ferramenta Grafana que permite
+o uso de recursos do \textit{\gls{cluster}}. Para isso, é usada a ferramenta Grafana que permite
 monitorizar um conjunto de métricas de sistema e de aplicação, de forma a identificar os principais
 problemas de escalabilidade. Além disso, a monitorização destas métricas vai ser crucial para
 garantir que as alterações efetuadas no projeto não afetam o bom funcionamento do sistema.
 
-De seguida, será elaborado um plano de migração dos \textit{clusters} de forma a minimizar o 
+De seguida, será elaborado um plano de migração dos \textit{\glspl{cluster}} de forma a minimizar o 
 impacto destas alterações nos sistemas que se encontram em produção para os clientes destes serviços.
 
-No caso da Blip, os sistemas correm em vários ambientes e replicados em dois \textit{datacenters},
+No caso da Blip, os sistemas correm em vários ambientes e replicados em dois \textit{\glspl{dc}},
 logo, o plano de migração terá em conta estas questões de forma a tirar partido desta infraestrutura
-e minimizar a possibilidade de erros nos sistemas produtivos.
+e minimizar a indisponibilidade e possibilidade de erros nos sistemas produtivos.
+
+Para levar a cabo este trabalho será utilizada a abordagem \textit{agitada} que é uma abordagem
+iterativa e incremental que permite a adaptação a mudanças de forma rápida e eficiente. Esta abordagem
+é bastante utilizada em projetos de desenvolvimento de \textit{software} e permite a entrega de valor
+de forma rápida e eficiente.
 
 \subsection{Contributos}
 
@@ -90,8 +95,8 @@ infraestrutura atual da empresa.
 \subsection{Planeamento do Trabalho}
 
 O planeamento do trabalho concentra-se na organização e divisão do tempo útil entre as várias etapas
-que devem ser concluídas para de forma a atingir a solução final. A Tabela \ref{tab:plan}, apresenta 
-a vista geral do planeamento elaborado.
+que serão concluídas de forma a atingir a solução final. A Tabela \ref{tab:plan}, apresenta a visão
+geral do planeamento elaborado.
 
 \begin{table}[H]
   \begin{center}
