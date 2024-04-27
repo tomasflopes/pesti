@@ -1,0 +1,27 @@
+@startuml ucd
+
+skinparam usecase {
+    BackgroundColor LightBlue
+    BorderColor DarkBlue
+    ArrowColor DarkBlue
+    FontStyle Bold
+}
+
+:Application Engineer: as AE
+
+left to right direction
+
+rectangle "Use Cases" as uc {
+  usecase "1. Efetuar um estudo que determine possíveis otimizações de recursos nos clusters dos serviços de catálogo" as UC1
+  usecase "2. Elaborar um plano que defina como serão efetuadas as alterações nos recursos dos clusters dos serviços de catálogo" as UC2
+  usecase "3. Efetuar reduções de recursos nos clusters dos serviços de catálogo atuais." as UC3
+  usecase "4. Atualizar a versão de Apache Storm dos clusters dos serviços de catálogo para a mais recente" as UC4
+}
+
+AE --> UC1
+AE --> UC2
+AE --> UC3 
+AE --> UC4
+
+@enduml
+
