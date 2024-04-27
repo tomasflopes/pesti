@@ -4,7 +4,7 @@
 O presente capítulo tem como objetivo a contextualização teórica do trabalho realizado. 
 Primeiramente, são abordados conceitos relacionados com o projeto. De seguida, é realizado um 
 levantamento das tecnologias existentes no âmbito do projeto. Por fim, são expostas algumas 
-oluções semelhantes já existentes no mercado, proporcionando assim uma visão ampla do contexto em 
+soluções semelhantes já existentes no mercado, proporcionando assim uma visão ampla do contexto em 
 que o trabalho desenvolvido se insere.
 
 \section{Sistemas Distribuídos}
@@ -12,7 +12,7 @@ que o trabalho desenvolvido se insere.
 Os sistemas distribuídos representam uma arquitetura de \textit{software} onde vários sistemas 
 interagem entre si através de uma rede de computadores. Estes sistemas são compostos por um conjunto 
 de computadores autónomos que apresentam uma visão unificada e consistente para os clientes que o 
-usam. A comunicação entre os computadores é establecida através de mensagens, permitindo a partilha 
+usam. A comunicação entre os computadores é estabelecida através de mensagens, permitindo a partilha 
 de recursos e a execução de tarefas em paralelo, contribuindo assim para uma maior eficiência
 e escalabilidade do sistema \cite{verissimo2001distributed}.
 
@@ -29,7 +29,7 @@ incluindo as arquiteturas de jogos \cite{clientserver2018}, a computação móve
 e as infraestruturas baseadas em \textit{cloud} \cite{clientserver2012}. A escalabilidade e o 
 desempenho da arquitetura têm sido investigados, com estudos centrados em mecanismos de sincronização
 \cite{clientserver2004}, aplicações interativas distribuídas sem tráfego \cite{clientserver2015} e
-alocamento dinâmico de recursos \cite{clientserver2012}.
+alocação dinâmico de recursos \cite{clientserver2012}.
 
 No contexto de arquiteturas multi servidor, a criação de servidores regionais próximos dos clientes 
 tem sido explorada para resolver o problema da latência e atraso nas respostas ao cliente 
@@ -65,7 +65,7 @@ de servidores, o que demonstra a natureza distribuída dos sistemas de processam
 
 O problema do consenso em sistemas de \textit{software} distribuídos é uma questão fundamental que 
 tem merecido grande atenção nos últimos anos devido à sua vasta aplicação em vários domínios, como
-as redes de sensores, o controlo cooperativo de sistemas multiagente e as redes inteligentes 
+as redes de sensores, o controlo cooperativo de sistemas multi-agente e as redes inteligentes 
 distribuídas \cite{consensus2020}. O consenso refere-se ao processo de desenvolvimento de políticas 
 de controlo distribuído que permitem que um grupo de agentes seja capaz de chegar a um acordo sobre 
 um determinado assunto \cite{consensus2013}. É uma questão crítica em algoritmos distribuídos e é
@@ -75,7 +75,7 @@ essencial para o funcionamento fiável de sistemas distribuídos assíncronos \c
 Além disso, o problema do consenso foi investigado no contexto de restrições e condições
 específicas, como restrições de entrada e latência na comunicação, levando ao desenvolvimento de
 algoritmos como o algoritmo de consenso projetado e o algoritmo de subgradiente para estimativa 
-de consenso em sistemas multiagentes com restrições convexas e atrasos de comunicação 
+de consenso em sistemas multi-agentes com restrições convexas e atrasos de comunicação 
 \cite{consensus2018}.
 
 \section{Estratégias de implantação}
@@ -101,7 +101,7 @@ automatizadas de implantação no contexto de \ac{CI} e \ac{CD}, onde o sucesso 
 alterações nas empresas depende fortemente das \textit{pipelines} de implantação 
 \cite{canary2017b}. Além disso, foi proposta a utilização da implantação \textit{canary} como um 
 padrão de implantação de \textit{software} para controlar a implantação de novas versões de 
-\textit{software}, diminuindo o risco de falhas no processo e aumentando a confiabilidade 
+\textit{software}, diminuindo o risco de falhas no processo e aumentando a fiabilidade 
 \cite{canary2021}.
 
 \begin{figure}[H]
@@ -139,7 +139,7 @@ deteção de problemas antes da implantação completa.
 
 A implantação \textit{blue-green} é uma estratégia de implantação de \textit{software} que visa 
 minimizar o tempo de indisponibilidade e os riscos associados às atualizações de \textit{software}, 
-garantindo a disponibilidade e confiabilidade contínua do sistema. Esta estratégia envolve a
+garantindo a disponibilidade e fiabilidade contínua do sistema. Esta estratégia envolve a
 manutenção de dois ambientes de produção idênticos, Figura \ref{fig:blue-green-before} - o ambiente atual 
 (\textit{blue}) e o novo (\textit{green}), e o encaminhamento do tráfego de utilizadores entre eles. 
 Quando se pretende implantar uma nova versão do sistema, o tráfego é gradualmente transferido do 
@@ -191,7 +191,7 @@ qualidade das soluções \cite{metrics2003}. Este tipo de monitorização é cru
 projetos, produtos e processos de \textit{software} \cite{metrics2019}. As métricas permitem que os 
 gestores de projetos e desenvolvedores acompanhem, e controlem, os projetos em que estão a trabalhar,
 fornecendo informações sobre o estado e o progresso da solução \cite{metrics2016}. As 
-métricas ajudam a estimar e a prever projectos futuros, incluindo riscos e custos 
+métricas ajudam a estimar e a prever projetos futuros, incluindo riscos e custos 
 \cite{metrics2016b}. A utilização de métricas é vital para determinar as características de 
 qualidade do \textit{software} e avaliar a saúde de um projeto \cite{metrics2015}.
 

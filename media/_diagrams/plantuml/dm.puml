@@ -1,0 +1,45 @@
+@startuml dm
+
+skinparam classAttributeIconSize 0
+hide empty attributes
+hide empty methods
+skinparam classBackgroundColor beige
+skinparam ArrowColor #222222
+
+left to right direction
+
+entity "Class" as c {
+  - name
+}
+
+entity "SubClass" as sc {
+  - name
+}
+
+entity "Competition" as comp {
+  - name
+  - start_date
+  - end_date 
+}
+
+entity "Event" as e {
+  - name
+  - date
+}
+
+entity "Market" as m {
+  - name
+}
+
+entity "Selection" as s {
+  - name
+  - odd
+}
+
+c "1" --> "1..*" sc
+sc "1" --> "*" comp
+comp "1" --> "1..*" e
+e "1" --> "1..*" m
+m "1" --> "1..*" s
+
+@enduml

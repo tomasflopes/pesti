@@ -28,7 +28,7 @@ Além disso, o sistema está a usar um excesso de recursos para determinados ser
 se for possível alterar o \textit{\gls{flavour}} destes \textit{\glspl{cluster}} vai ser possível economizar
 recursos. Para atingir este objetivo existem várias abordagens possíveis, como por exemplo, a
 alteração do número de \acp{VM} presentes em cada \textit{\gls{cluster}}, a alteração do \textit{\gls{flavour}}
-de cada \textit{\gls{cluster}} ou a alteração da distrubuição de serviços por \textit{\gls{cluster}}.
+de cada \textit{\gls{cluster}} ou a alteração da distribuição de serviços por \textit{\gls{cluster}}.
 
 Por fim, vai ser efetuada a atualização da versão de \textit{Apache Storm} de forma a tirar partido
 das funcionalidades mais recentes da ferramenta. Assim como nas alterações anteriores, será também
@@ -36,6 +36,35 @@ crucial fazer uma análise cuidada da forma como esta atualização vai ser leva
 é importante garantir a disponibilidade de todos os serviços durante estas intervenções. 
 
 \todo[inline,color=blue!20]{? Faz sentido falar sobre a aquisiçaõ da nova marca again?}
+
+\subsection{Modelo de Domínio}
+
+Nesta secção vai ser apresentado o \ac{MD} simplificado do fluxo de catálogo disponibilizado nas 
+plataformas de \textit{sportsbook} das empresas do grupo Flutter. A compreensão deste modelo será
+importante para acompanhar a solução apresentada de seguida. A Figura \ref{md} apresenta a vista
+simplificada deste modelo.
+
+\begin{figure}[H]
+  \centerline{\includegraphics[scale=0.4]{media/content/analise/dm.png}}
+  \caption{Modelo de Domínio - Fluxo de Catálogo (simplificado)}
+  \label{md}
+\end{figure}
+
+De forma a ser mais simples acompanhar os termos apresentados na Figura \ref{md} vamos proceder 
+a descrever uma hierarquia de exemplo:
+
+\begin{itemize}
+  \item \textbf{Classe} - Desporto (exemplo: Futebol)
+  \item \textbf{SubClasse} - Especificação de Desporto (exemplo: Futebol Masculino)
+  \item \textbf{Competição} - Competição (exemplo: Liga Portuguesa de Futebol)
+  \item \textbf{Evento} - Evento (exemplo: FC Porto vs SC Espinho)
+  \item \textbf{Mercado} - Tipo de Aposta (exemplo: Resultado Final)
+  \item \textbf{Seleção} - Seleção de Aposta (exemplo: SC Espinho a vencer)
+\end{itemize}
+
+Como referido anteriormente, esta representação é apenas uma simplificação da realidade, isto
+porque cada classe pode ter diferenças significativas na forma como representa a restante
+hierarquia de relações entre entidades.
 
 \section{Engenharia de Requisitos}
 
@@ -55,7 +84,7 @@ restrições impostas para que o sistema realize os requisitos funcionais corret
 
 Os requisitos não funcionais não se concentram no que o sistema faz, mas sim em como é esperado que
 ele funcione. Estes requisitos são essenciais para a qualidade geral, desempenho e usabilidade do 
-\textit{software} e têm em conta fatores como o desempenho, a segurança, a confiabilidade e a 
+\textit{software} e têm em conta fatores como o desempenho, a segurança, a fiabilidade e a 
 usabilidade.
 
 Os requisitos não funcionais apresentados em seguida, guiam-se pelo modelo FURPS+, um padrão de 
@@ -77,7 +106,7 @@ como por exemplo, restrições de design, implementação, interface ou físicos
     \todo[inline]{Perguntar na Blip se há algum requisito enquadrado}
 \end{itemize}
 
-\textbf{Confiabilidade}
+\textbf{Fiabilidade}
 \begin{itemize}
   \item A aplicação deve ser capaz de recuperar de falhas sem perda de dados.
   \item A aplicação deve ser capaz de recuperar de falhas minimizando o tempo de inatividade.
@@ -112,7 +141,7 @@ como por exemplo, restrições de design, implementação, interface ou físicos
 Os requisitos funcionais especificam as unidades funcionais de um sistema de \textit{software}.
 Estes requisitos concentram-se nas funções que devem ser disponibilizadas, descrevem as
 funcionalidades, comportamentos e operações específicas que os utilizadores devem ser capazes de 
-executar, podendo variar desde ações básicas, como entrada e saída de dados, a algorítmos 
+executar, podendo variar desde ações básicas, como entrada e saída de dados, a algoritmos 
 específicos e processos de negócio.
 
 De forma a facilitar a compreensão dos requisitos funcionais estes encontram-se descritos na 
@@ -154,6 +183,20 @@ estrutura apresentada no artigo "(User) Stories for Analytics Projects - Part 1"
 Após a análise do problema definido juntamente com os requisitos funcionais e não funcionais,
 apresentados anteriormente, o objetivo desta secção é documentar as fases que fazem parte do
 desenho da solução idealizada.
+
+\subsection{Análise de Uso de Recursos}
+
+A primeira fase do desenho da solução passa pela análise do uso de recursos dos \textit{\glspl{cluster}}
+que suportam os serviços de catálogo. Para tal, foram analisadas duas janelas temporais distintas
+onde os serviços sofreram uma carga acima do normal, desta forma, é possível ter uma visão clara
+das possíveis otimizações de recursos a fazer já que o objetivo final é que o \textit{gls{cluster}}
+mantenha a sua capacidade de processamento e seja capaz de suportar a mesma carga a que estava
+sujeito antes desta intervenção.
+
+Para isso, é importante, em primeiro lugar, compreender a forma como estes serviços são requisitados
+pelo sistema para, desta forma, ser possível analisar o intervalo de datas correto. Neste caso,
+todos os serviços disponibilizados pelo \textit{gls{cluster}} são relativos ao catálogo, ou seja,
+à informação relativa aos vários eventos disponibilizados aos clientes.
 
 \todo[inline]{TODO}
 
