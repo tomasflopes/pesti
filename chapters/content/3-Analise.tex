@@ -195,8 +195,31 @@ sujeito antes desta intervenção.
 
 Para isso, é importante, em primeiro lugar, compreender a forma como estes serviços são requisitados
 pelo sistema para, desta forma, ser possível analisar o intervalo de datas correto. Neste caso,
-todos os serviços disponibilizados pelo \textit{gls{cluster}} são relativos ao catálogo, ou seja,
-à informação relativa aos vários eventos disponibilizados aos clientes.
+todos os serviços disponibilizados pelos \textit{glspl{cluster}} são relativos ao catálogo, ou seja,
+à informação relativa aos vários eventos disponibilizados aos clientes. Desta forma, os intervalos
+a analisar devem ser períodos em que sejam criados muitos eventos novos, ou momentos em que
+estejam a ser realizados vários eventos em simultâneo e o sistema de atualização de \textit{glspl{odd}}
+esteja a ser bastante utilizado.
 
-\todo[inline]{TODO}
+Após discussão com vários elementos mais experientes no negócio concluiu-se que os intervalos
+adequados a esta análise seriam em agosto - quando são criados os eventos relacionados com as
+principais ligas dos maiores desportos a nível europeu, como futebol e basquetebol - e dezembro 
+quando existe uma nova vaga de criação de eventos nesses desportos e também a disponibilização 
+dos calendários noutros desportos disponíveis nas plataformas de \textit{sportsbook} como
+corridas de cavalos.
+
+Para a análise destes dados foram usadas as métricas disponibilizadas no \textit{Grafana}. Em alguns
+casos foi necessário a criação de novos \textit{dashboards} para a análise de métricas mais 
+específicas, mas na maioria dos casos as métricas mais relevantes eram métricas de sistema, como
+uso de processador e de memória RAM.
+
+\todo[inline]{Falar sobre a análise}
+
+\subsection{Possíveis abordagens}
+
+\todo[inline]{Falar sobre as 2 opções iniciais - prós e contras}
+
+\subsection{Processo de implantação}
+
+\todo[inline]{Falar sobre os vários passos para atingir o objetivo}
 
