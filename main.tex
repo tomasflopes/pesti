@@ -11,7 +11,7 @@
 \usepackage{url}
 \usepackage{indentfirst}
 \usepackage{tocbibind}
-\usepackage[toc]{glossaries}
+\usepackage[toc,automake]{glossaries-extra}
 \usepackage{hyperref}
 \usepackage{xcolor}
 \usepackage{amsmath}
@@ -33,6 +33,7 @@
 { \let\hbadness\@tempcnta }
 {\let\AC@placelabel\@gobble\let\hbadness\@tempcnta }{}{\fail}
 \makeatother
+
 \makeglossaries
 
 \usepackage{setspace} % Add the setspace package
@@ -126,10 +127,11 @@
 \addtocontents{toc}{\protect\setcounter{tocdepth}{3}}
 \listoffigures
 {\renewcommand{\addvspace}[1]{}\listoftables}
-
 \include{chapters/first-pages/7-abbreviations}
 \include{chapters/first-pages/glossary}
 \printglossaries
+
+\clearpage
 
 \pagestyle{default}
 \pagestyle{fancy}
@@ -158,6 +160,7 @@
 \newpage
 \bibliographystyle{plain}
 \nocite{*}\bibliography{ref.bib}
+
 
 \begin{appendices}
 \end{appendices}
