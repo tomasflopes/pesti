@@ -210,16 +210,102 @@ corridas de cavalos.
 
 Para a análise destes dados foram usadas as métricas disponibilizadas no \textit{Grafana}. Em alguns
 casos foi necessário a criação de novos \textit{dashboards} para a análise de métricas mais 
-específicas, mas na maioria dos casos as métricas mais relevantes eram métricas de sistema, como
-uso de processador e de memória RAM.
+específicas para cada serviço, mas na maioria dos casos as métricas mais relevantes eram métricas 
+de sistema, como uso de processador e de memória RAM.
 
-\todo[inline]{Falar sobre a análise}
+Esta análise foca-se no uso de recursos de cada topologia. Na Figura \ref{analise-ofs} podemos
+analisar o uso de recursos de um dos \textit{\glspl{cluster}}. A restante análise encontra-se
+presente em anexo.
+
+\todo{Adicionar o anexo}
+
+\begin{figure}[H]
+  \centerline{\includegraphics[scale=0.3]{media/content/analise/analise-ofs.png}}
+  \caption{Análise do uso de recursos de um dos \textit{clusters}}
+  \label{analise-ofs}
+\end{figure}
+
+\todo[inline]{Elaborar a análise}
 
 \subsection{Possíveis abordagens}
 
-\todo[inline]{Falar sobre as 2 opções iniciais - prós e contras}
+Após concluída esta fase de análise foi possível sugerir novas abordagens para a distribuição
+das topologias pelos \textit{\glspl{cluster}} de forma a otimizar o uso de recursos dos mesmos.
+
+Para isso foram criadas três abordagens alternativas que tentam resolver este problema. Todas estas
+abordagens vão ser analisadas e discutidas de forma a ser possível compreender qual o motivo da
+escolha da alternativa que foi optada internamente.
+
+\subsubsection{Alternativa 1}
+
+A primeira alternativa, representada na Figura \ref{proposal-1}, serve de base para todas as
+alternativas que serão analisadas subsequentemente. A ideia é criar um novo \textit{\gls{cluster}}
+para receber as topologias que não necessitam de tanto poder computacional associado. Desta forma,
+será possível libertar os restantes \textit{\glspl{cluster}} do número excessivo de \acp{VM} e, ao
+reduzir os \textit{\glspl{flavour}} de todas as \acp{VM} procedemos à redução do uso total do
+conjunto.
+
+\begin{figure}[H]
+  \centerline{\includegraphics[scale=0.4]{media/content/analise/proposal-1.png}}
+  \caption{Distribuição de topologias pelos \textit{clusters} - Alternativa 1}
+  \label{proposal-1}
+\end{figure}
+
+\subsubsection{Alternativa 2}
+
+\todo[inline]{Falar prós e contras desta alternativa}
+
+\begin{figure}[H]
+  \centerline{\includegraphics[scale=0.4]{media/content/analise/proposal-2.png}}
+  \caption{Distribuição de topologias pelos \textit{clusters} - Alternativa 2}
+  \label{proposal-2}
+\end{figure}
+
+\subsubsection{Alternativa 3}
+
+\todo[inline]{Falar prós e contras desta alternativa}
+
+\begin{figure}[H]
+  \centerline{\includegraphics[scale=0.4]{media/content/analise/proposal-3.png}}
+  \caption{Distribuição de topologias pelos \textit{clusters} - Alternativa 3}
+  \label{proposal-3}
+\end{figure}
+
+\subsubsection{Comparação entre alternativas}
+
+\todo[inline]{Falar sobre as 3 opções e o porquê da 1 (com 8 RAM) ter sido a escolhida}
 
 \subsection{Processo de implantação}
 
 \todo[inline]{Falar sobre os vários passos para atingir o objetivo}
+
+\begin{figure}[H]
+  \centerline{\includegraphics[scale=0.4]{media/content/analise/strat-current.png}}
+  \caption{Processo de implantação - Estado atual}
+  \label{strat-current}
+\end{figure}
+
+\begin{figure}[H]
+  \centerline{\includegraphics[scale=0.4]{media/content/analise/strat-1.png}}
+  \caption{Processo de implantação - Passo 1}
+  \label{strat-1}
+\end{figure}
+
+\begin{figure}[H]
+  \centerline{\includegraphics[scale=0.4]{media/content/analise/strat-2.png}}
+  \caption{Processo de implantação - Passo 2}
+  \label{strat-2}
+\end{figure}
+
+\begin{figure}[H]
+  \centerline{\includegraphics[scale=0.4]{media/content/analise/strat-2_1.png}}
+  \caption{Processo de implantação - Passo 2.1}
+  \label{strat-2_1}
+\end{figure}
+
+\begin{figure}[H]
+  \centerline{\includegraphics[scale=0.4]{media/content/analise/strat-3.png}}
+  \caption{Processo de implantação - Passo 3}
+  \label{strat-3}
+\end{figure}
 
