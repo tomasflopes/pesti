@@ -12,23 +12,23 @@ ao uso de \textit{streams} para conseguir atingir este objetivo. Esta abordagem 
 o processamento assíncrono dos dados relativos a este fluxo de uma forma otimizada.
 
 De momento, os serviços responsáveis pelo processamento destes dados estão distribuídos em dois
-\textit{\glspl{cluster}} que usam \textit{Apache Storm} para a gestão do mesmo. Esta solução apresenta alguns
+\glspl{cluster} que usam \textit{Apache Storm} para a gestão do mesmo. Esta solução apresenta alguns
 defeitos que são importantes de resolver por forma a melhorar a capacidade de escalabilidade destes
 serviços. 
 
-O primeiro destes problemas é o elevado número de \acp{VM} presente em cada \textit{\gls{cluster}},
+O primeiro destes problemas é o elevado número de \acp{VM} presente em cada \gls{cluster},
 este problema impacta a solução na fase de lançamento de novas versões. Isto deve-se ao facto de
 toda a infraestrutura estar sob demanda constante com vários lançamentos paralelos de vários serviços
 em ao ser necessário criar novas \acp{VM} o processo responsável pela gestão de máquinas da
 infraestrutura pode não ser capaz de responder ao pedido. Desta forma, diminuir o número de \acp{VM}
-presentes no \textit{\gls{cluster}} representaria uma melhoria na probabilidade da taxa de sucesso de
+presentes no \gls{cluster} representaria uma melhoria na probabilidade da taxa de sucesso de
 lançamento de uma nova versão (em todos os ambientes).
 
 Além disso, o sistema está a usar um excesso de recursos para determinados serviços. Desta forma,
-se for possível alterar o \textit{\gls{flavour}} destes \textit{\glspl{cluster}} vai ser possível economizar
+se for possível alterar o \gls{flavour} destes \glspl{cluster} vai ser possível economizar
 recursos. Para atingir este objetivo existem várias abordagens possíveis, como por exemplo, a
-alteração do número de \acp{VM} presentes em cada \textit{\gls{cluster}}, a alteração do \textit{\gls{flavour}}
-de cada \textit{\gls{cluster}} ou a alteração da distribuição de serviços por \textit{\gls{cluster}}.
+alteração do número de \acp{VM} presentes em cada \gls{cluster}, a alteração do \gls{flavour}
+de cada \gls{cluster} ou a alteração da distribuição de serviços por \textit{\gls{cluster}}.
 
 Por fim, vai ser efetuada a atualização da versão de \textit{Apache Storm} de forma a tirar partido
 das funcionalidades mais recentes da ferramenta. Assim como nas alterações anteriores, será também
@@ -130,7 +130,7 @@ como por exemplo, restrições de design, implementação, interface ou físicos
   \item O sistema deve suportar quatro ambientes - \ac{QA}, desenvolvimento, 
     performance e produção.
   \item O sistema deve estar replicado em dois \glspl{dc}.
-  \item Todas as \acp{VM} do mesmo \textit{\gls{cluster}} devem ter o mesmo \textit{\gls{flavour}}.
+  \item Todas as \acp{VM} do mesmo \gls{cluster} devem ter o mesmo \gls{flavour}.
   \item A paralelização deve ser feita por \ac{VM} e não por processo. Ou seja, a mesma \ac{VM} 
     não pode ter dois processos a correr em paralelo.
 \end{itemize}
@@ -157,15 +157,15 @@ estrutura apresentada no artigo "(User) Stories for Analytics Projects - Part 1"
       \hline
       ID & User Story                                                                  \\ \hline
       1  & \begin{tabular}[c]{@{}l@{}}Como Engenheiro de Aplicações, pretendo que seja efetuado \\
-        um estudo que determine possíveis otimizações de recursos nos \textit{\glspl{cluster}} dos serviços \\
+        um estudo que determine possíveis otimizações de recursos nos \glspl{cluster} dos serviços \\
       de catálogo .\end{tabular} \\ \hline
       2  & \begin{tabular}[c]{@{}l@{}}Como Engenheiro de Aplicações, pretendo que seja elaborado \\
-        um plano que defina como serão efetuadas as alterações nos recursos dos \textit{\glspl{cluster}} \\
+        um plano que defina como serão efetuadas as alterações nos recursos dos \glspl{cluster} \\
         dos serviços de catálogo .\end{tabular} \\ \hline
       3  & \begin{tabular}[c]{@{}l@{}}Como Engenheiro de Aplicações, pretendo que sejam efetuadas \\
-      reduções de recursos nos \textit{\glspl{cluster}} dos serviços de catálogo atuais.\end{tabular} \\ \hline
+      reduções de recursos nos \glspl{cluster} dos serviços de catálogo atuais.\end{tabular} \\ \hline
       4  & \begin{tabular}[c]{@{}l@{}}Como Engenheiro de Aplicações, pretendo que a versão de \\
-        \textit{Apache Storm} utilizada pelos \textit{\glspl{cluster}} dos serviços de catálogo seja atualizada \\
+        \textit{Apache Storm} utilizada pelos \glspl{cluster} dos serviços de catálogo seja atualizada \\
         para a versão mais recente.\end{tabular} \\ \hline
       5  & \begin{tabular}[c]{@{}l@{}}Como XXX, quero XXX.\end{tabular} \\ \hline
     \end{tabular}
@@ -186,7 +186,7 @@ desenho da solução idealizada.
 
 \subsection{Análise de Uso de Recursos}
 
-A primeira fase do desenho da solução passa pela análise do uso de recursos dos \textit{\glspl{cluster}}
+A primeira fase do desenho da solução passa pela análise do uso de recursos dos \glspl{cluster}
 que suportam os serviços de catálogo. Para tal, foram analisadas duas janelas temporais distintas
 onde os serviços sofreram uma carga acima do normal, desta forma, é possível ter uma visão clara
 das possíveis otimizações de recursos a fazer já que o objetivo final é que o \textit{gls{cluster}}
@@ -214,10 +214,10 @@ específicas para cada serviço, mas na maioria dos casos as métricas mais rele
 de sistema, como uso de processador e de memória RAM.
 
 Esta análise foca-se no uso de recursos de cada topologia. Na Figura \ref{analise-ofs} podemos
-analisar o uso de recursos de um dos \textit{\glspl{cluster}}. A restante análise encontra-se
+analisar o uso de recursos de um dos \glspl{cluster}. A restante análise encontra-se
 presente em anexo.
 
-\todo{Adicionar o anexo}
+\todo{Adicionar as restantes prints em anexo}
 
 \begin{figure}[H]
   \centerline{\includegraphics[scale=0.3]{media/content/analise/analise-ofs.png}}
@@ -225,12 +225,14 @@ presente em anexo.
   \label{analise-ofs}
 \end{figure}
 
-\todo[inline]{Elaborar a análise}
+Esta análise permitiu concluir que existem topologias que estão hospedadas num \gls{cluster}
+com um \gls{flavour} superior ao que necessitam para processar a carga que lhes é atribuída,
+mesmo em momentos de pico. 
 
 \subsection{Possíveis abordagens}
 
 Após concluída esta fase de análise foi possível sugerir novas abordagens para a distribuição
-das topologias pelos \textit{\glspl{cluster}} de forma a otimizar o uso de recursos dos mesmos.
+das topologias pelos \glspl{cluster} de forma a otimizar o uso total de recursos dos mesmos.
 
 Para isso foram criadas três abordagens alternativas que tentam resolver este problema. Todas estas
 abordagens vão ser analisadas e discutidas de forma a ser possível compreender qual o motivo da
@@ -239,10 +241,10 @@ escolha da alternativa que foi optada internamente.
 \subsubsection{Alternativa 1}
 
 A primeira alternativa, representada na Figura \ref{proposal-1}, serve de base para todas as
-alternativas que serão analisadas subsequentemente. A ideia é criar um novo \textit{\gls{cluster}}
-para receber as topologias que não necessitam de tanto poder computacional associado. Desta forma,
-será possível libertar os restantes \textit{\glspl{cluster}} do número excessivo de \acp{VM} e, ao
-reduzir os \textit{\glspl{flavour}} de todas as \acp{VM} procedemos à redução do uso total do
+alternativas que serão analisadas subsequentemente. A ideia é criar um novo \gls{cluster}
+para receber as topologias que não necessitam de tanta capacidade computacional associado. Desta 
+forma, será possível libertar os restantes \glspl{cluster} do número excessivo de \acp{VM} 
+e, ao reduzir os \glspl{flavour} de todas as \acp{VM} procedemos à redução do uso total do
 conjunto.
 
 \begin{figure}[H]
@@ -253,7 +255,17 @@ conjunto.
 
 \subsubsection{Alternativa 2}
 
-\todo[inline]{Falar prós e contras desta alternativa}
+A segunda alternativa, representada na Figura \ref{proposal-2}, diminui a memória RAM utilizada no
+primeiro \gls{cluster}, além de reformular a organização das topologias pelos restantes. Esta 
+abordagem acaba por ser inferior às restantes por duas questões - o tamanho, em termos de número 
+de \acp{VM}, do terceiro \gls{cluster} e a quantidade total de recursos superior à proposta
+analisada anteriormente.
+
+O número de \acp{VM} hospedadas no mesmo \gls{cluster} não deve ser demasiado elevado de forma a
+evitar uma carga demasiado elevada no processo de implantação, isto porque, devido à forma como 
+funciona o \textit{Apache Storm} a alteração numa topologia implica o processo de implantação de
+todo o \gls{cluster} e, logicamente, quanto maior a quantidade de \acp{VM} que deve ser levantada
+durante o processo, mais demorado se tornará.
 
 \begin{figure}[H]
   \centerline{\includegraphics[scale=0.4]{media/content/analise/proposal-2.png}}
@@ -263,7 +275,15 @@ conjunto.
 
 \subsubsection{Alternativa 3}
 
-\todo[inline]{Falar prós e contras desta alternativa}
+A terceira, e última, alternativa analisada acaba por ser a mais vantajosa em quase todos os 
+aspetos, mas acabou por ser descartada devido após análise por parte das equipas que desenvolvem as 
+topologias. Isto porque uma das topologias é uma exceção às restantes no sentido em que todas as
+restantes, como mecionado anteriormente, a paralelização só é permitada ser efetuada por máquina, 
+ou seja, a mesma máquina não pode correr mais que um processo da topologia, paralelamente.
+Devido à necessidade acima do normal de paralelização por parte desta topologia em específico
+acabou por ser aberta a exceção e neste caso cada máquina corre dois processos em paralelo.
+Desta forma, a análise efetuada anteriormente não pode ser interpretada da mesma forma para esta
+topologia, o que invalida esta alternativa.
 
 \begin{figure}[H]
   \centerline{\includegraphics[scale=0.4]{media/content/analise/proposal-3.png}}
@@ -273,26 +293,34 @@ conjunto.
 
 \subsubsection{Comparação entre alternativas}
 
-\todo[inline]{Falar sobre as 3 opções e o porquê da 1 (com 8 RAM) ter sido a escolhida}
+Após uma análise cuidada de todas estas alternativas acabou por ser escolhida a primeira alternativa
+com a alteração da memória RAM do primeiro \gls{cluster} chegando à opção ilustrada na Figura
+\ref{proposal-final}.
+
+\begin{figure}[H]
+  \centerline{\includegraphics[scale=0.6]{media/content/analise/proposal-final.png}}
+  \caption{Distribuição de topologias pelos \textit{clusters} - Alternativa Final}
+  \label{proposal-final}
+\end{figure}
 
 \subsection{Processo de implantação}
 
-\todo[inline]{Falar sobre os vários passos para atingir o objetivo}
+Após decidir qual a abordagem a ser seguida
 
 \begin{figure}[H]
-  \centerline{\includegraphics[scale=0.4]{media/content/analise/strat-current.png}}
+  \centerline{\includegraphics[scale=0.5]{media/content/analise/strat-current.png}}
   \caption{Processo de implantação - Estado atual}
   \label{strat-current}
 \end{figure}
 
 \begin{figure}[H]
-  \centerline{\includegraphics[scale=0.4]{media/content/analise/strat-1.png}}
+  \centerline{\includegraphics[scale=0.5]{media/content/analise/strat-1.png}}
   \caption{Processo de implantação - Passo 1}
   \label{strat-1}
 \end{figure}
 
 \begin{figure}[H]
-  \centerline{\includegraphics[scale=0.4]{media/content/analise/strat-2.png}}
+  \centerline{\includegraphics[scale=0.5]{media/content/analise/strat-2.png}}
   \caption{Processo de implantação - Passo 2}
   \label{strat-2}
 \end{figure}
@@ -304,7 +332,7 @@ conjunto.
 \end{figure}
 
 \begin{figure}[H]
-  \centerline{\includegraphics[scale=0.4]{media/content/analise/strat-3.png}}
+  \centerline{\includegraphics[scale=0.5]{media/content/analise/strat-3.png}}
   \caption{Processo de implantação - Passo 3}
   \label{strat-3}
 \end{figure}
