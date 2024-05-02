@@ -175,7 +175,32 @@ em \textit{cloud}, onde a alta disponibilidade e a interrupção mínima são cr
 
 \subsection{Apache Storm}
 
-\todo[inline]{Contextualizar Storm e falar sobre conceitos base como a replicação, topologias, etc}
+O \textit{Apache Storm} é um sistema de computação em memória distribuído e tolerante a falhas, 
+concebido para processar grandes volumes de dados de alta velocidade em tempo real \cite{storm2017}. 
+É um sistema centralizado e hierárquico de processamento de \textit{streams} que opera sobre o 
+\textit{Nimbus} \cite{storm2015}. O \textit{Storm} permite que os operadores tenham múltiplas 
+réplicas e os tuplos - a informação sobre o qual o \textit{Storm} opera - podem ser encaminhadas 
+usando técnicas de agendamento como \textit{fieldsGrouping} ou \textit{partialKeyGrouping}
+\cite{storm2018}. O sistema pode tirar também partido do \textit{Apache Kafka}, um serviço de 
+\textit{queues} distribuído, particionado e replicado os dados de forma a integrar dados no 
+\gls{cluster} de \textit{Storm} \cite{storm2018b}.
+
+Em termos de replicação, a investigação centrou-se na implantação e replicação otimizadas do 
+operador para o processamento elástico de \textit{streams} de dados distribuídos no âmbito 
+da estrutura \textit{Apache Storm} \cite{storm2017b}. Os estudos integraram mecanismos ótimos de
+replicação e colocação de operadores como protótipos de programadores no \textit{Apache Storm} para
+melhorar o desempenho e a tolerância a falhas \cite{storm2017c}. Para além disso, o 
+\textit{Apache Storm}, suporta a replicação de operadores para melhorar o desempenho quando são 
+identificados pontos de acesso \cite{storm2018c}.
+
+Relativamente às topologias - a estrutura dos serviços que operam sobre o \textit{Apache Storm} - 
+é possível criar estruturas bastante complexas de processamento de fluxos. Os investigadores 
+propuseram extensões ao \textit{Storm} que otimizam a paralelização dos operadores e a sua 
+colocação em diferentes recursos computacionais de forma a melhorar a elasticidade e o desempenho 
+do sistema \cite{storm2017d} . Além disso, o \textit{Apache Storm} tem sido utilizado em várias 
+aplicações, como análise de \textit{tweets}, ambientes multi-nuvem e sistemas de análise de dados 
+espaço-temporais, demonstrando sua versatilidade e ampla gama de aplicação \cite{storm2018d} 
+\cite{storm2020} \cite{storm2021}.
 
 \section{Monitorização de Sistemas}
 

@@ -305,7 +305,22 @@ com a alteração da memória RAM do primeiro \gls{cluster} chegando à opção 
 
 \subsection{Processo de implantação}
 
-Após decidir qual a abordagem a ser seguida
+Após decidir qual a abordagem a ser seguida é necessário definir o processo de implantação a ser
+seguido. Este processo deve ser claro e conciso de forma a garantir que todas as equipas envolvidas
+compreendam o processo que vai ser implementado e, desta forma, maximizar a probabilidade de
+sucesso da intervenção. 
+
+Este processo foi dividido em três passos que vão ser descritos e analisados de seguida. Por uma
+questão de simplicidade no trabalho de análise, todos os quadros apresentados de seguida têm por 
+base apenas os valores de recursos dos ambientes de produção, ou seja, para obter os valores reais
+de redução de recursos deve ser necessário ainda ter em conta os recursos dos restantes ambientes
+e multiplicar todos os resultados por dois já que todas as alterações devem ser replicadas em 
+ambos os \glspl{dc}. Esta simplificação foi feita já que todas estas variáveis adicionais podem 
+ser desprezadas dadas as semelhanças entre ambientes e a dimensão total da infraestrutura em
+análise.
+
+Na Figura \ref{strat-current} podemos observar o estado atual dos \glspl{cluster}. Este é o ponto
+de partida para esta intervenção. 
 
 \begin{figure}[H]
   \centerline{\includegraphics[scale=0.5]{media/content/analise/strat-current.png}}
@@ -313,11 +328,20 @@ Após decidir qual a abordagem a ser seguida
   \label{strat-current}
 \end{figure}
 
+No primeiro passo, representado na Figura \ref{strat-1}, é efetuada uma redução de recursos 
+de ambos os \glspl{cluster}. Esta redução parte do princípio de que, sendo possível obter a 
+solução final apresentada anteriormente, então, por definição, as topologias devem ser capazes de
+operar sem problemas usando estes novos \glspl{flavour}. Esta intervenção só por si, representa
+46\% de redução no uso total de CPU (no ambiente de produção).
+
 \begin{figure}[H]
   \centerline{\includegraphics[scale=0.5]{media/content/analise/strat-1.png}}
   \caption{Processo de implantação - Passo 1}
   \label{strat-1}
 \end{figure}
+
+O segundo passo foi dividido em duas etapas - a criação do novo \gls{cluster}, representado na 
+Figura \ref{strat-2} e a migração das topologias entre \glspl{cluster}, Figura \ref{strat-2_1}.
 
 \begin{figure}[H]
   \centerline{\includegraphics[scale=0.5]{media/content/analise/strat-2.png}}
@@ -325,15 +349,35 @@ Após decidir qual a abordagem a ser seguida
   \label{strat-2}
 \end{figure}
 
+A segunda etapa deste passo é a etapa mais crítica de todo o processo, isto porque, nesta fase, é
+crucial ter a total compreensão dos processos de replicação e \gls{failover} de cada topologia de
+forma a minimizar o tempo de indisponibilidade de cada serviço.
+
 \begin{figure}[H]
   \centerline{\includegraphics[scale=0.4]{media/content/analise/strat-2_1.png}}
   \caption{Processo de implantação - Passo 2.1}
   \label{strat-2_1}
 \end{figure}
 
+O terceiro, e último, passo, representando na Figura \ref{strat-3}, representa uma nova redução 
+do \gls{flavour} de um dos \glspl{cluster}. Este passo é em todo semelhante ao primeiro, mas é
+apenas necessário efetuar esta redução no segundo \gls{cluster}.
+
 \begin{figure}[H]
   \centerline{\includegraphics[scale=0.5]{media/content/analise/strat-3.png}}
   \caption{Processo de implantação - Passo 3}
   \label{strat-3}
 \end{figure}
+
+Após todo este processo a estrutura em que estão hospedadas as topologias encontra-se na forma
+otimizada proposta e analisada anteriormente. Este processo sofre pequenas alterações entre
+ambientes já que os \glspl{flavour} não são iguais entre estes. Além disso, durante este processo
+tiveram que ser analisadas outras questões igualmente relevantes para garantir que esta migração
+era possível como é o caso da capacidade de comunicação do \textit{Zookeeper}.
+
+O \textit{Zookeeper} é utilizado por todos estes \glspl{cluster} para garantir a resiliência das 
+topologias e, por consequência, poderia não ter a capacidade de comunicar com um \gls{cluster}
+adicional. Após analisar esta questão com as equipas responsáveis pela infraestrutura foi 
+determinado que esta questão representava um problema crítico para o desempenho do 
+\textit{Zookeeper}, logo, a proposta foi aprovada.
 
