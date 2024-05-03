@@ -44,15 +44,15 @@ neste repositório é automaticamente despoletado um Job Jenkins que trata da cr
 da nova versão e executa a \textit{pipeline} correspondente no ambiente de \ac{QA}.
 
 Todo este processo é automatizado e, por isso, é necessário compreender quais são os mecanismos
-existentes de forma a trabalhar de forma eficiente com os mesmos. 
+existentes de forma a trabalhar de forma eficiente com os mesmos. A Figura \ref{scaledown-nxt} 
+ilustra o processo de \textit{scaledown} de um \textit{cluster} no ambiente de NXT e qual o 
+procedimento adicional em caso de necessidade de reversão da operação.
 
 \begin{figure}[H]
   \centerline{\includegraphics[scale=0.12]{media/content/impl/scaledown_nxt.png}}
   \caption{Processo de \textit{scaledown} de um \textit{cluster} no ambiente de NXT}
   \label{scaledown-nxt}
 \end{figure}
-
-\todo[inline]{Incluir BPMNs dos processos de pipelines para alterações de flavours + rollback}
 
 \todo[inline]{Incluir BPMNs do processo de criação de novos clusters (simplificado}
 
