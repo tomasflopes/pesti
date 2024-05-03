@@ -17,6 +17,7 @@ implementação da solução. Entre as mais relevantes, destacam-se:
   \item \textbf{Apache Kafka \cite{kafka}:} Plataforma de mensagens distribuída;
   \item \textbf{Apache Zookeeper \cite{zookeeper}:} Serviço de coordenação distribuída;
   \item \textbf{Grafana \cite{grafana}:} Plataforma de análise e visualização de dados;
+  \item \textbf{Jenkins \cite{jenkins}:} Servidor de automação de \textit{builds}; 
   \item \textbf{Nimbus \cite{nimbus}:} Servidor centralizado que coordena e distribui as topologias 
     do \textit{Apache Storm};
   \item \textbf{Splunk \cite{splunk}:} Plataforma de análise de eventos e dados;
@@ -24,9 +25,26 @@ implementação da solução. Entre as mais relevantes, destacam-se:
 
 \section{Descrição da implementação}
 
-\todo[inline]{TODO}
+De forma a conseguir atingir os objetivos pretendidos, analisados no capítulo anterior, é
+necessário ter em conta vários processos que fazem parte da implementação da solução. Para 
+facilitar a compressão e análise dos mesmos vão ser apresentados os vários passos e algum 
+suporte, como diagramas, que ajudam a ter uma melhor comprensão de todo o processo necessário
+para atingir estes objetivos.
 
 \subsection{Scaledown do Cluster}
+
+Um dos processos necessários para conseguir atingir a solução pretendida é efetuar a alteração
+de configurações do uso de recursos (\gls{flavour}) dos \glspl{cluster} existentes. Como
+referido anteriormente todos os processos de infraestrutura são geridos internamente pela Blip e,
+desta forma, têm os seus processos próprios para este tipo de operações.
+
+Neste caso, as configurações dos recursos dos serviços é efetuado a partir de um repositório 
+de configurações específicas de infraestrutura para cada um dos serviços. Ao efetuar uma alteração
+neste repositório é automaticamente despoletado um Job Jenkins que trata da criação do artefacto
+da nova versão e executa a \textit{pipeline} correspondente no ambiente de \ac{QA}.
+
+Todo este processo é automatizado e, por isso, é necessário compreender quais são os mecânismos
+existentes de forma a trabalhar de forma eficiente com os mesmos. 
 
 \begin{figure}[H]
   \centerline{\includegraphics[scale=0.12]{media/content/impl/scaledown_nxt.png}}
