@@ -31,7 +31,11 @@ facilitar a compressão e análise dos mesmos vão ser apresentados os vários p
 suporte, como diagramas, que ajudam a ter uma melhor compreensão de todo o processo necessário
 para atingir estes objetivos.
 
-\subsection{Scaledown do Cluster}
+\subsection{Processo de \ac{CI} de um serviço}
+
+\todo[inline]{TODO: Falar sobre packages jenkins e i2 e a integração com jobs e pipelines}
+
+\subsection{\textit{Scaledown} do Cluster}
 
 Um dos processos necessários para conseguir atingir a solução pretendida é efetuar a alteração
 de configurações do uso de recursos (\gls{flavour}) dos \glspl{cluster} existentes. Como
@@ -54,9 +58,41 @@ procedimento adicional em caso de necessidade de reversão da operação.
   \label{scaledown-nxt}
 \end{figure}
 
+\subsection{Criação de um Cluster}
+
 \todo[inline]{Incluir BPMNs do processo de criação de novos clusters (simplificado}
 
 \section{Testes}
+
+De forma a testar a solução desenvolvida, foram efetuados vários testes, tanto por parte das
+equipas de desenvolvimento, responsáveis por cada um dos serviços presentes no \gls{cluster},
+como por parte da nossa equipa de operações. 
+
+De um ponto de vista operacional, os testes efetuados foram focados na utilização geral de
+recursos do \gls{cluster}. Para isso, foram efetuadas comparações entre os recursos utilizados
+antes e depois da implementação da solução, utilizando testes de carga para simular situações
+de utilização de recursos exigentes.
+
+Como a redução inicial teve por base apenas a redução do \gls{flavour} do \ac{CPU}, vamos ter em conta
+apenas essa métrica. Como é possível observar na Figura \ref{usage-before}, a utilização de \ac{CPU}
+do \gls{cluster} antes da implementação ronda os 20\% de uso total.
+
+\begin{figure}[H]
+  \centerline{\includegraphics[scale=0.12]{media/content/impl/grafana-before-1.png}}
+  \caption{Utilização de recursos do \textit{cluster} antes da implementação da solução}
+  \label{usage-before}
+\end{figure}
+
+Após a redução de recursos inicial é possível verificar que o uso aumentou para os 40\%, um aumento
+no nível esperado dada a alteração que foi efetuada. É importante, perceber que o \gls{cluster}
+mantém a sua capacidade de processar dados em momentos de carga elevada de forma a poder concluir
+que esta alteração não vai impactar negativamente o desempenho percetível do sistema. 
+
+\begin{figure}[H]
+  \centerline{\includegraphics[scale=0.12]{media/content/impl/grafana-after.png}}
+  \caption{Utilização de recursos do \textit{cluster} após a implementação da solução}
+  \label{usage-after}
+\end{figure}
 
 \todo[inline]{TODO}
 
