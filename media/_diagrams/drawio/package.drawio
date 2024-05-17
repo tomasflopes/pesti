@@ -1,0 +1,22 @@
+<mxfile host="app.diagrams.net" modified="2024-05-13T12:00:36.535Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Edg/126.0.0.0" etag="NkYd96zrHLcV8mogzsXh" scale="1" border="0" version="24.3.0" type="device">
+  <diagram name="Página-1" id="GqaS2yzh_YFpKsmkKtEa">
+    <mxGraphModel dx="664" dy="461" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="mn2NxKexUScG5y5CKuOj-2" value="Package" style="whiteSpace=wrap;html=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="103.63" y="136.25" width="160" height="133.75" as="geometry" />
+        </mxCell>
+        <mxCell id="mn2NxKexUScG5y5CKuOj-4" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="123.24" y="163.75" width="120.79" height="92.5" as="geometry" />
+        </mxCell>
+        <mxCell id="mn2NxKexUScG5y5CKuOj-5" value="infra" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="138.63" y="175" width="40" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="mn2NxKexUScG5y5CKuOj-6" value="confs" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="188.63" y="175" width="40" height="70" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

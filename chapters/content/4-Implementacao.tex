@@ -33,7 +33,33 @@ para atingir estes objetivos.
 
 \subsection{Processo de \ac{CI} de um serviço}
 
+Cada serviço é composto, normalmente, por três componentes principais, como ilustrado na Figura
+\ref{package}, separados em diferentes repositórios. Os três componentes habituais de um novo 
+serviço são: o código do serviço - o código com toda a lógica de programação que compõe o serviço, 
+configurações do pacote - repositório com as configurações do serviço, como versões de serviços 
+externos necessários nas \acp{VM} que são necessárias para o serviço, esta componente usa 
+ferramentas de configuração como Chef \cite{chef} ou Ansible \cite{ansible} e, por fim, um 
+repositório com configurações relativamente à infraestrutura - repositório com as configurações de 
+infraestrutura necessárias para o serviço, como especificações dos \glspl{flavour} e das 
+\textit{subnets} necessárias.
+
+\begin{figure}[H]
+  \centerline{\includegraphics[scale=1.2]{media/content/impl/package.png}}
+  \caption{Composição típica do pacote de um serviço}
+  \label{package}
+\end{figure}
+
+Todo o processo de \ac{CI} é gerido pelo Jenkins, que é responsável por criar os artefactos
+necessários para a execução do serviço nos ambientes que estão ativos. A Figura \ref{ci-process} 
+ilustra, de uma forma simplificada, o processo de \ac{CI} de um serviço.
+
 \todo[inline]{TODO: Falar sobre packages jenkins e i2 e a integração com jobs e pipelines}
+ 
+% \begin{figure}[H]
+%   \centerline{\includegraphics[scale=0.12]{media/content/impl/ci-process.png}}
+%   \caption{Processo de \ac{CI} de um serviço}
+%   \label{ci-process}
+% \end{figure}
 
 \subsection{\textit{Scaledown} do Cluster}
 
@@ -78,7 +104,7 @@ apenas essa métrica. Como é possível observar na Figura \ref{usage-before}, a
 do \gls{cluster} antes da implementação ronda os 20\% de uso total.
 
 \begin{figure}[H]
-  \centerline{\includegraphics[scale=0.12]{media/content/impl/grafana-before-1.png}}
+  \centerline{\includegraphics[scale=0.25]{media/content/impl/grafana-before-1.png}}
   \caption{Utilização de recursos do \textit{cluster} antes da implementação da solução}
   \label{usage-before}
 \end{figure}
@@ -89,12 +115,10 @@ mantém a sua capacidade de processar dados em momentos de carga elevada de form
 que esta alteração não vai impactar negativamente o desempenho percetível do sistema. 
 
 \begin{figure}[H]
-  \centerline{\includegraphics[scale=0.12]{media/content/impl/grafana-after.png}}
+  \centerline{\includegraphics[scale=0.5]{media/content/impl/grafana-after.png}}
   \caption{Utilização de recursos do \textit{cluster} após a implementação da solução}
   \label{usage-after}
 \end{figure}
-
-\todo[inline]{TODO}
 
 \section{Avaliação da Solução}
 
