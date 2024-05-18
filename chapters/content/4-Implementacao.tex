@@ -53,13 +53,26 @@ Todo o processo de \ac{CI} é gerido pelo Jenkins, que é responsável por criar
 necessários para a execução do serviço nos ambientes que estão ativos. A Figura \ref{ci-process} 
 ilustra, de uma forma simplificada, o processo de \ac{CI} de um serviço.
 
-\todo[inline]{TODO: Falar sobre packages jenkins e i2 e a integração com jobs e pipelines}
- 
-% \begin{figure}[H]
-%   \centerline{\includegraphics[scale=0.12]{media/content/impl/ci-process.png}}
-%   \caption{Processo de \ac{CI} de um serviço}
-%   \label{ci-process}
-% \end{figure}
+\begin{figure}[H]
+  \centerline{\includegraphics[scale=0.5]{media/content/impl/ci-process.png}}
+  \caption{Processo de \ac{CI} de um serviço}
+  \label{ci-process}
+\end{figure}
+
+Após este processo de criação de um artefacto (pacote) o Jenkins envia este novo pacote para as
+\glspl{pipeline} de forma a começar o processo de implantação da nova versão. Já nas \glspl{pipeline}
+a responsabilidade de gestão do pacote passa a ser do Go, que permite automatizar vários processos
+a nível da infraestrutura para automatizar o processo de implantação deste serviço na \textit{cloud}.
+Como temos vários ambientes presentes para cada serviço (ex.: QA, desenvolvimento e produção)
+é possível configurar o plano de promoções de um pacote por estes ambientes, isto é, um pacote
+começa por ficar apenas disponível no ambiente de QA e, tipicamente, a \gls{pipeline} é despoletada
+automaticamente pelo próprio Job Jenkins que criou o pacote. De seguida, após uma implantação
+bem sucedida no ambiente de QA, por exemplo, o pacote é promovido para o ambiente de desenvolvimento,
+ou seja, passa a ser o pacote que vai ser disponibilizado caso pretendamos correr a \gls{pipeline}
+desse ambiente. Este comportamento é totalmente customizavel e adapta-se aos ambientes que cada
+serviço tem disponíveis. Este tipo de mecânismo de promoções de pacotes ajuda a previnir que um
+pacote defeituoso seja implantado em ambientes produtivos, onde impactam clientes, sem existir
+a garantia que estão a funcionar corretamente nos ambientes de desenvolvimento.
 
 \subsection{\textit{Scaledown} do Cluster}
 
@@ -71,7 +84,7 @@ desta forma, têm os seus processos próprios para este tipo de operações.
 Neste caso, as configurações dos recursos dos serviços é efetuado a partir de um repositório 
 de configurações específicas de infraestrutura para cada um dos serviços. Ao efetuar uma alteração
 neste repositório é automaticamente despoletado um Job Jenkins que trata da criação do artefacto
-da nova versão e executa a \textit{pipeline} correspondente no ambiente de \ac{QA}.
+da nova versão e executa a \gls{pipeline} correspondente no ambiente de \ac{QA}.
 
 Todo este processo é automatizado e, por isso, é necessário compreender quais são os mecanismos
 existentes de forma a trabalhar de forma eficiente com os mesmos. A Figura \ref{scaledown-nxt} 
