@@ -16,14 +16,14 @@ a nível global \cite{blip}.
 
 O projeto apresentado está inserido na ordem de trabalhos na equipa de \textit{Application Engineering},
 \textit{Watchmen}, responsável por lidar com desafios técnicos de entrega dos produtos, de forma
-a libertar as equipas de desenvolvimento dos desafios ligados a infraestrutura.
+a libertar as equipas de desenvolvimento dos desafios ligados a infraestrutura \cite{blip-jobs}.
 
 O sistema que é usado pela Blip deve estar preparado para lidar com um grande volume de dados em 
 tempo real e, por consequência, é bastante complexo. Ao longo deste relatório vai ser analisado 
 o sistema que lida com este dados que são recebidos de várias fontes e servem de base para a criação 
 de eventos e informações dos mesmos. Este sistema é baseado em \textit{Apache Storm} e 
 \textit{Apache Kafka}, que são tecnologias que permitem processar e armazenar os dados em tempo 
-real de forma eficiente tentando evitar ao máximo que haja constrangimentos no sistema.
+real de forma eficiente.
 
 \section{Descrição do Problema}
 
@@ -45,17 +45,12 @@ solução bastante dispendiosa e, provavelmente, traria problemas de escalabilid
 
 Assim, é necessário fazer uma análise da utilização dos recursos do sistema e perceber onde estão 
 os principais problemas de performance e escalabilidade de forma a tentar encontrar soluções que 
-possam ser implementadas para resolve-los. Numa primeira fase, é necessário perceber como o sistema 
-está implementado na infraestrutura da empresa e fazer uma análise aos recursos usados por cada 
-máquina que compõe o \gls{cluster} de forma a perceber onde estão os principais problemas. De 
-seguida, será realizada uma atualização da versão do \textit{Apache Storm} que é usada no sistema 
-de forma a tentar tirar partido das funcionalidades e melhorias de desempenho que foram 
-implementadas nas versões mais recentes.
+possam ser implementadas. 
 
 \subsection{Objetivos}
 
-Os objetivos identificados têm como finalidade a resolução do problema apresentado e a melhoria do
-desempenho do sistema. Desta forma, os objetivos a atingir são os seguintes:
+Os objetivos identificados têm como finalidade a resolução do problema apresentado. Desta forma, 
+os objetivos a atingir são os seguintes:
 
 \begin{itemize}
   \item Identificar desafios de escalabilidade e performance
@@ -66,6 +61,10 @@ desempenho do sistema. Desta forma, os objetivos a atingir são os seguintes:
 \end{itemize}
 
 \subsection{Abordagem}
+
+Numa primeira fase, é necessário perceber como o sistema está implementado na infraestrutura da 
+empresa e fazer uma análise aos recursos usados por cada máquina que compõe o \gls{cluster} de 
+forma a perceber onde estão os principais problemas. 
 
 Primeiramente, será necessária fazer uma análise às métricas de sistema de forma a compreender
 o uso de recursos do \gls{cluster}. Para isso, é usada a ferramenta Grafana que permite
@@ -107,9 +106,9 @@ geral do planeamento elaborado.
       \hline
       \textbf{Etapa} & \textbf{Data Início} & \textbf{Duração} \\ \hline
       Familiarização com Apache Storm  & 19/02/2024 & 2 semanas \\ \hline
+      Análise desafios de escalabilidade e performance & 04/03/2024 & 4 semanas \\ \hline
       Análise das otimizações de recursos & 04/03/2024 & 4 semanas \\ \hline
       Implementação das otimizações & 01/04/2024 & 6 semanas \\ \hline
-      Upgrade Apache Storm & 13/05/2024 & 4 semanas \\ \hline
     \end{tabular}
   \end{center}
 \end{table}
@@ -123,11 +122,10 @@ O presente relatório apresenta cinco capítulos, sendo estes: \nameref{sec:1-In
 O primeiro capítulo - \nameref{sec:1-Introducao} - faz uma breve contextualização do projeto de
 forma a dar a conhecer a organização onde este foi realizado e uma descrição do problema que motivou
 a solução apresentada. São também explicitados os objetivos a alcançar, a abordagem a seguir, os
-contributos efetuados, o planeamento do trabalho adotado e a estrutura do documento. Esta secção é 
-fundamental para que o leitor consiga acompanhar o processo de desenvolvimento do projeto.
+contributos efetuados, o planeamento do trabalho adotado e a estrutura do documento. 
 
 O segundo capítulo - \nameref{sec:2-EstadoArte} - tem como objetivo realizar uma revisão da
-literatura, com o intuito de aprofundar assim alguns conceitos científicos e tecnologias relevantes 
+literatura, com o intuito de aprofundar alguns conceitos científicos e tecnologias relevantes 
 para contextualizar o leitor no domínio teórico do projeto.  
 
 O terceiro capítulo - \nameref{sec:3-Analise} - tem como propósito fornecer uma descrição completa 
