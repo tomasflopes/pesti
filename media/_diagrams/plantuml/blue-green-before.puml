@@ -1,0 +1,20 @@
+@startuml blue-green-before
+
+top to bottom direction
+
+
+node "<<Load Balancer>>" as LB {
+}
+
+folder "Infraestrutura" as I {
+  node "Servidor 2\n  Versão atual" as S2 #96C0FF {
+  }
+  node "Servidor 1\n  Versão atualizada" as S1 #81EB3B {
+  }
+}
+
+..> LB 
+
+LB ..> S2
+
+@enduml

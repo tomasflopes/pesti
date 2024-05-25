@@ -1,0 +1,19 @@
+@startuml client-server
+
+node "Servidor" as S {
+}
+
+folder "Clientes" {
+  node "Mobile" as M {
+  }
+  node "Desktop" as D {
+  }
+  node "Web" as W {
+  }
+}
+
+S <..> M
+S <..> D
+S <..> W
+
+@enduml

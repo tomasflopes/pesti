@@ -1,0 +1,24 @@
+@startuml canary-after
+
+top to bottom direction
+
+
+node "<<Load Balancer>>" as LB {
+}
+
+folder "Infraestrutura" as I {
+  node "Servidor 3\n   Canary" as S3 #yellow {
+  }
+  node "Servidor 2" as S2 {
+  }
+  node "Servidor 1" as S1 {
+  }
+}
+
+..> LB 
+
+LB ..> S1
+LB ..> S2
+LB ..> S3
+
+@enduml
