@@ -93,30 +93,22 @@ tem ganhado atenção na literatura nos últimos tempos. Esta técnica é brevem
 contexto da implantação contínua de produtos e serviços com uso intensivo de \textit{software} \cite{canary2017}. 
 A estratégia de implantação \textit{canary} envolve lançar uma parte das atualizações do sistema a 
 um subconjunto de utilizadores, permitindo detetar problemas antes da implantação completa.
-Este processo pode ser ilustrado na Figura \ref{fig:canary-before} e na Figura \ref{fig:canary-after}.
-Esta estratégia permite uma implementação gradual e segura das alterações, minimizando o impacto 
-para a maior parte do utilizadores em caso de falha. Esta estratégia é proposta para uma implantação 
-bem sucedida no contexto de estratégias híbridas de implantação de \textit{software} para sistemas 
-complexos \cite{canary2022}. É também importante destacar a importância das \glspl{pipeline} 
-automatizadas de implantação no contexto de \ac{CI} e \ac{CD}, onde o sucesso da adoção das 
-alterações nas empresas depende fortemente das \glspl{pipeline} de implantação 
-\cite{canary2017b}. 
+Este processo pode ser ilustrado na Figura \ref{fig:canary}. Esta estratégia permite uma 
+implementação gradual e segura das alterações, minimizando o impacto para a maior parte do 
+utilizadores em caso de falha. Esta estratégia é proposta para uma implantação bem sucedida no 
+contexto de estratégias híbridas de implantação de \textit{software} para sistemas complexos 
+\cite{canary2022}. É também importante destacar a importância das \glspl{pipeline} automatizadas 
+de implantação no contexto de \ac{CI} e \ac{CD}, onde o sucesso da adoção das alterações nas 
+empresas depende fortemente das \glspl{pipeline} de implantação \cite{canary2017b}. 
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.4\textwidth]{media/content/estado-arte/canary-before.png}
-    \caption{Representação da estratégia de implantação \textit{canary} antes da atualização}
-    \label{fig:canary-before}
+    \subfloat[\centering Antes da atualização]{{\includegraphics[width=0.42\textwidth]{media/content/estado-arte/canary-before.png} }}%
+    \qquad
+    \subfloat[\centering Depois da atualização]{{\includegraphics[width=0.42\textwidth]{media/content/estado-arte/canary-after.png} }}%
+    \caption{Representação da estratégia de impantação \textit{canary}}%
+    \label{fig:canary}%
 \end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.4\textwidth]{media/content/estado-arte/canary-after.png}
-    \caption{Representação da estratégia de implantação \textit{canary} após a atualização}
-    \label{fig:canary-after}
-\end{figure}
-
-\todo[inline]{TODO: Colocar estas figuras lado a lado}
 
 \subsection{Rolling Update}
 
@@ -140,12 +132,12 @@ deteção de problemas antes da implantação completa.
 A implantação \textit{blue-green} é uma estratégia de implantação de \textit{software} que visa 
 minimizar o tempo de indisponibilidade e os riscos associados às atualizações de \textit{software}, 
 garantindo a disponibilidade e fiabilidade contínua do sistema. Esta estratégia envolve a
-manutenção de dois ambientes de produção idênticos (Figura \ref{fig:blue-green-before}) - o ambiente atual 
-(\textit{blue}) e o novo (\textit{green}), e o encaminhamento do tráfego de utilizadores entre eles. 
-Quando se pretende implantar uma nova versão do sistema, o tráfego é gradualmente transferido do 
-ambiente "azul" para o ambiente "verde" como ilustrado na Figura \ref{fig:blue-green-after},
-permitindo atualizações sem indisponibilidade e simplificando o processo de reversão das 
-alterações, se necessário \cite{canary2022}.
+manutenção de dois ambientes de produção idênticos - o ambiente atual (\textit{blue}) e o novo 
+(\textit{green}), e o encaminhamento do tráfego de utilizadores entre eles. Quando se pretende 
+implantar uma nova versão do sistema, o tráfego é gradualmente transferido do ambiente "azul" 
+para o ambiente "verde" como ilustrado na Figura \ref{fig:blue-green}, permitindo atualizações sem 
+indisponibilidade e simplificando o processo de reversão das alterações, se necessário 
+\cite{canary2022}.
 
 A abordagem híbrida da implantação de software, combina a implantação \textit{canary} e a técnica 
 \textit{blue-green} com a abordagem de lançamento \textit{dark} - um ambiente de intermédio, semelhante
@@ -161,16 +153,11 @@ em \textit{cloud}, onde a alta disponibilidade e a interrupção mínima são cr
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.3\textwidth]{media/content/estado-arte/blue-green-before.png}
-    \caption{Estratégia de implantação \textit{blue-green} antes da atualização}
-    \label{fig:blue-green-before}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.3\textwidth]{media/content/estado-arte/blue-green-after.png}
-    \caption{Estratégia de implantação \textit{blue-green} após a atualização}
-    \label{fig:blue-green-after}
+    \subfloat[\centering Antes da atualização]{{\includegraphics[width=0.45\textwidth]{media/content/estado-arte/blue-green-before.png} }}%
+    \qquad
+    \subfloat[\centering Depois da atualização]{{\includegraphics[width=0.45\textwidth]{media/content/estado-arte/blue-green-after.png} }}%
+    \caption{Representação da estratégia de impantação \textit{canary}}%
+    \label{fig:blue-green}%
 \end{figure}
 
 \subsection{Apache Storm}
@@ -196,19 +183,21 @@ melhorar o desempenho e a tolerância a falhas \cite{storm2017c}. Para além dis
 identificados pontos de acesso \cite{storm2018c}.
 
 Relativamente às topologias - a estrutura dos serviços que operam sobre o \textit{Apache Storm} - 
-é possível criar estruturas bastante complexas de processamento de fluxos. Os investigadores 
-propuseram extensões ao \textit{Storm} que otimizam a paralelização dos operadores e a sua 
-colocação em diferentes recursos computacionais de forma a melhorar a elasticidade e o desempenho 
-do sistema \cite{storm2017d} . O \textit{Apache Storm} tem sido utilizado em várias 
-aplicações, como análise de \textit{tweets}, ambientes multi-nuvem e sistemas de análise de dados 
-espaço-temporais, demonstrando sua versatilidade e ampla gama de aplicação \cite{storm2018d} 
-\cite{storm2020} \cite{storm2021}.
+é possível criar estruturas bastante complexas de processamento de fluxos. Estas estruturas são 
+compostas por dois componentes básicos: \textit{spouts}, responsáveis pela receção e produção de 
+dados, e \textit{bolts}, que aplicam lógica e sobre estes dados e produzem novos dados de saída. 
+Os investigadores propuseram extensões ao \textit{Storm} que otimizam a paralelização dos 
+operadores e a sua colocação em diferentes recursos computacionais de forma a melhorar a 
+elasticidade e o desempenho do sistema \cite{storm2017d} . O \textit{Apache Storm} tem sido 
+utilizado em várias aplicações, como análise de \textit{tweets}, ambientes multi-nuvem e sistemas 
+de análise de dados espaço-temporais, demonstrando sua versatilidade e ampla gama de aplicação 
+\cite{storm2018d} \cite{storm2020} \cite{storm2021}.
 
 \section{Monitorização de Sistemas}
 
 A monitorização de sistemas de \textit{software} é uma prática essencial para garantir a saúde, 
 desempenho e segurança de aplicações. Esta atividade envolve a obtenção e análise contínua de métricas, 
-registos de eventos, \textit{logs} e outros dados relevantes, para avaliar o estado e o comportamento 
+registos de eventos e outros dados relevantes, para avaliar o estado e o comportamento 
 do sistema. Estas informações permitem tirar conclusões importantes sobre o desempenho da aplicação, 
 ajudando as equipas de operações a detetar problemas, identificar tendências de comportamento, 
 otimizar recursos e responder proativamente a eventos, contribuindo assim para a manutenção de 
@@ -216,14 +205,17 @@ operações eficazes.
 
 \subsection{Métricas}
 
-As métricas de monitorização são essenciais em projetos de \textit{software}, permitindo a descrição 
-quantitativa dos projetos e a avaliação de métodos e ferramentas para aumentar a produtividade e a 
-qualidade das soluções \cite{metrics2003}. Este tipo de monitorização é crucial para controlar 
-projetos, produtos e processos de \textit{software} \cite{metrics2019}. As métricas permitem que os 
-gestores de projetos e desenvolvedores acompanhem, e controlem, os projetos em que estão a trabalhar,
-fornecendo informações sobre o estado e o progresso da solução \cite{metrics2016}. As 
-métricas ajudam a estimar e a prever projetos futuros, incluindo riscos e custos 
-\cite{metrics2016b}. A utilização de métricas é vital para determinar as características de 
+As métricas de monitorização são a capacidade de monitorizar informação vital ao bom funcionamento
+de um sistema informático. Desta forma, é possível acompanhar e manter o registo de métricas tanto
+relativas ao negócio e à lógica do serviço, como informações relativas ao \textit{hardware} em que
+o serviço está hospedado. Este tipo de informações são essenciais em projetos de \textit{software}, 
+permitindo a descrição quantitativa dos projetos e a avaliação de métodos e ferramentas para 
+aumentar a produtividade e a qualidade das soluções \cite{metrics2003}. Este tipo de monitorização 
+é crucial para controlar projetos, produtos e processos de \textit{software} \cite{metrics2019}. 
+As métricas permitem que os gestores de projetos e desenvolvedores acompanhem, e controlem, os 
+projetos em que estão a trabalhar, fornecendo informações sobre o estado e o progresso da solução 
+\cite{metrics2016}. As métricas ajudam a estimar e a prever projetos futuros, incluindo riscos e 
+custos \cite{metrics2016b}. A utilização de métricas é vital para determinar as características de 
 qualidade do \textit{software} e avaliar a saúde de um projeto \cite{metrics2015}.
 
 O \textit{Grafana} \cite{grafana}, juntamente com outras ferramentas como o \textit{Elastic Search}
@@ -235,7 +227,7 @@ de projetos \cite{metrics2021}. O \textit{Grafana} serve como uma ferramenta de 
 processar pontos de dados brutos e interfaces de monitorização, destacando sua versatilidade na 
 monitorização de projetos de \textit{software} \cite{metrics2022}.
 
-\subsection{Registo de eventos}
+\subsection{Registo de eventos e \textit{logs}}
 
 O registo de eventos desempenha um papel crucial na engenharia de \textit{software} uma vez que 
 fornece uma noção das atividades e dos eventos que ocorrem no sistema \cite{logs2022}. A profundidade 

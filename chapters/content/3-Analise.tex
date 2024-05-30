@@ -12,30 +12,33 @@ ao uso de \textit{streams} para conseguir atingir este objetivo. Esta abordagem 
 o processamento assíncrono dos dados relativos a este fluxo de uma forma otimizada.
 
 De momento, os serviços responsáveis pelo processamento destes dados estão distribuídos em dois
-\glspl{cluster} que usam \textit{Apache Storm} para a gestão do mesmo. Esta solução apresenta alguns
-defeitos que são importantes de resolver por forma a melhorar a capacidade de escalabilidade destes
-serviços. 
+\glspl{cluster} que usam \textit{Apache Storm} para a gestão do mesmo. Esta solução apresenta algumas
+limitações passíveis de análise por forma a melhorar a capacidade de escalabilidade destes serviços. 
 
-O primeiro destes problemas é o elevado número de \acp{VM} presente em cada \gls{cluster},
-este problema impacta a solução na fase de lançamento de novas versões. Isto deve-se ao facto de
-toda a infraestrutura estar sob demanda constante com vários lançamentos paralelos de vários serviços
-em ao ser necessário criar novas \acp{VM} o processo responsável pela gestão de máquinas da
+A primeira destas limitações é o elevado número de \acp{VM} presente em cada \gls{cluster}. Este 
+problema impacta a solução na fase de lançamento de novas versões. Isto deve-se ao facto de toda a 
+infraestrutura estar sob demanda constante com vários lançamentos paralelos de vários serviços em 
+ao ser necessário criar novas \acp{VM} o processo responsável pela gestão de máquinas da
 infraestrutura pode não ser capaz de responder ao pedido. Desta forma, diminuir o número de \acp{VM}
 presentes no \gls{cluster} representaria uma melhoria na probabilidade da taxa de sucesso de
 lançamento de uma nova versão (em todos os ambientes).
 
-Além disso, o sistema está a usar um excesso de recursos para determinados serviços. Desta forma,
-se for possível alterar o \gls{flavour} destes \glspl{cluster} vai ser possível economizar
-recursos. Para atingir este objetivo existem várias abordagens possíveis, como por exemplo, a
-alteração do número de \acp{VM} presentes em cada \gls{cluster}, a alteração do \gls{flavour}
-de cada \gls{cluster} ou a alteração da distribuição de serviços por \textit{\gls{cluster}}.
+Além disso, existem topologias presentes em certos \glspl{cluster} que estão a usar um excesso de
+recursos face aos recursos que necessitam para operar sem falhas em alturas de pico de utilização
+dos mesmos.
 
-Por fim, vai ser efetuada a atualização da versão de \textit{Apache Storm} de forma a tirar partido
-das funcionalidades mais recentes da ferramenta. Assim como nas alterações anteriores, será também
-crucial fazer uma análise cuidada da forma como esta atualização vai ser levada a cabo, isto porque
-é importante garantir a disponibilidade de todos os serviços durante estas intervenções. 
+\subsection{Contexto}
 
-\todo[inline,color=blue!20]{? Faz sentido falar sobre a aquisiçaõ da nova marca outra vez?}
+O grupo Flutter é uma das maiores empresas de apostas desportivas a nível mundial. Este grupo
+possui várias marcas que operam em diferentes mercados, como o mercado britânico, australiano e
+norte-americano. A empresa tem vindo a crescer de forma exponencial nos últimos anos e, como tal,
+tem vindo a investir em novas tecnologias e a expandir a sua presença em novos mercados. No mercado
+de \ac{UKI} o grupo Flutter adquiriu, nos últimos meses uma nova marca - Sky Betting \& Gamming
+\cite{skybet}. Esta aquisição requer que os serviços necessários para a operação da marca dentro
+da infraestrutura do grupo seja migrada para a mesma. De momento, o \textit{hardware} disponível
+nos \glspl{dc} da empresa não é capaz de suprir as necessidades de processamento necessária para 
+hospedar estes serviços, logo, é necessário levar a cabo um processo de otimização de recursos 
+nos \glspl{cluster} existentes de forma a tornar possível que o serviço opere sem falhas.
 
 \subsection{Modelo de Domínio}
 
@@ -74,11 +77,11 @@ de uma análise do problema e pressupõe a definição das necessidades do clien
 solução clara que valide a proposta apresentada. Seguindo um processo estruturado e adotando as 
 melhores práticas, promovemos uma melhor comunicação entre as várias partes interessadas.
 
-Considerando os aspetos mencionados, nesta secção serão apresentados todos os 
-requisitos do sistema identificados e requisitados no início do projeto de maneira a garantir a 
-qualidade da solução desenvolvida. Estes requisitos podem ser categorizados em funcionais - 
-funcionalidades distintas e essenciais que o sistema deve realizar, e não funcionais - 
-restrições impostas para que o sistema realize os requisitos funcionais corretamente.
+Considerando os aspetos mencionados, nesta secção serão apresentados todos os requisitos do sistema 
+identificados e requisitados no início do projeto de maneira a garantir a qualidade da solução 
+desenvolvida. Estes requisitos podem ser categorizados em funcionais - funcionalidades distintas 
+e essenciais que o sistema deve realizar, e não funcionais - restrições impostas para que o 
+sistema realize os requisitos funcionais corretamente.
 
 \subsection{Requisitos Não Funcionais}
 
@@ -183,6 +186,11 @@ estrutura apresentada no artigo "(User) Stories for Analytics Projects - Part 1"
 Após a análise do problema definido juntamente com os requisitos funcionais e não funcionais,
 apresentados anteriormente, o objetivo desta secção é documentar as fases que fazem parte do
 desenho da solução idealizada.
+
+Desta forma, se for possível alterar o \gls{flavour} destes \glspl{cluster} vai ser possível economizar
+recursos. Para atingir este objetivo existem várias abordagens possíveis, como por exemplo, a
+alteração do número de \acp{VM} presentes em cada \gls{cluster}, a alteração do \gls{flavour}
+de cada \gls{cluster} ou a alteração da distribuição de serviços por \textit{\gls{cluster}}.
 
 \subsection{Análise de Uso de Recursos}
 
