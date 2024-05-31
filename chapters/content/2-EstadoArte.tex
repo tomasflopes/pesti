@@ -45,7 +45,7 @@ clientes tem sido explorada para resolver o problema da latência e atraso nas r
 \subsection{Arquitetura Streaming}
 
 Os sistemas de \textit{streaming} são sistemas que lidam com um conjunto, possivelmente infinito, de
-dados que são tratados como um fluxo contínuo de informação em vez de vários cojuntos de lotes de 
+dados que são tratados como um fluxo contínuo de informação em vez de vários conjuntos de lotes de  
 pedidos. Este tipo de sistemas, seguem, frequentemente, uma arquitetura distribuída e são cruciais 
 para o processamento e a análise de dados em tempo real. O desempenho destes sistemas depende, 
 em grande parte, da distribuição efetiva da carga de trabalho entre as máquinas \cite{stream2020}. 
@@ -106,7 +106,7 @@ empresas depende fortemente das \glspl{pipeline} de implantação \cite{canary20
     \subfloat[\centering Antes da atualização]{{\includegraphics[width=0.42\textwidth]{media/content/estado-arte/canary-before.png} }}%
     \qquad
     \subfloat[\centering Depois da atualização]{{\includegraphics[width=0.42\textwidth]{media/content/estado-arte/canary-after.png} }}%
-    \caption{Representação da estratégia de impantação \textit{canary}}%
+    \caption{Representação da estratégia de implantação \textit{canary}}%
     \label{fig:canary}%
 \end{figure}
 
@@ -156,7 +156,7 @@ em \textit{cloud}, onde a alta disponibilidade e a interrupção mínima são cr
     \subfloat[\centering Antes da atualização]{{\includegraphics[width=0.45\textwidth]{media/content/estado-arte/blue-green-before.png} }}%
     \qquad
     \subfloat[\centering Depois da atualização]{{\includegraphics[width=0.45\textwidth]{media/content/estado-arte/blue-green-after.png} }}%
-    \caption{Representação da estratégia de impantação \textit{canary}}%
+    \caption{Representação da estratégia de implantação \textit{canary}}%
     \label{fig:blue-green}%
 \end{figure}
 
@@ -192,6 +192,30 @@ elasticidade e o desempenho do sistema \cite{storm2017d} . O \textit{Apache Stor
 utilizado em várias aplicações, como análise de \textit{tweets}, ambientes multi-nuvem e sistemas 
 de análise de dados espaço-temporais, demonstrando sua versatilidade e ampla gama de aplicação 
 \cite{storm2018d} \cite{storm2020} \cite{storm2021}.
+
+\subsection{Zookeeper}
+
+O Apache ZooKeeper é um componente fundamental nos sistemas distribuídos. Este ferramenta
+fornece serviços de coordenação para aplicações distribuídas em grande escala \cite{zookeeper2018}. 
+Garante uma elevada disponibilidade e é altamente tolerância a falhas, o que o torna uma escolha 
+fiável para a gestão de sistemas distribuídos \cite{zookeeper2021}. O ZooKeeper funciona através de 
+um processo primário que trata os pedidos dos clientes e propaga as alterações de estado para as 
+réplicas de reserva utilizando o protocolo de difusão atómica do ZooKeeper \cite{zookeeper2011}. 
+Este mecanismo garante que todas as alterações são consistentes e ordenadas em todo o sistema.
+
+O ZooKeeper é normalmente integrado com outras tecnologias, como o Apache Kafka, para melhorar os 
+sistemas de envio de mensagens para processamento assíncrono \cite{zookeeper2024}. A combinação do 
+ZooKeeper e do Kafka permite arquiteturas eficientes orientadas a eventos para o processamento de 
+dados em tempo real em várias aplicações \cite{zookeeper2021b}. Devido a tudo isto, o ZooKeeper 
+desempenha um papel importante no fornecimento de garantias de tolerância a falhas, armazenando 
+informações críticas num registo de estado partilhado, replicado e tolerante a falhas
+\cite{zookeeper2017}. Isto garante que os dados essenciais são preservados e acessíveis mesmo
+em caso de falha próprio sistema.
+
+O ZooKeeper é utilizado em cenários como a eleição de "líderes" em sistemas distribuídos, onde 
+oferece um algoritmo flexível e rápido para selecionar líderes em configurações de nós simétricos 
+\cite{zookeeper2021c}. Esta capacidade torna o ZooKeeper versátil para uma vasta gama de aplicações 
+que requerem coordenação e gestão especializadas de recursos distribuídos.
 
 \section{Monitorização de Sistemas}
 

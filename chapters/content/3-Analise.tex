@@ -15,11 +15,11 @@ De momento, os serviços responsáveis pelo processamento destes dados estão di
 \glspl{cluster} que usam \textit{Apache Storm} para a gestão do mesmo. Esta solução apresenta algumas
 limitações passíveis de análise por forma a melhorar a capacidade de escalabilidade destes serviços. 
 
-A primeira destas limitações é o elevado número de \acp{VM} presente em cada \gls{cluster}. Este 
+A primeira destas limitações é o elevado número de \ac{VM} presente em cada \gls{cluster}. Este 
 problema impacta a solução na fase de lançamento de novas versões. Isto deve-se ao facto de toda a 
 infraestrutura estar sob demanda constante com vários lançamentos paralelos de vários serviços em 
-ao ser necessário criar novas \acp{VM} o processo responsável pela gestão de máquinas da
-infraestrutura pode não ser capaz de responder ao pedido. Desta forma, diminuir o número de \acp{VM}
+ao ser necessário criar novas \ac{VM} o processo responsável pela gestão de máquinas da
+infraestrutura pode não ser capaz de responder ao pedido. Desta forma, diminuir o número de \ac{VM}
 presentes no \gls{cluster} representaria uma melhoria na probabilidade da taxa de sucesso de
 lançamento de uma nova versão (em todos os ambientes).
 
@@ -33,12 +33,12 @@ O grupo Flutter é uma das maiores empresas de apostas desportivas a nível mund
 possui várias marcas que operam em diferentes mercados, como o mercado britânico, australiano e
 norte-americano. A empresa tem vindo a crescer de forma exponencial nos últimos anos e, como tal,
 tem vindo a investir em novas tecnologias e a expandir a sua presença em novos mercados. No mercado
-de \ac{UKI} o grupo Flutter adquiriu, nos últimos meses uma nova marca - Sky Betting \& Gamming
-\cite{skybet}. Esta aquisição requer que os serviços necessários para a operação da marca dentro
-da infraestrutura do grupo seja migrada para a mesma. De momento, o \textit{hardware} disponível
-nos \glspl{dc} da empresa não é capaz de suprir as necessidades de processamento necessária para 
-hospedar estes serviços, logo, é necessário levar a cabo um processo de otimização de recursos 
-nos \glspl{cluster} existentes de forma a tornar possível que o serviço opere sem falhas.
+de \ac{UKI} o grupo Flutter adquiriu, nos últimos meses uma nova marca - \ac{SBG} \cite{skybet}. 
+Esta aquisição requer que os serviços necessários para a operação da marca dentro da infraestrutura 
+do grupo seja migrada para a mesma. De momento, o \textit{hardware} disponível nos \glspl{dc} da 
+empresa não é capaz de suprir as necessidades de processamento necessária para hospedar estes 
+serviços, logo, é necessário levar a cabo um processo de otimização de recursos nos \glspl{cluster} 
+existentes de forma a tornar possível que o serviço opere sem falhas.
 
 \subsection{Modelo de Domínio}
 
@@ -72,29 +72,39 @@ hierarquia de relações entre entidades.
 \section{Engenharia de Requisitos}
 
 A Engenharia de Requisitos é uma área muito relevante no desenvolvimento de \textit{software}, pois 
-sustenta a análise dos projetos. Este passo representa o processo de obtenção de requisitos através 
-de uma análise do problema e pressupõe a definição das necessidades do cliente na procura de uma 
+sustenta a análise dos projetos, a primeira fase em que a equipa de desenvolvimento consegue 
+compreender o domínio do negócio para o qual estão a desenvolver uma solução. Este passo representa 
+o processo de obtenção de requisitos através de uma análise do problema e pressupõe a definição 
+das necessidades, tanto por parte do cliente, como por necessidades técnicas, na procura de uma 
 solução clara que valide a proposta apresentada. Seguindo um processo estruturado e adotando as 
-melhores práticas, promovemos uma melhor comunicação entre as várias partes interessadas.
+melhores práticas, passamos a promover uma melhor comunicação entre as várias partes interessadas.
 
-Considerando os aspetos mencionados, nesta secção serão apresentados todos os requisitos do sistema 
-identificados e requisitados no início do projeto de maneira a garantir a qualidade da solução 
-desenvolvida. Estes requisitos podem ser categorizados em funcionais - funcionalidades distintas 
-e essenciais que o sistema deve realizar, e não funcionais - restrições impostas para que o 
-sistema realize os requisitos funcionais corretamente.
+Considerando os aspetos mencionados, nesta secção serão apresentados os requisitos do sistema 
+identificados e requisitados no início do projeto de maneira a garantir a que a solução desenvolvida 
+vai de encontro com as necessidades apresentadas inicialmente. Estes requisitos podem ser 
+categorizados em funcionais - funcionalidades distintas e essenciais que o sistema deve realizar, 
+e não funcionais - restrições impostas para que o sistema realize os requisitos funcionais 
+corretamente.
 
 \subsection{Requisitos Não Funcionais}
 
 Os requisitos não funcionais não se concentram no que o sistema faz, mas sim em como é esperado que
-ele funcione. Estes requisitos são essenciais para a qualidade geral, desempenho e usabilidade do 
-\textit{software} e têm em conta fatores como o desempenho, a segurança, a fiabilidade e a 
-usabilidade.
+ele funcione. 
 
 Os requisitos não funcionais apresentados em seguida, guiam-se pelo modelo FURPS+, um padrão de 
 classificação qualitativa das características de um \textit{software} (\textbf{F}unctionality, 
 \textbf{U}sability, \textbf{R}eliability, \textbf{P}erformance, \textbf{S}upportability), para uma 
 melhor experiência do utilizador. O "\textbf{+}" refere-se a métodos de classificação diferentes, 
 como por exemplo, restrições de design, implementação, interface ou físicos.
+
+Estes requisitos são mais complexos de definir a nível do \gls{cluster}, pois cada topologia tem 
+uma finalidade diferente, pelo que os requisitos são ligeiramente diferentes entre eles. De uma
+forma geral, o sistema deve:
+
+Para estes requisitos são definidos, para cada topologia, \acp{SLI} - os indicadores que mostram o
+desempenho do sistema a todo o momento, \acp{SLO} - os objetivos que a equipa de desenvolvimento
+deve atingir de forma a cumprir os \acp{SLA} - o acordo que o sistema mantém com os clientes a 
+nível do seu funcionamento.
 
 \vspace{5mm}
 
@@ -110,16 +120,21 @@ como por exemplo, restrições de design, implementação, interface ou físicos
 \end{itemize}
 
 \textbf{Fiabilidade}
+
 \begin{itemize}
-  \item A aplicação deve ser capaz de recuperar de falhas sem perda de dados.
-  \item A aplicação deve ser capaz de recuperar de falhas minimizando o tempo de inatividade.
-  \item A aplicação deve ser capaz de recuperar de falhas sem intervenção manual.
+  \item O sistema deve ser capaz de recuperar de falhas sem perda de dados.
+  \item O sistema deve ser capaz de recuperar de falhas minimizando o tempo de inatividade.
+  \item O sistema deve ser capaz de recuperar de falhas sem intervenção manual.
 \end{itemize}
+
 
 \textbf{Desempenho}
 \begin{itemize}
-  \item O sistema deve ser capaz de processar transações em dia de pico sem falhas.
-  \item O sistema deve ser capaz de processar transações em dia de pico minimizando o tempo de resposta.
+  \item O sistema deve manter a capacidade de processamento que tinha antes da intervenção.
+  \item O sistema deve ser capaz de processar transações em dia de pico de catálogo sem atrasos 
+    significativos na latência.
+  \item O sistema deve ser capaz de processar transações em dia de pico de catálogo minimizando o 
+    tempo de resposta.
 \end{itemize}
 
 \textbf{Suporte}
@@ -133,7 +148,7 @@ como por exemplo, restrições de design, implementação, interface ou físicos
   \item O sistema deve suportar quatro ambientes - \ac{QA}, desenvolvimento, 
     performance e produção.
   \item O sistema deve estar replicado em dois \glspl{dc}.
-  \item Todas as \acp{VM} do mesmo \gls{cluster} devem ter o mesmo \gls{flavour}.
+  \item Todas as \ac{VM} do mesmo \gls{cluster} devem ter o mesmo \gls{flavour}.
   \item A paralelização deve ser feita por \ac{VM} e não por processo. Ou seja, a mesma \ac{VM} 
     não pode ter dois processos a correr em paralelo.
 \end{itemize}
@@ -151,6 +166,30 @@ De forma a facilitar a compreensão dos requisitos funcionais estes encontram-se
 Tabela \ref{tab:reqfun} e na Figura \ref{dcu}, na forma de \textit{User Stories}, seguindo a 
 estrutura apresentada no artigo "(User) Stories for Analytics Projects - Part 1". \cite{us}.
 
+% \begin{table}[H]
+%   \begin{center}
+%     \caption{Requisitos Funcionais}
+%     \vspace{5mm}
+%     \label{tab:reqfun}
+%     \begin{tabular}{|c|l|}
+%       \hline
+%       ID & User Story                                                                  \\ \hline
+%       1  & \begin{tabular}[c]{@{}l@{}}Como Engenheiro de Aplicações, pretendo que seja efetuado \\
+%         um estudo que determine possíveis otimizações de recursos nos \glspl{cluster} dos serviços \\
+%       de catálogo .\end{tabular} \\ \hline
+%       2  & \begin{tabular}[c]{@{}l@{}}Como Engenheiro de Aplicações, pretendo que seja elaborado \\
+%         um plano que defina como serão efetuadas as alterações nos recursos dos \glspl{cluster} \\
+%         dos serviços de catálogo .\end{tabular} \\ \hline
+%       3  & \begin{tabular}[c]{@{}l@{}}Como Engenheiro de Aplicações, pretendo que sejam efetuadas \\
+%       reduções de recursos nos \glspl{cluster} dos serviços de catálogo atuais.\end{tabular} \\ \hline
+%       4  & \begin{tabular}[c]{@{}l@{}}Como Engenheiro de Aplicações, pretendo que a versão de \\
+%         \textit{Apache Storm} utilizada pelos \glspl{cluster} dos serviços de catálogo seja atualizada \\
+%         para a versão mais recente.\end{tabular} \\ \hline
+%       5  & \begin{tabular}[c]{@{}l@{}}Como XXX, quero XXX.\end{tabular} \\ \hline
+%     \end{tabular}
+%   \end{center}
+% \end{table}
+
 \begin{table}[H]
   \begin{center}
     \caption{Requisitos Funcionais}
@@ -159,18 +198,15 @@ estrutura apresentada no artigo "(User) Stories for Analytics Projects - Part 1"
     \begin{tabular}{|c|l|}
       \hline
       ID & User Story                                                                  \\ \hline
-      1  & \begin{tabular}[c]{@{}l@{}}Como Engenheiro de Aplicações, pretendo que seja efetuado \\
-        um estudo que determine possíveis otimizações de recursos nos \glspl{cluster} dos serviços \\
-      de catálogo .\end{tabular} \\ \hline
-      2  & \begin{tabular}[c]{@{}l@{}}Como Engenheiro de Aplicações, pretendo que seja elaborado \\
-        um plano que defina como serão efetuadas as alterações nos recursos dos \glspl{cluster} \\
-        dos serviços de catálogo .\end{tabular} \\ \hline
-      3  & \begin{tabular}[c]{@{}l@{}}Como Engenheiro de Aplicações, pretendo que sejam efetuadas \\
-      reduções de recursos nos \glspl{cluster} dos serviços de catálogo atuais.\end{tabular} \\ \hline
-      4  & \begin{tabular}[c]{@{}l@{}}Como Engenheiro de Aplicações, pretendo que a versão de \\
-        \textit{Apache Storm} utilizada pelos \glspl{cluster} dos serviços de catálogo seja atualizada \\
-        para a versão mais recente.\end{tabular} \\ \hline
-      5  & \begin{tabular}[c]{@{}l@{}}Como XXX, quero XXX.\end{tabular} \\ \hline
+      1  & \begin{tabular}[c]{@{}l@{}}Como utilizador, pretendo consultar os eventos ativos \\
+        num determinado dia. \\
+      \end{tabular} \\ \hline
+        2  & \begin{tabular}[c]{@{}l@{}}Como utilizador, pretendo consultar os tipos de aposta \\
+        disponíveis para um determinado evento. \\
+      \end{tabular} \\ \hline
+        3  & \begin{tabular}[c]{@{}l@{}}Como utilizador, pretendo consultar as \glspl{odd} de um\\
+        num determinado evento. \\
+      \end{tabular} \\ \hline
     \end{tabular}
   \end{center}
 \end{table}
@@ -189,24 +225,24 @@ desenho da solução idealizada.
 
 Desta forma, se for possível alterar o \gls{flavour} destes \glspl{cluster} vai ser possível economizar
 recursos. Para atingir este objetivo existem várias abordagens possíveis, como por exemplo, a
-alteração do número de \acp{VM} presentes em cada \gls{cluster}, a alteração do \gls{flavour}
-de cada \gls{cluster} ou a alteração da distribuição de serviços por \textit{\gls{cluster}}.
+alteração do número de \ac{VM} presentes em cada \gls{cluster}, a alteração do \gls{flavour}
+de cada \gls{cluster} ou a alteração da distribuição de serviços por \gls{cluster}.
 
 \subsection{Análise de Uso de Recursos}
 
 A primeira fase do desenho da solução passa pela análise do uso de recursos dos \glspl{cluster}
 que suportam os serviços de catálogo. Para tal, foram analisadas duas janelas temporais distintas
-onde os serviços sofreram uma carga acima do normal, desta forma, é possível ter uma visão clara
-das possíveis otimizações de recursos a fazer já que o objetivo final é que o \textit{gls{cluster}}
+onde os serviços sofreram uma carga acima do normal. Desta forma, é possível ter uma visão clara
+das possíveis otimizações de recursos a fazer já que o objetivo final é que o \gls{cluster}
 mantenha a sua capacidade de processamento e seja capaz de suportar a mesma carga a que estava
 sujeito antes desta intervenção.
 
 Para isso, é importante, em primeiro lugar, compreender a forma como estes serviços são requisitados
 pelo sistema para, desta forma, ser possível analisar o intervalo de datas correto. Neste caso,
-todos os serviços disponibilizados pelos \textit{\glspl{cluster}} são relativos ao catálogo, ou seja,
+todos os serviços disponibilizados pelos \glspl{cluster} são relativos ao catálogo, ou seja,
 à informação relativa aos vários eventos disponibilizados aos clientes. Desta forma, os intervalos
 a analisar devem ser períodos em que sejam criados muitos eventos novos, ou momentos em que
-estejam a ser realizados vários eventos em simultâneo e o sistema de atualização de \textit{\glspl{odd}}
+estejam a ser realizados vários eventos em simultâneo e o sistema de atualização de \glspl{odd}
 esteja a ser bastante utilizado.
 
 Após discussão com vários elementos mais experientes no negócio concluiu-se que os intervalos
@@ -226,7 +262,7 @@ analisar o uso de recursos de um dos \glspl{cluster}. A restante análise encont
 presente em no Anexo \ref{appendix-a}.
 
 \begin{figure}[H]
-  \centerline{\includegraphics[scale=0.3]{media/content/analise/analise-ofs.png}}
+  \centerline{\includegraphics[scale=0.25]{media/content/analise/analise-ofs.png}}
   \caption{Análise do uso de recursos de um dos \textit{clusters}}
   \label{analise-ofs}
 \end{figure}
@@ -244,14 +280,31 @@ Para isso foram criadas três abordagens alternativas que tentam resolver este p
 abordagens vão ser analisadas e discutidas de forma a ser possível compreender qual o motivo da
 escolha da alternativa que foi optada internamente.
 
+A distribuição das topologias pelos \glspl{cluster} é apresentada, de seguida, em formato de 
+tabela onde, em cada coluna é representado um \gls{cluster}, ou \ac{TLA}, como é referido 
+internamente no contexto da empresa, e o respetivo \gls{flavour}. Em cada uma das células é
+apresentada uma topologia e um multiplicador, por exemplo, \textit{ELR*2}. As letras são uma 
+abreviatura do nome da topologia e o multiplicador refere-se à quantidade de diferentes
+implementações da topologia a serem executadas no \gls{cluster}. Este multiplicador não representa
+o fator de replicação da topologia, mas sim várias instâncias com implementações diferentes, por
+exemplo, algumas topologias devem ter implementações diferentes por marca - topologias
+\textit{brand-aware} - algumas precisam de diferentes implementações por desporto, por exemplo,
+implementações diferentes para futebol e ténis.
+
+No fim de cada tabela temos a quantidade de recursos (número de \ac{CPU} e GB de RAM) que cada 
+configuração de topologias vai usar no total.
+
 \subsubsection{Alternativa 1}
 
 A primeira alternativa, representada na Figura \ref{proposal-1}, serve de base para todas as
 alternativas que serão analisadas subsequentemente. A ideia é criar um novo \gls{cluster}
 para receber as topologias que não necessitam de tanta capacidade computacional associado. Desta 
-forma, será possível libertar os restantes \glspl{cluster} do número excessivo de \acp{VM} 
-e, ao reduzir os \glspl{flavour} de todas as \acp{VM} procedemos à redução do uso total do
-conjunto.
+forma, será possível libertar os restantes \glspl{cluster} do número excessivo de \ac{VM} 
+e, ao reduzir os \glspl{flavour} de todas as \ac{VM} procedemos à redução do uso total do
+conjunto, pois é efetuada a transição de um conjunto de \ac{VM} com uma especificação, por exemplo,
+4 \ac{CPU} e 12GB de memória RAM para um conjunto de \ac{VM} com 2 \ac{CPU} e 10GB RAM. No exemplo
+anterior, assumindo um \gls{cluster} com 100 máquinas, teriamos uma redução de 50 \ac{CPU} e 20GB 
+de RAM.
 
 \begin{figure}[H]
   \centerline{\includegraphics[scale=0.4]{media/content/analise/proposal-1.png}}
@@ -262,15 +315,12 @@ conjunto.
 \subsubsection{Alternativa 2}
 
 A segunda alternativa, representada na Figura \ref{proposal-2}, diminui a memória RAM utilizada no
-primeiro \gls{cluster}, além de reformular a organização das topologias pelos restantes. Esta 
-abordagem acaba por ser inferior às restantes por duas questões - o tamanho, em termos de número 
-de \acp{VM}, do terceiro \gls{cluster} e a quantidade total de recursos superior à proposta
-analisada anteriormente.
+primeiro \gls{cluster}, além de reformular a organização das topologias pelos restantes. 
 
-O número de \acp{VM} hospedadas no mesmo \gls{cluster} não deve ser demasiado elevado de forma a
+O número de \ac{VM} hospedadas no mesmo \gls{cluster} não deve ser demasiado elevado de forma a
 evitar uma carga demasiado elevada no processo de implantação, isto porque, devido à forma como 
 funciona o \textit{Apache Storm} a alteração numa topologia implica o processo de implantação de
-todo o \gls{cluster} e, logicamente, quanto maior a quantidade de \acp{VM} que deve ser levantada
+todo o \gls{cluster} e, logicamente, quanto maior a quantidade de \ac{VM} que devem ser criadas
 durante o processo, mais demorado se tornará.
 
 \begin{figure}[H]
@@ -278,6 +328,10 @@ durante o processo, mais demorado se tornará.
   \caption{Distribuição de topologias pelos \textit{clusters} - Alternativa 2}
   \label{proposal-2}
 \end{figure}
+
+Esta abordagem acaba por ser inferior às restantes por duas questões - o tamanho, em termos de número 
+de \ac{VM}, do terceiro \gls{cluster} e a quantidade total de recursos superior à proposta
+analisada anteriormente.
 
 \subsubsection{Alternativa 3}
 

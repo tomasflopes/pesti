@@ -8,30 +8,30 @@ skinparam ArrowColor #222222
 
 left to right direction
 
-entity "Class" as c {
+entity "Classe" as c {
   - name
 }
 
-entity "SubClass" as sc {
+entity "SubClasse" as sc {
   - name
 }
 
-entity "Competition" as comp {
+entity "Competição" as comp {
   - name
   - start_date
   - end_date 
 }
 
-entity "Event" as e {
+entity "Evento" as e {
   - name
   - date
 }
 
-entity "Market" as m {
+entity "Mercado" as m {
   - name
 }
 
-entity "Selection" as s {
+entity "Seleção" as s {
   - name
   - odd
 }

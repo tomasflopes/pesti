@@ -5,10 +5,16 @@ node "Servidor" as S {
 
 folder "Clientes" {
   node "Mobile" as M {
+    component "Mobile App" <<component>> { 
+    }
   }
   node "Desktop" as D {
+    component "Desktop App" <<component>> { 
+    }
   }
   node "Web" as W {
+    component "Web App" <<component>> { 
+    }
   }
 }
 

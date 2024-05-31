@@ -8,10 +8,16 @@ node "<<Load Balancer>>" as LB {
 
 folder "Infraestrutura" as I {
   node "Servidor 3\n   Canary" as S3 #yellow {
+    component "App" <<component>> { 
+    }
   }
   node "Servidor 2" as S2 {
+    component "App " <<component>> { 
+    }
   }
   node "Servidor 1" as S1 {
+    component "App  " <<component>> { 
+    }
   }
 }
 
