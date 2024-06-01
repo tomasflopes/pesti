@@ -127,7 +127,6 @@ nível do seu funcionamento.
   \item O sistema deve ser capaz de recuperar de falhas sem intervenção manual.
 \end{itemize}
 
-
 \textbf{Desempenho}
 \begin{itemize}
   \item O sistema deve manter a capacidade de processamento que tinha antes da intervenção.
@@ -144,6 +143,7 @@ nível do seu funcionamento.
 \end{itemize}
 
 \textbf{Restrições de Design}
+\label{sec:3-restricao-design}
 \begin{itemize}
   \item O sistema deve suportar quatro ambientes - \ac{QA}, desenvolvimento, 
     performance e produção.
@@ -216,6 +216,20 @@ estrutura apresentada no artigo "(User) Stories for Analytics Projects - Part 1"
   \caption{Diagrama de Casos de Uso}
   \label{dcu}
 \end{figure}
+
+\section{Estado Atual do Sistema}
+
+O sistema em análise é composto por vários \glspl{cluster} que suportam os serviços de catálogo
+disponibilizados pelas marcas do grupo Flutter. Estes \glspl{cluster} são compostos por várias
+\ac{VM} que executam as topologias responsáveis pelo processamento dos dados relativos a estes
+serviços. A Figura \ref{strat-current} apresenta o estado atual dos \glspl{cluster}.
+
+\begin{figure}[H]
+  \centerline{\includegraphics[scale=0.5]{media/content/analise/strat-current.png}}
+  \caption{Estado atual do sistema}
+  \label{strat-current}
+\end{figure}
+
 
 \section{Desenho da Solução}
 
@@ -335,21 +349,23 @@ analisada anteriormente.
 
 \subsubsection{Alternativa 3}
 
-A terceira, e última, alternativa analisada acaba por ser a mais vantajosa em quase todos os 
-aspetos, mas acabou por ser descartada devido após análise por parte das equipas que desenvolvem as 
-topologias. Isto porque uma das topologias é uma exceção às restantes no sentido em que todas as
-restantes, como mencionado anteriormente, a paralelização só é permitida ser efetuada por máquina, 
-ou seja, a mesma máquina não pode correr mais que um processo da topologia, paralelamente.
-Devido à necessidade acima do normal de paralelização por parte desta topologia em específico
-acabou por ser aberta a exceção e neste caso cada máquina corre dois processos em paralelo.
-Desta forma, a análise efetuada anteriormente não pode ser interpretada da mesma forma para esta
-topologia, o que invalida esta alternativa.
+A terceira, e última, alternativa está representada na Figura \ref{proposal-3}.
 
 \begin{figure}[H]
   \centerline{\includegraphics[scale=0.4]{media/content/analise/proposal-3.png}}
   \caption{Distribuição de topologias pelos \textit{clusters} - Alternativa 3}
   \label{proposal-3}
 \end{figure}
+
+Esta alternativa acaba por ser a mais vantajosa em quase todos os aspetos, mas acabou por ser 
+descartada devido após análise por parte das equipas que desenvolvem as topologias. Isto porque uma 
+das topologias é uma exceção às restantes no sentido em que todas as restantes, como mencionado 
+anteriormente, na secção de \nameref{sec:3-restricao-design}, a paralelização só é permitida ser 
+efetuada por máquina, ou seja, a mesma máquina não pode correr mais que um processo da topologia, 
+paralelamente. Devido à necessidade acima do normal de paralelização por parte desta topologia em 
+específico acabou por ser aberta a exceção e neste caso cada máquina corre dois processos em 
+paralelo. Desta forma, a análise efetuada anteriormente não pode ser interpretada da mesma forma 
+para esta topologia, o que invalida esta alternativa.
 
 \subsubsection{Comparação entre alternativas}
 
@@ -364,7 +380,8 @@ com a alteração da memória RAM do primeiro \gls{cluster} chegando à opção 
 \end{figure}
 
 Podemos observar na Figura \ref{comparison-proposal} a comparação entre todas as propostas
-analisadas em termos de uso total de recursos em todos os ambientes.
+analisadas em termos de uso total de recursos em todos os ambientes, bem como a percentagem de 
+redução de recursos em cada um dos parâmetros analisados (CPU e RAM).
 
 \begin{figure}[H]
   \centerline{\includegraphics[scale=0.4]{media/content/analise/proposal-comparison.png}}
@@ -388,17 +405,11 @@ ambos os \glspl{dc}. Esta simplificação foi feita já que todas estas variáve
 ser desprezadas dadas as semelhanças entre ambientes e a dimensão total da infraestrutura em
 análise.
 
-Na Figura \ref{strat-current} podemos observar o estado atual dos \glspl{cluster}. Este é o ponto
-de partida para esta intervenção. 
-
-\begin{figure}[H]
-  \centerline{\includegraphics[scale=0.5]{media/content/analise/strat-current.png}}
-  \caption{Processo de implantação - Estado atual}
-  \label{strat-current}
-\end{figure}
+Como analisado anteriormente, a Figura \ref{strat-current} representa o estado atual dos 
+\glspl{cluster}. Este é o ponto de partida para esta intervenção. 
 
 No primeiro passo, representado na Figura \ref{strat-1}, é efetuada uma redução de recursos 
-de ambos os \glspl{cluster}. Esta redução parte do princípio de que, sendo possível obter a 
+de ambos os \glspl{cluster}. Esta redução parte do princípio de que, sendo possível aplicar a 
 solução final apresentada anteriormente, então, por definição, as topologias devem ser capazes de
 operar sem problemas usando estes novos \glspl{flavour}. Esta intervenção só por si, representa
 46\% de redução no uso total de \ac{CPU} (no ambiente de produção).
@@ -439,10 +450,10 @@ apenas necessário efetuar esta redução no segundo \gls{cluster}.
 \end{figure}
 
 Após todo este processo a estrutura em que estão hospedadas as topologias encontra-se na forma
-otimizada proposta e analisada anteriormente. Este processo sofre pequenas alterações entre
-ambientes já que os \glspl{flavour} não são iguais entre estes. Além disso, durante este processo
-tiveram que ser analisadas outras questões igualmente relevantes para garantir que esta migração
-era possível como é o caso da capacidade de comunicação do \textit{Zookeeper}.
+otimizada proposta anteriormente. Este processo sofre pequenas alterações entre ambientes já que 
+os \glspl{flavour} não são iguais entre estes. Além disso, durante este processo tiveram que ser 
+analisadas outras questões igualmente relevantes para garantir que esta migração era possível como 
+é o caso da capacidade de comunicação do \textit{Zookeeper}.
 
 O \textit{Zookeeper} é utilizado por todos estes \glspl{cluster} para garantir a resiliência das 
 topologias e, por consequência, poderia não ter a capacidade de comunicar com um \gls{cluster}
