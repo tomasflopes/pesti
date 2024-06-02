@@ -35,7 +35,7 @@ para atingir estes objetivos.
 
 Cada serviço é composto, normalmente, por três componentes principais, como ilustrado na Figura
 \ref{package}, separados em diferentes repositórios. Os três componentes habituais de um novo 
-serviço são: o código do serviço - o código com toda a lógica de programação que compõe o serviço, 
+serviço são: o código do serviço - o código com toda a lógica de programação que compõe o serviço;
 configurações do pacote - repositório com as configurações do serviço, como versões de serviços 
 externos necessários nas \ac{VM} que são necessárias para o serviço, esta componente usa 
 ferramentas de configuração como Chef \cite{chef} ou Ansible \cite{ansible} e, por fim, um 
@@ -43,15 +43,20 @@ repositório com configurações relativamente à infraestrutura - repositório 
 infraestrutura necessárias para o serviço, como especificações dos \glspl{flavour} e das 
 \textit{subnets} necessárias.
 
+Esta separação permite que, ao criar um novo pacote, seja possível utilizar configurações de
+versões anteriores. Este pormenor torna-se bastante útil quando estão a ser efetuadas várias
+alterações a nível do código do serviço e das suas configurações e é necessária a integração 
+faseada destas alterações nos diferentes ambientes, por exemplo.
+
 \begin{figure}[H]
   \centerline{\includegraphics[scale=1.2]{media/content/impl/package.png}}
   \caption{Composição típica do pacote de um serviço}
   \label{package}
 \end{figure}
 
-Todo o processo de \ac{CI} é gerido pelo Jenkins, que é responsável por criar os artefactos
-necessários para a execução do serviço nos ambientes que estão ativos. A Figura \ref{ci-process} 
-ilustra, de uma forma simplificada, o processo de \ac{CI} de um serviço.
+Todo o processo de \ac{CI} é gerido pelo Jenkins e pelo \textit{Go Pipelines}, que são responsáveis
+por criar os artefactos necessários para a execução do serviço nos ambientes que estão ativos. 
+A Figura \ref{ci-process} ilustra, de forma simplificada, o processo de \ac{CI} de um serviço.
 
 \begin{figure}[H]
   \centerline{\includegraphics[scale=0.5]{media/content/impl/ci-process.png}}
@@ -62,19 +67,31 @@ ilustra, de uma forma simplificada, o processo de \ac{CI} de um serviço.
 \todo{Converter em BPMN}
 
 Após este processo de criação de um artefacto (pacote) o Jenkins envia este novo pacote para as
-\glspl{pipeline} de forma a começar o processo de implantação da nova versão. Já nas \glspl{pipeline}
-a responsabilidade de gestão do pacote passa a ser do Go, que permite automatizar vários processos
-a nível da infraestrutura para automatizar o processo de implantação deste serviço na \textit{cloud}.
-Como temos vários ambientes presentes para cada serviço (ex.: QA, desenvolvimento e produção)
-é possível configurar o plano de promoções de um pacote por estes ambientes, isto é, um pacote
-começa por ficar apenas disponível no ambiente de QA e, tipicamente, a \gls{pipeline} é despoletada
-automaticamente pelo próprio Job Jenkins que criou o pacote. De seguida, após uma implantação
-bem sucedida no ambiente de QA, por exemplo, o pacote é promovido para o ambiente de desenvolvimento,
-ou seja, passa a ser o pacote que vai ser disponibilizado caso pretendamos correr a \gls{pipeline}
-desse ambiente. Este comportamento é totalmente personalizavel e adapta-se aos ambientes que cada
-serviço tem disponíveis. Este tipo de mecanismo de promoções de pacotes ajuda a prevenir que um
-pacote defeituoso seja implantado em ambientes produtivos, onde impactam clientes, sem existir
-a garantia que estão a funcionar corretamente nos ambientes de desenvolvimento.
+\glspl{pipeline}, controladas pelo \textit{Go Pipelines} de forma a começar o processo de 
+implantação da nova versão. Já nas \glspl{pipeline} a responsabilidade de gestão do pacote passa a 
+ser do Go, que permite automatizar vários processos a nível da infraestrutura para automatizar o 
+processo de implantação deste serviço na \textit{cloud}. Como temos vários ambientes presentes para 
+cada serviço, por exemplo, \ac{QA}, desenvolvimento e produção) é possível configurar o plano de 
+promoções de um pacote por estes ambientes, isto é, um pacote começa por ficar apenas disponível no 
+ambiente de QA e, tipicamente, a \gls{pipeline} é despoletada automaticamente pelo próprio 
+\textit{Job Jenkins} que criou o pacote. De seguida, após uma implantação bem sucedida no ambiente 
+de QA, por exemplo, o pacote é promovido para o ambiente de desenvolvimento, ou seja, passa a ser 
+o pacote que vai ser disponibilizado caso pretendamos correr a \gls{pipeline} desse ambiente. 
+Este comportamento é totalmente personalizavel e adapta-se aos ambientes que cada serviço tem 
+disponíveis. Este tipo de mecanismo de promoções de pacotes ajuda a prevenir que um pacote 
+defeituoso seja implantado em ambientes produtivos, onde impactam clientes, sem existir a garantia 
+que estão a funcionar corretamente nos ambientes de desenvolvimento.
+
+Este processo é válido para os serviços - \ac{TLA} - que, neste caso, são os nossos \glspl{cluster}.
+Já no caso das topologias o processo é ligeiramente diferente. A composição, em termos de 
+repositórios é em todo semelhante à descrita anteriormente, à exceção do repositório de configurações,
+mas o processo de \ac{CI} é ligeiramente diferente. Neste caso, o processo já não recorre ao 
+\textit{Go pipelines} e é totalmente automatizado usando Jenkins. Existem três \textit{Jenkins Jobs} 
+para a criação dos artefactos - \textit{<topologia>\_ci\_config}, \textit{<topologia>\_ci\_service}
+e \textit{<topologia>\_<env>\_release}, por exemplo: \textit{xpto\_prd\_release}. Mais uma vez o 
+processo é semelhante, os primeiros dois \textit{jobs} são responsáveis por criar os artefactos 
+que compõe o pacote final e o último é responsável por fazer a sua implantação para o ambiente 
+especificado.
 
 \subsection{\textit{Scaledown} do Cluster}
 
