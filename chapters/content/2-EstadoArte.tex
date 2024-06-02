@@ -68,11 +68,21 @@ Os balanceadores de carga - \textit{load balancers} - são componentes essenciai
 distribuídos, distribuindo as cargas de trabalho entre os nós para melhorar a utilização dos 
 recursos e o tempo de resposta dos serviços, evitando a sobrecarga \cite{lb2012}. Na computação 
 em nuvem, os algoritmos de balanço de carga são cruciais para otimizar o desempenho e a utilização 
-dos recursos \cite{lb2016}. Vários algoritmos, como \textit{Round Robin}, \textit{Least Connections}, 
-\textit{Round Robin} com pesos, \textit{Least Connections} com pesos e Mínimo Tempo de Resposta, 
-são usados em balanceadores de carga para equilibrar as conexões, otimizar o desempenho do tráfego, 
-maximizar a taxa de transferência de dados, minimizar o atraso e evitar sobrecarga de dados 
-\cite{lb2021}.
+dos recursos \cite{lb2016}. Vários algoritmos, como \textit{Round Robin} (Figura \ref{fig:lb-rr}, 
+\textit{Least Connections}, \textit{Round Robin} com pesos, \textit{Least Connections} com pesos e 
+Mínimo Tempo de Resposta, são usados em balanceadores de carga para equilibrar as conexões, 
+otimizar o desempenho do tráfego, maximizar a taxa de transferência de dados, minimizar o atraso e 
+evitar sobrecarga de dados \cite{lb2021}.
+
+\begin{figure}[H]
+    \centering
+    \subfloat[\centering Primeiro pedido]{{\includegraphics[width=0.42\textwidth]{media/content/estado-arte/lb-1.png} }}%
+    \qquad
+    \subfloat[\centering Segundo pedido]{{\includegraphics[width=0.42\textwidth]{media/content/estado-arte/lb-2.png} }}%
+    \caption{Representação de um \textit{Load Balancer} a usar a técnica de Round Robin}%
+    \label{fig:lb-rr}%
+\end{figure}
+
 
 As técnicas baseadas em geolocalização utilizam medidas de atraso e topologia da rede para melhorar 
 as decisões do balanço da carga, determinando as posições do \textit{host} \cite{lb2016b}. Os 

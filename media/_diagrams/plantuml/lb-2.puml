@@ -1,0 +1,23 @@
+@startuml lb-2
+
+top to bottom direction
+
+node "<<Load Balancer>>\n    service.com" as LB {
+}
+
+folder "Máquinas do Serviço" as I {
+  node "Servidor 2\n service002.com" as S2 {
+    component "App" <<component>> { 
+    }
+  }
+  node "Servidor 1\n service001.com" as S1 {
+    component "App " <<component>> { 
+    }
+  }
+}
+
+..> LB 
+
+LB ..> S2
+
+@enduml
