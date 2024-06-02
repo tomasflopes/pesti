@@ -62,6 +62,34 @@ enfatizando a importância da tolerância a falhas no processamento de \textit{s
 são processados em tempo real por um conjunto de operadores distribuídos por um \gls{cluster}
 de servidores, o que demonstra a natureza distribuída dos sistemas de processamento do fluxos de dados.
 
+\subsection{Balanço de Carga}
+
+Os balanceadores de carga - \textit{load balancers} - são componentes essenciais em sistemas 
+distribuídos, distribuindo as cargas de trabalho entre os nós para melhorar a utilização dos 
+recursos e o tempo de resposta dos serviços, evitando a sobrecarga \cite{lb2012}. Na computação 
+em nuvem, os algoritmos de balanço de carga são cruciais para otimizar o desempenho e a utilização 
+dos recursos \cite{lb2016}. Vários algoritmos, como \textit{Round Robin}, \textit{Least Connections}, 
+\textit{Round Robin} com pesos, \textit{Least Connections} com pesos e Mínimo Tempo de Resposta, 
+são usados em balanceadores de carga para equilibrar as conexões, otimizar o desempenho do tráfego, 
+maximizar a taxa de transferência de dados, minimizar o atraso e evitar sobrecarga de dados 
+\cite{lb2021}.
+
+As técnicas baseadas em geolocalização utilizam medidas de atraso e topologia da rede para melhorar 
+as decisões do balanço da carga, determinando as posições do \textit{host} \cite{lb2016b}. Os 
+métodos de geolocalização IP, baseados na identificação de \textit{routers} e na semelhança da 
+distribuição do atraso local, têm como objetivo melhorar a precisão do serviço de geolocalização
+\cite{lb2006}. Foi desenvolvido um método de geolocalização IP com tolerância ao desvio de atraso 
+e estimativa de erros para resolver problemas de desempenho relacionados com a inflação do atraso 
+nas redes \cite{lb2018}.
+
+Os ajustes dinâmicos dos pesos nos algoritmos de balanço de carga asseguram chamadas de serviço 
+eficientes e uma utilização racional dos recursos em grupos de serviços distribuídos \cite{lb2022}.
+O balanço hierárquico da carga de recursos baseado em sistemas multi-agente foi proposto para 
+lidar com a natureza dinâmica da chegada de tarefas em sistemas distribuídos, enfatizando a 
+necessidade de mecanismos dinâmicos de balanceamento de carga \cite{lb2018b}. Algoritmos de 
+balanço de carga como \textit{Round Robin} e \textit{Least Connections} são normalmente utilizados 
+para distribuir eficientemente a carga de tráfego em sistemas distribuídos \cite{lb2010}.
+
 \subsection{Problemas de consenso}
 
 O problema do consenso em sistemas de \textit{software} distribuídos é uma questão fundamental que 
