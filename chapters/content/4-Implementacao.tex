@@ -33,8 +33,10 @@ para atingir estes objetivos.
 
 \subsection{Processo de \ac{CI} de um serviço}
 
-Todos os serviços hospedados na infraestrutura da Blip têm as suas configurações manipuladas
-através de uma técnica chamada \textit{Infrastructure as Code}.
+Todos os serviços hospedados na infraestrutura da Blip seguem a abordagem de \ac{IaC} pelo que 
+todos os processos manuais de alocação de recursos, configurações de \textit{subnets}, entre 
+outras configurações relevantes para a implantação de um serviço, são geridas automaticamente
+através da \textit{framework} interna gerida por equipas de infraestrutura.
 
 Cada serviço é composto, normalmente, por três componentes principais, como ilustrado na Figura
 \ref{package}, separados em diferentes repositórios. Os três componentes habituais de um novo 
