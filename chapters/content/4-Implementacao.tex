@@ -33,6 +33,9 @@ para atingir estes objetivos.
 
 \subsection{Processo de \ac{CI} de um serviço}
 
+Todos os serviços hospedados na infraestrutura da Blip têm as suas configurações manipuladas
+através de uma técnica chamada \textit{Infrastructure as Code}.
+
 Cada serviço é composto, normalmente, por três componentes principais, como ilustrado na Figura
 \ref{package}, separados em diferentes repositórios. Os três componentes habituais de um novo 
 serviço são: o código do serviço - o código com toda a lógica de programação que compõe o serviço;
@@ -117,6 +120,11 @@ procedimento adicional em caso de necessidade de reversão da operação.
 \end{figure}
 
 \subsection{Criação de um Cluster}
+
+O processo de criação de um novo \gls{cluster} segue o processo de criação de um novo serviço, ou
+\ac{TLA}, e tem vários passos pouco relevantes de um ponto de vista técnico já que servem para
+processos de controlo de qualidade interna. De uma forma simplificada, o processo segue a seguinte
+lógica:
 
 \todo[inline]{Incluir BPMNs do processo de criação de novos clusters (simplificado}
 
