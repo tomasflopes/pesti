@@ -231,6 +231,23 @@ serviços. A Figura \ref{strat-current} apresenta o estado atual dos \glspl{clus
   \label{strat-current}
 \end{figure}
 
+\subsection{Balanceadores de Carga}
+
+Para lidar com falhas e garantir a disponibilidade dos serviços, os serviços de catálogo estão
+distribuídos por dois \glspl{dc} e o tráfego de entrada é distribuído por um \ac{LB} que encaminha
+o tráfego para os \gls{cluster} do \ac{DC} escolhido. Já a nível do \gls{cluster}, a gestão de 
+tráfego e falhas é gerida pelo próprio \textit{Apache Storm} que garante a replicação dos dados
+e a recuperação de falhas entre as réplicas de cada topologia.
+
+De forma a simplificar a compreensão destes conceitos, a Figura \ref{lb} apresenta um diagrama
+simplificado da arquitetura de \ac{LB} presente nos \glspl{cluster}, sendo que a gestão efetuada
+a nível do \textit{Apache Storm} é simplificada como um \ac{LB} interno.
+
+\begin{figure}[H]
+  \centerline{\includegraphics[scale=0.5]{media/content/analise/lb.png}}
+  \caption{Arquitetura dos Balanceadores de Carga}
+  \label{lb}
+\end{figure}
 
 \section{Desenho da Solução}
 

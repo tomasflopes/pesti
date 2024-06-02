@@ -1,0 +1,46 @@
+@startuml lb
+
+top to bottom direction
+
+node "<<Load Balancer>>\n    service.com" as AVI {
+}
+
+folder "Data Center 1" as IE1 {
+  node "<<Load Balancer>>\n dc1-service.com" as LB1 {
+  }
+
+  node "Servidor 2\n dc1-service002.com" as S2 {
+    component "App" <<component>> { 
+    }
+  }
+  node "Servidor 1\n dc1-service001.com" as S1 {
+    component "App " <<component>> { 
+    }
+  }
+}
+
+folder "Data Center 2" as IE2 {
+  node "<<Load Balancer>>\n dc2-service.com" as LB2 {
+  }
+
+  node "Servidor 2\n dc2-service002.com" as S22 {
+    component "App" <<component>> { 
+    }
+  }
+  node "Servidor 1\n dc2-service001.com" as S21 {
+    component "App " <<component>> { 
+    }
+  }
+}
+
+..> AVI 
+
+AVI ..> LB1
+AVI ..> LB2
+
+LB1 ..> S1
+LB1 ..> S2
+LB2 ..> S21
+LB2 ..> S22
+
+@enduml
