@@ -165,14 +165,19 @@ em \textit{cloud}, onde a alta disponibilidade e a interrupção mínima são cr
 O \textit{Apache Storm} é um sistema de computação em memória distribuído e tolerante a falhas, 
 concebido para processar grandes volumes de dados de alta velocidade em tempo real \cite{storm2017}. 
 É um sistema centralizado e hierárquico de processamento de \textit{streams} que opera sobre o 
-\textit{Nimbus} \cite{storm2015}. O \textit{Storm} permite que os operadores tenham múltiplas 
-réplicas e os tuplos - a informação sobre o qual o \textit{Storm} opera - podem ser encaminhadas 
-usando técnicas de agendamento como \textit{fieldsGrouping} ou \textit{partialKeyGrouping}
-\cite{storm2018}. O sistema pode tirar também partido do \textit{Apache Kafka}, um serviço de 
-\textit{queues} distribuído, particionado e replicando os dados de forma a integrar dados no 
-\gls{cluster} de \textit{Storm} \cite{storm2018b}.
+\textit{Nimbus} \cite{storm2015}, como ilustrado na Figura \ref{fig:storm-architecture}. O 
+\textit{Storm} permite que os operadores tenham múltiplas réplicas e os tuplos - a informação 
+sobre o qual o \textit{Storm} opera - podem ser encaminhadas usando técnicas de agendamento como 
+\textit{fieldsGrouping} ou \textit{partialKeyGrouping} \cite{storm2018}. O sistema pode tirar 
+também partido do \textit{Apache Kafka}, um serviço de \textit{queues} distribuído, particionado e 
+replicando os dados de forma a integrar dados no \gls{cluster} de \textit{Storm} \cite{storm2018b}.
 
-\todo{TODO: Elaborar com exemplos}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{media/content/estado-arte/apache-storm-architecture.png}
+    \caption{Arquitetura do Apache Storm}
+    \label{fig:storm-architecture}
+\end{figure}
 
 Em termos de replicação, a pesquisa centrou-se na implantação e replicação otimizadas do 
 operador para o processamento elástico de \textit{streams} de dados distribuídos no âmbito 
@@ -183,15 +188,23 @@ melhorar o desempenho e a tolerância a falhas \cite{storm2017c}. Para além dis
 identificados pontos de acesso \cite{storm2018c}.
 
 Relativamente às topologias - a estrutura dos serviços que operam sobre o \textit{Apache Storm} - 
-é possível criar estruturas bastante complexas de processamento de fluxos. Estas estruturas são 
-compostas por dois componentes básicos: \textit{spouts}, responsáveis pela receção e produção de 
-dados, e \textit{bolts}, que aplicam lógica e sobre estes dados e produzem novos dados de saída. 
-Os investigadores propuseram extensões ao \textit{Storm} que otimizam a paralelização dos 
-operadores e a sua colocação em diferentes recursos computacionais de forma a melhorar a 
-elasticidade e o desempenho do sistema \cite{storm2017d} . O \textit{Apache Storm} tem sido 
-utilizado em várias aplicações, como análise de \textit{tweets}, ambientes multi-nuvem e sistemas 
-de análise de dados espaço-temporais, demonstrando sua versatilidade e ampla gama de aplicação 
-\cite{storm2018d} \cite{storm2020} \cite{storm2021}.
+é possível criar estruturas bastante complexas de processamento de fluxos como representado na
+Figura \ref{fig:topologies}. Estas estruturas são compostas por dois componentes básicos: 
+\textit{spouts}, responsáveis pela receção e produção de dados, e \textit{bolts}, que aplicam 
+lógica e sobre estes dados e produzem novos dados de saída. Os investigadores propuseram extensões 
+ao \textit{Storm} que otimizam a paralelização dos operadores e a sua colocação em diferentes 
+recursos computacionais de forma a melhorar a elasticidade e o desempenho do sistema 
+\cite{storm2017d} . O \textit{Apache Storm} tem sido utilizado em várias aplicações, como análise 
+de \textit{tweets}, ambientes multi-nuvem e sistemas de análise de dados espaço-temporais, 
+demonstrando sua versatilidade e ampla gama de aplicação \cite{storm2018d} \cite{storm2020} 
+\cite{storm2021}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{media/content/estado-arte/apache-storm-topology-diagram.png}
+    \caption{Representação de topologias no Apache Storm}
+    \label{fig:topologies}
+\end{figure}
 
 \subsection{Zookeeper}
 
