@@ -1,5 +1,7 @@
 @startuml ucd
 
+left to right direction
+
 skinparam usecase {
     BackgroundColor LightBlue
     BorderColor DarkBlue
@@ -12,9 +14,9 @@ skinparam usecase {
 left to right direction
 
 rectangle "Use Cases" as uc {
-  usecase "1. Como utilizador, pretendo consultar os eventos ativos num determinado dia." as UC1
-  usecase "2. Como utilizador, pretendo consultar os tipos de aposta disponíveis para um determinado evento." as UC2
-  usecase "3. Como utilizador, pretendo consultar as odds de um num determinado evento." as UC3
+  usecase "1. Consultar os eventos ativos num determinado dia." as UC1
+  usecase "2. Consultar os tipos de aposta disponíveis para um determinado evento." as UC2
+  usecase "3. Consultar as odds de um num determinado evento." as UC3
 }
 
 AE --> UC1
