@@ -91,10 +91,10 @@ corretamente.
 Os requisitos não funcionais não se concentram no que o sistema faz, mas sim em como é esperado que
 ele funcione. 
 
-Os requisitos não funcionais apresentados em seguida, guiam-se pelo modelo FURPS+, um padrão de 
+Os requisitos não funcionais apresentados de seguida, guiam-se pelo modelo FURPS+, um padrão de 
 classificação qualitativa das características de um \textit{software} (\textbf{F}unctionality, 
-\textbf{U}sability, \textbf{R}eliability, \textbf{P}erformance, \textbf{S}upportability), para uma 
-melhor experiência do utilizador. O "\textbf{+}" refere-se a métodos de classificação diferentes, 
+\textbf{U}sability, \textbf{R}eliability, \textbf{P}erformance, \textbf{S}upportability), para 
+facilitar a compreensão dos mesmos. O "\textbf{+}" refere-se a métodos de classificação diferentes, 
 como por exemplo, restrições de design, implementação, interface ou físicos.
 
 Estes requisitos são mais complexos de definir a nível do \gls{cluster}, pois cada topologia tem 
@@ -121,17 +121,19 @@ nível do seu funcionamento.
 \textbf{Fiabilidade}
 
 \begin{itemize}
-  \item O sistema deve ser capaz de recuperar de falhas sem perda de dados.
-  \item O sistema deve ser capaz de recuperar de falhas minimizando o tempo de inatividade.
-  \item O sistema deve ser capaz de recuperar de falhas sem intervenção manual.
+  \item O sistema deve ser capaz de recuperar de falhas de funcionamento sem perda de dados.
+  \item O sistema deve ser capaz de recuperar de falhas de funcionamento minimizando o tempo de inatividade.
+  \item O sistema deve ser capaz de recuperar de falhas de funcionamento sem intervenção manual.
 \end{itemize}
 
 \textbf{Desempenho}
 \begin{itemize}
   \item O sistema deve manter a capacidade de processamento que tinha antes da intervenção.
-  \item O sistema deve ser capaz de processar transações em dia de pico de catálogo sem atrasos 
-    significativos na latência.
-  \item O sistema deve ser capaz de processar transações em dia de pico de catálogo minimizando o 
+  \item O sistema deve ser capaz de processar transações em dia de pico de catálogo \footnote[1]{
+    Os "dias de pico de catálogo" são dias identificados previamente em que são criados muitos 
+    eventos novos ou dias em que estão a ser realizados muitos eventos em simultâneo}
+    sem atrasos significativos na latência.
+  \item O sistema deve ser capaz de processar transações em dia de pico de catálogo \footnotemark[1] minimizando o 
     tempo de resposta.
 \end{itemize}
 
@@ -141,10 +143,10 @@ nível do seu funcionamento.
   \item O sistema deve suportar a replicação de \glspl{cluster} em dois \glspl{dc}.
   \item O sistema deve suportar a configuração de quatro ambientes - \ac{QA}, desenvolvimento, 
     performance e produção.
+  \item O sistema deve ter suporte 24/7 com uma equipa de \gls{on-call} disponível.
 \end{itemize}
 
 \textbf{Restrições de Design}
-\label{sec:3-restricao-design}
 \begin{itemize}
   \item O sistema deve suportar quatro ambientes - \ac{QA}, desenvolvimento, 
     performance e produção.
