@@ -245,6 +245,10 @@ De forma a simplificar a compreensão destes conceitos, a Figura \ref{lb} aprese
 simplificado da arquitetura de \ac{LB} presente nos \glspl{cluster}, sendo que a gestão efetuada
 a nível do \textit{Apache Storm} é simplificada como um \ac{LB} interno.
 
+Na realidade, esta gestão por parte do Apache Storm é mais complexa, pois usa o conjunto de
+máquinas que tem disponível para paralelizar o processamento realizado por parte das topologias e
+recuperar de falhas.
+
 \begin{figure}[H]
   \centerline{\includegraphics[scale=0.5]{media/content/analise/lb.png}}
   \caption{Arquitetura dos Balanceadores de Carga}
@@ -295,6 +299,12 @@ Esta análise foca-se no uso de recursos de cada topologia. Na Figura \ref{anali
 analisar o uso de recursos de um dos \glspl{cluster}. A restante análise encontra-se
 presente em no Anexo \ref{appendix-a}.
 
+Em cada linha desta tabela está presente uma topologia e as várias métricas a nível de uso de 
+recursos de \textit{hardware} nos períodos identificados como "dias de pico", neste caso, um dia 
+do mês de agosto e um dia no final do ano. Ao analisar os recursos de \ac{CPU} e memória RAM de 
+cada topologia nestes períodos podemos extrapolar um majorante do uso de recursos necessários para
+esta topologia poder operar sem falhas no dia mais exigente do ponto de vista computacional no ano.
+
 \begin{figure}[H]
   \centerline{\includegraphics[scale=0.25]{media/content/analise/analise-ofs.png}}
   \caption{Análise do uso de recursos de um dos \textit{clusters}}
@@ -310,9 +320,9 @@ mesmo em momentos de pico.
 Após concluída esta fase de análise foi possível sugerir novas abordagens para a distribuição
 das topologias pelos \glspl{cluster} de forma a otimizar o uso total de recursos dos mesmos.
 
-Para isso foram criadas três abordagens alternativas que tentam resolver este problema. Todas estas
+Para isso, foram criadas três abordagens alternativas que tentam resolver este problema. Todas estas
 abordagens vão ser analisadas e discutidas de forma a ser possível compreender qual o motivo da
-escolha da alternativa que foi optada internamente.
+escolha da alternativa que foi escolhida.
 
 A distribuição das topologias pelos \glspl{cluster} é apresentada, de seguida, em formato de 
 tabela onde, em cada coluna é representado um \gls{cluster}, ou \ac{TLA}, como é referido 
@@ -468,6 +478,9 @@ apenas necessário efetuar esta redução no segundo \gls{cluster}.
   \caption{Processo de implantação - Passo 3}
   \label{strat-3}
 \end{figure}
+
+De forma a ser mais simples acompanhar as alterações efetuadas em cada passo, uma visualização
+com a comparação simplificada está disponível no Anexo \ref{appedix-b}.
 
 Após todo este processo a estrutura em que estão hospedadas as topologias encontra-se na forma
 otimizada proposta anteriormente. Este processo sofre pequenas alterações entre ambientes já que 
