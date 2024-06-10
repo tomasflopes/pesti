@@ -125,14 +125,20 @@ procedimento adicional em caso de necessidade de reversão da operação.
 
 O processo de criação de um novo \gls{cluster} segue o processo de criação de um novo serviço, ou
 \ac{TLA}, e tem vários passos pouco relevantes de um ponto de vista técnico já que servem para
-processos de controlo de qualidade interna. De uma forma simplificada, o processo segue o processo
-apresentado na Figura \ref{create-tla}.
+processos de controlo de qualidade interna. De uma forma simplificada, o processo segue os passos
+apresentados na Figura \ref{create-tla}.
 
 \begin{figure}[H]
   \centerline{\includegraphics[scale=0.13]{media/content/impl/create-tla.png}}
   \caption{Processo de criação de um novo TLA}
   \label{create-tla}
 \end{figure}
+
+Após ter aprovação neste processo, o novo \gls{cluster} está pronto a ser utilizado. Há mais 
+alguns passos necessários em alguns casos, como é o caso deste \gls{cluster} em que ainda é
+necessário proceder à configuração do \textit{Load Balancer}. Além disso, é necessário 
+configurar as \ac{ACL} para permitir que as topologias consigam comunicar com os restantes
+componentes.
 
 \section{Testes}
 
@@ -166,6 +172,11 @@ desempenho percetível do sistema.
   \caption{Utilização de recursos do \textit{cluster} após a implementação da solução}
   \label{usage-after}
 \end{figure}
+
+Além disso, foram efetuados testes manuais através de injeção de mensagens nos \textit{providers}
+através de ferramentas internas de forma a garantir que a migração das topologias para o novo
+\gls{cluster} foi efetuada com sucesso e todas as topologias continuavam a ser capazes de comunicar
+com o restante fluxo existente.
 
 \section{Avaliação da Solução}
 

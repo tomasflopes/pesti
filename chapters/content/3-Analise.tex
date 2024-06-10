@@ -110,7 +110,8 @@ nível do seu funcionamento.
 
 \textbf{Funcionalidade}
 \begin{itemize}
-  \item Encontram-se especificados na subsecção \nameref{sec:3-rf}.
+  \item O sistema deve suportar a configuração de quatro ambientes de desenvolvimento - \ac{QA}, 
+    desenvolvimento, performance e produção.
 \end{itemize}
 
 \textbf{Usabilidade}
@@ -141,8 +142,6 @@ nível do seu funcionamento.
 \begin{itemize}
   \item O sistema deve ter, pelo menos, 80\% de cobertura de testes.
   \item O sistema deve suportar a replicação de \glspl{cluster} em dois \glspl{dc}.
-  \item O sistema deve suportar a configuração de quatro ambientes - \ac{QA}, desenvolvimento, 
-    performance e produção.
   \item O sistema deve ter suporte 24/7 com uma equipa de \gls{on-call} disponível.
 \end{itemize}
 
@@ -254,6 +253,14 @@ recuperar de falhas.
   \caption{Arquitetura dos Balanceadores de Carga}
   \label{lb}
 \end{figure}
+
+Como ilustado na Figura \ref{lb} todo o sistema de balanço de carga é abstraído do utilizador
+final através da atribuição do DNS. Ao fazer um pedido ao endereço \textit{service.com} a primeira
+camada de balanço de carga decide qual é o \ac{DC} que vai ficar encarregue de processar o pedido,
+esta escolha pode seguir diversas estratégias como proximidade geográfica ao cliente que está a 
+efetuar o pedido, a disponibilidade atual do \ac{DC}, entre outras. De seguida, um dos 
+balanceadores de carga de um dos \ac{DC} vai receber o pedido e repetir o processo para definir
+qual é a máquina que vai ficar encarregue por processar realmente o pedido do utilizador.
 
 \section{Desenho da Solução}
 
