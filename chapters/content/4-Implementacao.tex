@@ -61,7 +61,8 @@ faseada destas alterações nos diferentes ambientes, por exemplo.
 
 Todo o processo de \ac{CI} é gerido pelo Jenkins e pelo \textit{Go Pipelines}, que são responsáveis
 por criar os artefactos necessários para a execução do serviço nos ambientes que estão ativos. 
-A Figura \ref{ci-process} ilustra, de forma simplificada, o processo de \ac{CI} de um serviço.
+A Figura \ref{ci-process} ilustra, de forma simplificada, o processo de \ac{CI} de um serviço na 
+forma de \ac{BPMN}.
 
 \begin{figure}[H]
   \centerline{\includegraphics[scale=0.5]{media/content/impl/ci-process.png}}
@@ -113,7 +114,7 @@ da nova versão e executa a \gls{pipeline} correspondente no ambiente de \ac{QA}
 Todo este processo é automatizado e, por isso, é necessário compreender quais são os mecanismos
 existentes de forma a trabalhar de forma eficiente com os mesmos. A Figura \ref{scaledown-nxt} 
 ilustra o processo de \textit{scaledown} de um \textit{cluster} no ambiente de NXT e qual o 
-procedimento adicional em caso de necessidade de reversão da operação.
+procedimento adicional em caso de necessidade de reversão da operação, na forma de \ac{BPMN}.
 
 \begin{figure}[H]
   \centerline{\includegraphics[scale=0.12]{media/content/impl/scaledown_nxt.png}}
@@ -126,7 +127,7 @@ procedimento adicional em caso de necessidade de reversão da operação.
 O processo de criação de um novo \gls{cluster} segue o processo de criação de um novo serviço, ou
 \ac{TLA}, e tem vários passos pouco relevantes de um ponto de vista técnico já que servem para
 processos de controlo de qualidade interna. De uma forma simplificada, o processo segue os passos
-apresentados na Figura \ref{create-tla}.
+apresentados na Figura \ref{create-tla}, na forma de \ac{BPMN}.
 
 \begin{figure}[H]
   \centerline{\includegraphics[scale=0.13]{media/content/impl/create-tla.png}}
