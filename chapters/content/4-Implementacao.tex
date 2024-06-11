@@ -64,7 +64,7 @@ por criar os artefactos necessários para a execução do serviço nos ambientes
 A Figura \ref{ci-process} ilustra, de forma simplificada, o processo de \ac{CI} de um serviço.
 
 \begin{figure}[H]
-  \centerline{\includegraphics[scale=0.5]{media/content/impl/ci-process.png}}
+  \centerline{\includegraphics[scale=0.2]{media/content/impl/ci-process.png}}
   \caption{Processo de \ac{CI} de um serviço}
   \label{ci-process}
 \end{figure}
@@ -114,17 +114,18 @@ ilustra o processo de \textit{scaledown} de um \textit{cluster} no ambiente de N
 procedimento adicional em caso de necessidade de reversão da operação, na forma de \ac{BPMN}.
 
 \begin{figure}[H]
-  \centerline{\includegraphics[scale=0.12]{media/content/impl/scaledown_nxt.png}}
+  \centerline{\includegraphics[scale=0.11]{media/content/impl/scaledown_nxt.png}}
   \caption{Processo de \textit{scaledown} de um \textit{cluster} no ambiente de NXT}
   \label{scaledown-nxt}
 \end{figure}
 
 \subsection{Criação de um Cluster}
 
-O processo de criação de um novo \gls{cluster} segue o processo de criação de um novo serviço, ou
-\ac{TLA}, e tem vários passos pouco relevantes de um ponto de vista técnico já que servem para
-processos de controlo de qualidade interna. De uma forma simplificada, o processo segue os passos
-apresentados na Figura \ref{create-tla}, na forma de \ac{BPMN}.
+Para conseguir implementar a solução descrita anteriormente um dos passos necessários é a criação
+de um novo \gls{cluster}. Este processo segue a lógica de criação de um novo serviço, ou \ac{TLA}, 
+e tem vários passos pouco relevantes de um ponto de vista técnico já que servem para processos de 
+controlo de qualidade interna. De uma forma simplificada, o processo segue os passos apresentados 
+na Figura \ref{create-tla}, na forma de \ac{BPMN}.
 
 \begin{figure}[H]
   \centerline{\includegraphics[scale=0.13]{media/content/impl/create-tla.png}}
