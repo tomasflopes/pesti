@@ -61,16 +61,13 @@ faseada destas alterações nos diferentes ambientes, por exemplo.
 
 Todo o processo de \ac{CI} é gerido pelo Jenkins e pelo \textit{Go Pipelines}, que são responsáveis
 por criar os artefactos necessários para a execução do serviço nos ambientes que estão ativos. 
-A Figura \ref{ci-process} ilustra, de forma simplificada, o processo de \ac{CI} de um serviço na 
-forma de \ac{BPMN}.
+A Figura \ref{ci-process} ilustra, de forma simplificada, o processo de \ac{CI} de um serviço.
 
 \begin{figure}[H]
   \centerline{\includegraphics[scale=0.5]{media/content/impl/ci-process.png}}
   \caption{Processo de \ac{CI} de um serviço}
   \label{ci-process}
 \end{figure}
-
-\todo{Converter em BPMN}
 
 Após este processo de criação de um artefacto (pacote) o Jenkins envia este novo pacote para as
 \glspl{pipeline}, controladas pelo \textit{Go Pipelines} de forma a começar o processo de 
