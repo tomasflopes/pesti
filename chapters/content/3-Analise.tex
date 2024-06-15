@@ -123,7 +123,8 @@ nível do seu funcionamento.
 
 \begin{itemize}
   \item O sistema deve ser capaz de recuperar de falhas de funcionamento sem perda de dados.
-  \item O sistema deve ser capaz de recuperar de falhas de funcionamento minimizando o tempo de inatividade.
+  \item O sistema deve ser capaz de recuperar de falhas de funcionamento automaticamente garantindo 
+    o tempo de inatividade inferior a 1 minuto.
   \item O sistema deve ser capaz de recuperar de falhas de funcionamento sem intervenção manual.
 \end{itemize}
 
@@ -133,9 +134,7 @@ nível do seu funcionamento.
   \item O sistema deve ser capaz de processar transações em dia de pico de catálogo \footnote[1]{
     Os "dias de pico de catálogo" são dias identificados previamente em que são criados muitos 
     eventos novos ou dias em que estão a ser realizados muitos eventos em simultâneo.}
-    sem atrasos significativos na latência.
-  \item O sistema deve ser capaz de processar transações em dia de pico de catálogo \footnotemark[1] minimizando o 
-    tempo de resposta.
+    com atrasos de latência inferiores a 10 segundos.
 \end{itemize}
 
 \textbf{Suporte}

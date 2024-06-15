@@ -1,4 +1,4 @@
-\section{Desenho da Solução}
+\chapter{Desenho da Solução}
 \label{sec:4-Design}
 
 Após a análise do problema definido juntamente com os requisitos funcionais e não funcionais,
@@ -10,7 +10,7 @@ recursos. Para atingir este objetivo existem várias abordagens possíveis, como
 alteração do número de \ac{VM} presentes em cada \gls{cluster}, a alteração do \gls{flavour}
 de cada \gls{cluster} ou a alteração da distribuição de serviços por \gls{cluster}.
 
-\subsection{Possíveis alternativas}
+\section{Possíveis alternativas}
 
 Após concluída esta fase de análise foi possível sugerir novas abordagens para a distribuição
 das topologias pelos \glspl{cluster} de forma a otimizar o uso total de recursos dos mesmos.
@@ -33,7 +33,7 @@ implementações diferentes para futebol e ténis.
 No fim de cada tabela temos a quantidade de recursos (número de \ac{CPU} e GB de RAM) que cada 
 configuração de topologias vai usar no total.
 
-\subsubsection{Alternativa 1}
+\subsection{Alternativa 1}
 
 A primeira alternativa, representada na Figura \ref{proposal-1}, serve de base para todas as
 alternativas que serão analisadas subsequentemente. A ideia é criar um novo \gls{cluster}
@@ -51,7 +51,7 @@ de RAM.
   \label{proposal-1}
 \end{figure}
 
-\subsubsection{Alternativa 2}
+\subsection{Alternativa 2}
 
 A segunda alternativa, representada na Figura \ref{proposal-2}, diminui a memória RAM utilizada no
 primeiro \gls{cluster}, além de reformular a organização das topologias pelos restantes. 
@@ -72,7 +72,7 @@ Esta abordagem acaba por ser inferior às restantes por duas questões - o taman
 de \ac{VM}, do terceiro \gls{cluster} e a quantidade total de recursos superior à proposta
 analisada anteriormente.
 
-\subsubsection{Alternativa 3}
+\subsection{Alternativa 3}
 
 A terceira, e última, alternativa está representada na Figura \ref{proposal-3}.
 
@@ -92,7 +92,7 @@ específico acabou por ser aberta a exceção e neste caso cada máquina corre d
 paralelo. Desta forma, a análise efetuada anteriormente não pode ser interpretada da mesma forma 
 para esta topologia, o que invalida esta alternativa.
 
-\subsubsection{Comparação entre alternativas}
+\subsection{Comparação entre alternativas}
 
 Após uma análise cuidada de todas estas alternativas acabou por ser escolhida a primeira alternativa
 com a alteração da memória RAM do primeiro \gls{cluster} chegando à opção ilustrada na Figura
@@ -114,7 +114,7 @@ redução de recursos em cada um dos parâmetros analisados (CPU e RAM).
   \label{comparison-proposal}
 \end{figure}
 
-\subsection{Processo de implantação}
+\section{Processo de implantação}
 
 Após decidir qual a abordagem a ser seguida é necessário definir o processo de implantação a ser
 seguido. Este processo deve ser claro e conciso de forma a garantir que todas as equipas envolvidas

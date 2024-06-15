@@ -12,15 +12,20 @@ Durante o desenvolvimento do projeto, foram utilizadas várias tecnologias e fer
 implementação da solução. Entre as mais relevantes, destacam-se:
 
 \begin{itemize}
-  \item \textbf{Apache Storm \cite{storm} \ref{sec:storm}:} \textit{Framework} de processamento de 
-    \textit{streaming} em tempo real;
-  \item \textbf{Apache Kafka \cite{kafka} \ref{sec:kafka}:} Plataforma de mensagens distribuída;
-  \item \textbf{Apache Zookeeper \cite{zookeeper} \ref{sec:zookeeper}:} Serviço de coordenação distribuída;
-  \item \textbf{Grafana \cite{grafana} \ref{sec:metrics}:} Plataforma de análise e visualização de dados;
-  \item \textbf{Jenkins \cite{jenkins} \ref{sec:ci-cd}:} Servidor de automação de \textit{builds}; 
-  \item \textbf{Nimbus \cite{nimbus} \ref{sec:storm}:} Servidor centralizado que coordena e distribui as topologias 
-    do \textit{Apache Storm};
-  \item \textbf{Splunk \cite{splunk} \ref{sec:logs}:} Plataforma de análise de eventos e dados;
+  \item \textbf{Apache Storm \cite{storm}:} \textit{Framework} de processamento de 
+    \textit{streaming} em tempo real - descrito na secção \nameref{sec:storm};
+  \item \textbf{Apache Kafka \cite{kafka}:} Plataforma de mensagens distribuída - descrita na 
+    secção \nameref{sec:kafka};
+  \item \textbf{Apache Zookeeper \cite{zookeeper}:} Serviço de coordenação distribuída - descrito 
+    na secção \nameref{sec:zookeeper};
+  \item \textbf{Grafana \cite{grafana}:} Plataforma de análise e visualização de dados - descrita 
+    na secção \nameref{sec:metrics};
+  \item \textbf{Jenkins \cite{jenkins}:} Servidor de automação de \textit{builds} - descrito na 
+    secção \nameref{sec:ci-cd};
+  \item \textbf{Nimbus \cite{nimbus}:} Servidor centralizado que coordena e distribui as topologias 
+    do \textit{Apache Storm} - descrito na secção \nameref{sec:storm};
+  \item \textbf{Splunk \cite{splunk}:} Plataforma de análise de eventos e dados - descrita na 
+    secção \nameref{sec:logs};
 \end{itemize}
 
 \section{Descrição da implementação}
@@ -39,13 +44,16 @@ através da \textit{framework} interna gerida por equipas de infraestrutura.
 
 Cada serviço é composto, normalmente, por três componentes principais, como ilustrado na Figura
 \ref{package}, separados em diferentes repositórios. Os três componentes habituais de um novo 
-serviço são: o código do serviço - o código com toda a lógica de programação que compõe o serviço;
-configurações do pacote - repositório com as configurações do serviço, como versões de serviços 
-externos necessários nas \ac{VM} que são necessárias para o serviço, esta componente usa 
-ferramentas de configuração como Chef \cite{chef} ou Ansible \cite{ansible} e, por fim, um 
-repositório com configurações relativamente à infraestrutura - repositório com as configurações de 
-infraestrutura necessárias para o serviço, como especificações dos \glspl{flavour} e das 
-\textit{subnets} necessárias.
+serviço são: 
+
+\begin{itemize}
+  \item \textbf{Código do serviço}: Código com toda a lógica de programação que compõe o serviço;
+  \item \textbf{Configurações do pacote}: Configurações do serviço, como versões de serviços 
+  externos necessários nas \ac{VM} que são necessárias para o serviço, esta componente usa 
+ferramentas de configuração como Chef \cite{chef} ou Ansible \cite{ansible} 
+  \item \textbf{Configurações de infraestrutura}: Configurações de infraestrutura necessárias para 
+    o serviço, como especificações dos \glspl{flavour} e das \textit{subnets} necessárias.
+\end{itemize}
 
 Esta separação permite que, ao criar um novo pacote, seja possível utilizar configurações de
 versões anteriores. Este pormenor torna-se bastante útil quando estão a ser efetuadas várias
@@ -73,16 +81,16 @@ Após este processo de criação de um artefacto (pacote) o Jenkins envia este n
 implantação da nova versão. Já nas \glspl{pipeline} a responsabilidade de gestão do pacote passa a 
 ser do Go, que permite automatizar vários processos a nível da infraestrutura para automatizar o 
 processo de implantação deste serviço na \textit{cloud}. Como temos vários ambientes presentes para 
-cada serviço, por exemplo, \ac{QA}, desenvolvimento e produção) é possível configurar o plano de 
-promoções de um pacote por estes ambientes, isto é, um pacote começa por ficar apenas disponível no 
-ambiente de QA e, tipicamente, a \gls{pipeline} é despoletada automaticamente pelo próprio 
+cada serviço, por exemplo, \ac{QA}, desenvolvimento e produção é possível configurar o plano de 
+promoções de um pacote por estes ambientes. Um pacote começa por ficar apenas disponível no 
+ambiente de QA e, tipicamente, a \gls{pipeline} é executada automaticamente pelo próprio 
 \textit{Job Jenkins} que criou o pacote. De seguida, após uma implantação bem sucedida no ambiente 
-de QA, por exemplo, o pacote é promovido para o ambiente de desenvolvimento, ou seja, passa a ser 
-o pacote que vai ser disponibilizado caso pretendamos correr a \gls{pipeline} desse ambiente. 
-Este comportamento é totalmente personalizavel e adapta-se aos ambientes que cada serviço tem 
-disponíveis. Este tipo de mecanismo de promoções de pacotes ajuda a prevenir que um pacote 
-defeituoso seja implantado em ambientes produtivos, onde impactam clientes, sem existir a garantia 
-que estão a funcionar corretamente nos ambientes de desenvolvimento.
+de QA, por exemplo, o pacote é promovido para o ambiente de desenvolvimento, logo, passa a ser 
+o pacote disponibilizado caso pretendamos correr a \gls{pipeline} desse ambiente. Este comportamento 
+é totalmente personalizavel e adapta-se aos ambientes que cada serviço tem disponíveis. Este tipo 
+de mecanismo de promoções de pacotes ajuda a prevenir que um pacote defeituoso seja implantado em 
+ambientes produtivos, onde impactam clientes, sem existir a garantia que estão a funcionar 
+corretamente nos ambientes de desenvolvimento.
 
 Este processo é válido para os serviços - \ac{TLA} - que, neste caso, são os nossos \glspl{cluster}.
 Já no caso das topologias o processo é ligeiramente diferente. A composição, em termos de 
@@ -91,7 +99,7 @@ mas o processo de \ac{CI} é ligeiramente diferente. Neste caso, o processo já 
 \textit{Go pipelines} e é totalmente automatizado usando Jenkins. Existem três \textit{Jenkins Jobs} 
 para a criação dos artefactos - \textit{<topologia>\_ci\_config}, \textit{<topologia>\_ci\_service}
 e \textit{<topologia>\_<env>\_release}, por exemplo: \textit{xpto\_prd\_release}. Mais uma vez o 
-processo é semelhante, os primeiros dois \textit{jobs} são responsáveis por criar os artefactos 
+processo é semelhante: os primeiros dois \textit{jobs} são responsáveis por criar os artefactos 
 que compõe o pacote final e o último é responsável por fazer a sua implantação para o ambiente 
 especificado.
 
@@ -99,12 +107,12 @@ especificado.
 
 Um dos processos necessários para conseguir atingir a solução pretendida é efetuar a alteração
 de configurações do uso de recursos (\gls{flavour}) dos \glspl{cluster} existentes. Como
-referido anteriormente todos os processos de infraestrutura são geridos internamente pela Blip e,
+referido anteriormente, todos os processos de infraestrutura são geridos internamente pela Blip e,
 desta forma, têm os seus processos próprios para este tipo de operações.
 
 Neste caso, as configurações dos recursos dos serviços é efetuado a partir de um repositório 
 de configurações específicas de infraestrutura para cada um dos serviços. Ao efetuar uma alteração
-neste repositório é automaticamente despoletado um Job Jenkins que trata da criação do artefacto
+neste repositório é automaticamente executado um Job Jenkins que trata da criação do artefacto
 da nova versão e executa a \gls{pipeline} correspondente no ambiente de \ac{QA}.
 
 Todo este processo é automatizado e, por isso, é necessário compreender quais são os mecanismos
@@ -113,7 +121,7 @@ ilustra o processo de \textit{scaledown} de um \textit{cluster} no ambiente de N
 procedimento adicional em caso de necessidade de reversão da operação, na forma de \ac{BPMN}.
 
 \begin{figure}[H]
-  \centerline{\includegraphics[scale=0.11]{media/content/impl/scaledown_nxt.png}}
+  \centerline{\includegraphics[scale=0.1]{media/content/impl/scaledown_nxt.png}}
   \caption{Processo de \textit{scaledown} de um \textit{cluster} no ambiente de NXT}
   \label{scaledown-nxt}
 \end{figure}
@@ -127,7 +135,7 @@ controlo de qualidade interna. De uma forma simplificada, o processo segue os pa
 na Figura \ref{create-tla}, na forma de \ac{BPMN}.
 
 \begin{figure}[H]
-  \centerline{\includegraphics[scale=0.13]{media/content/impl/create-tla.png}}
+  \centerline{\includegraphics[scale=0.12]{media/content/impl/create-tla.png}}
   \caption{Processo de criação de um novo TLA}
   \label{create-tla}
 \end{figure}
@@ -145,22 +153,27 @@ equipas de desenvolvimento, responsáveis por cada um dos serviços presentes no
 como por parte da nossa equipa de operações. 
 
 De um ponto de vista operacional, os testes efetuados foram focados na utilização geral de
-recursos do \gls{cluster}. Para isso, foram efetuadas comparações entre os recursos utilizados
-antes e depois da implementação da solução, utilizando testes de carga para simular situações
-de utilização de recursos exigentes.
+recursos do \gls{cluster}. Para isso, foram efetuadas comparações entre os recursos registados
+nos \textit{dashboards} de Grafana antes e depois da implementação da solução, utilizando testes 
+de carga para simular situações de utilização de recursos exigentes de carga superior ao de dias
+de pico de utilização dos serviços. Este tipo de testes já são efetuados regularmente, mas foram
+reforçados durante o período de implementação da solução para garantir que a implementação não
+afetava o desempenho do sistema. A implementação era considerada bem sucedida se a utilização de
+recursos do \gls{cluster} não aumentasse de forma significativa após a implementação da solução
+durante uma semana de utilização e testes.
 
-Como a redução inicial teve por base apenas a redução do \gls{flavour} do \ac{CPU}, vamos ter em conta
-apenas essa métrica. Como é possível observar na Figura \ref{usage-before}, a utilização de \ac{CPU}
-do \gls{cluster} antes da implementação ronda os 20\% de uso total.
+Como a redução inicial teve por base apenas a redução do \gls{flavour} do \ac{CPU}, vamos ter em
+conta apenas essa métrica. Como é possível observar na Figura \ref{usage-before}, a utilização de 
+\ac{CPU} do \gls{cluster} antes da implementação ronda os 20\% de uso total.
 
 \begin{figure}[H]
-  \centerline{\includegraphics[scale=0.25]{media/content/impl/grafana-before-1.png}}
+  \centerline{\includegraphics[scale=0.25]{media/content/impl/grafana-before.png}}
   \caption{Utilização de recursos do \textit{cluster} antes da implementação da solução}
   \label{usage-before}
 \end{figure}
 
 Após a redução de recursos inicial é possível verificar, na Figura \ref{usage-after}, que o uso 
-de CPU aumentou para os 40\%, um aumento no nível esperado dada a alteração que foi efetuada. É 
+de CPU aumentou para os 35\%, um aumento no nível esperado dada a alteração que foi efetuada. É 
 importante, perceber que o \gls{cluster} mantém a sua capacidade de processar dados em momentos de 
 carga elevada de forma a poder concluir que esta alteração não vai impactar negativamente o 
 desempenho percetível do sistema. 
