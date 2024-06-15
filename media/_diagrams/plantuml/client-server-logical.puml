@@ -1,0 +1,15 @@
+@startuml client-server-logical
+
+interface "Mobile App" as MOBILE
+interface "Web App" as WEB
+interface "Desktop App" as DESKTOP
+
+component "System" <<component>> <<system (C4)>> as S {
+  portin " " as P1
+}
+
+MOBILE -- P1
+WEB -- P1
+DESKTOP -- P1
+
+@enduml

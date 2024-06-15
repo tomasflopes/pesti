@@ -1,4 +1,4 @@
-@startuml client-server
+@startuml client-server-physical
 
 node "Servidor" as S {
 }
@@ -18,8 +18,8 @@ folder "Clientes" {
   }
 }
 
-S <..> M
-S <..> D
-S <..> W
+S -- M
+S -- D
+S -- W
 
 @enduml

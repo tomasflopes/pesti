@@ -37,9 +37,11 @@ clientes tem sido explorada para resolver o problema da latência e atraso nas r
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\textwidth]{media/content/estado-arte/client-server.png}
+    \subfloat[\centering Vista lógica]{{\includegraphics[width=0.3\textwidth]{media/content/estado-arte/client-server-logical.png} }}%
+    \qquad
+    \subfloat[\centering Vista física]{{\includegraphics[width=0.6\textwidth]{media/content/estado-arte/client-server-physical.png} }}%
     \caption{Arquitetura Cliente-Servidor}
-    \label{fig:client-server}
+    \label{fig:client-server}%
 \end{figure}
 
 \subsection{Arquitetura Streaming}
@@ -116,12 +118,37 @@ algoritmos, como o algoritmo de consenso projetado e o algoritmo de subgradiente
 de consenso em sistemas multi-agentes com restrições convexas e atrasos de comunicação 
 \cite{consensus2018}.
 
+O algoritmo de consenso projetado é geralmente utilizado em cenários onde é essencial garantir uma
+convergência rápida e robusta, mesmo com restrições de comunicação e falhas de nós. Por outro lado,
+o algoritmo de subgradiente é aplicado em situações onde as restrições são convexas e há necessidade
+de uma abordagem iterativa para lidar com atrasos na comunicação e variabilidades nos dados, 
+assegurando uma estimativa precisa do consenso ao longo do tempo.
+
 \section{Estratégias de implantação}
 
 Esta secção explora algumas das abordagens de implantação e atualização de aplicações, com foco 
 especial em algumas técnicas em específico como implantação \textit{canary} e \textit{rolling update}.
 Ao examinar várias estratégias em detalhe, podemos capturar a essência das práticas de implantação, 
 identificando os seus benefícios, desafios e áreas de aplicação mais adequadas. 
+
+\subsection{Continuous Integration e Continuous Deployment}
+\label{sec:ci-cd}
+
+\ac{CI} e \ac{CD} são práticas essenciais no desenvolvimento de \textit{software} moderno, 
+permitindo que as organizações lancem novas funcionalidades e produtos de forma fiável e 
+frequente \cite{ci2017}. Os sistemas de \ac{CI} automatizam tarefas como compilação, construção e 
+teste de sistemas de \textit{software}, garantindo a qualidade do código e reduzindo erros
+manuais \cite{ci2016}. O Jenkins, um servidor de automação de código aberto, desempenha um
+papel crucial na facilitação dos processos de \ac{CI}/\ac{CD}, automatizando tarefas desde a 
+integração de código até a implantação em vários ambientes \cite{ci2022}.
+
+O Jenkins é amplamente utilizado na implementação de pipelines de \ac{CI}/\ac{CD}, automatizando e 
+otimizando o ciclo de vida de desenvolvimento de \textit{software}, automatizando as tarefas
+mencionadas anteriormente ou até a produção de artefactos \cite{ci2024}. É uma ferramenta líder na 
+estrutura \ac{CI}/\ac{CD}, introduzindo a automatização nas fases iniciais do desenvolvimento do 
+projeto \cite{ci2024b}. As organizações beneficiam do Jenkins ao aumentarem a velocidade de entrega 
+de novas funcionalidades e implementações, revolucionando a forma como os produtos são lançados e 
+atualizados online \cite{ci2022b}.
 
 \subsection{Implantação Canary}
 
@@ -198,6 +225,7 @@ em \textit{cloud}, onde a alta disponibilidade e a interrupção mínima são cr
 \end{figure}
 
 \subsection{Apache Storm}
+\label{sec:storm}
 
 O \textit{Apache Storm} é um sistema de computação em memória distribuído e tolerante a falhas, 
 concebido para processar grandes volumes de dados de alta velocidade em tempo real \cite{storm2017}. 
@@ -243,7 +271,31 @@ demonstrando sua versatilidade e ampla gama de aplicação \cite{storm2018d} \ci
     \label{fig:topologies}
 \end{figure}
 
+\subsection{Apache Kafka}
+\label{sec:kafka}
+
+As filas de mensagens são essenciais em sistemas distribuídos, facilitando a comunicação assíncrona
+e fiável entre diferentes componentes \cite{kafka2015}. São normalmente utilizadas para ligar
+componentes pouco acoplados, permitindo o desenvolvimento de aplicações em grande escala, altamente
+distribuídas e tolerantes a falhas \cite{kafka2011}. Em ambientes distribuídos, as filas de 
+mensagens garantem uma troca de informações fiável, mesmo na presença de velocidades de 
+processamento variáveis ou de problemas temporários na rede \cite{kafka2015}.
+
+O Apache Kafka, reconhecido como um sistema de mensagens escalável de publicação e subscrição, é
+uma ferramenta fundamental neste domínio, distinguindo-se pela sua arquitetura central como um 
+registo de compromisso distribuído \cite{kafka2015b}. O Kafka é aplicado em sistemas que 
+exigem alta taxa de transferência, tolerância a falhas e agregação de métricas, suportados pelo 
+Kafka Streams \cite{kafka2020}.
+
+A utilização de Apache Kafka em sistemas distribuídos oferece vantagens como escalabilidade,
+tolerância a falhas, alta taxa de transferência e propriedades de baixa latência 
+\cite{kafka2017}. É frequentemente integrado com tecnologias como o \textit{Apache Storm} para 
+permitir o processamento de dados em tempo real e acelerar a movimentação de dados \cite{kafka2016}. 
+Além disso, é utilizado em cenários que necessitam de \textit{feedback} em tempo real sobre as 
+consultas, demonstrando a sua versatilidade em várias aplicações \cite{kafka2023}.
+
 \subsection{Zookeeper}
+\label{sec:zookeeper}
 
 O Apache ZooKeeper é um componente fundamental nos sistemas distribuídos. Este ferramenta
 fornece serviços de coordenação para aplicações distribuídas em grande escala \cite{zookeeper2018}. 
@@ -268,6 +320,7 @@ oferece um algoritmo flexível e rápido para selecionar líderes em configuraç
 que requerem coordenação e gestão especializadas de recursos distribuídos.
 
 \subsection{Infrastrucure as Code (IaC)}
+\label{sec:iac}
 
 A \ac{IaC} é uma prática que envolve a gestão de recursos de infraestrutura através de ficheiros 
 de configuração legíveis pelos desenvolvedores das soluções, por oposição a processos manuais. Esta 
@@ -302,6 +355,7 @@ otimizar recursos e responder proativamente a eventos, contribuindo assim para a
 operações eficazes.
 
 \subsection{Métricas}
+\label{sec:metrics}
 
 As métricas de monitorização são a capacidade de monitorizar informação vital ao bom funcionamento
 de um sistema informático. Desta forma, é possível acompanhar e manter o registo de métricas tanto
@@ -326,6 +380,7 @@ processar pontos de dados brutos e interfaces de monitorização, destacando sua
 monitorização de projetos de \textit{software} \cite{metrics2022}.
 
 \subsection{Registo de eventos e \textit{logs}}
+\label{sec:logs}
 
 O registo de eventos desempenha um papel crucial na engenharia de \textit{software} uma vez que 
 fornece uma noção das atividades e dos eventos que ocorrem no sistema \cite{logs2022}. A profundidade 

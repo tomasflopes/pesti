@@ -1,9 +1,9 @@
-\chapter{Implementação da Solução}
-\label{sec:4-Implementacao}
+\chapter{Implementação}
+\label{sec:5-Implementacao}
 
-Este capítulo aprofunda o processo de desenvolvimento da solução para o problema do projeto em 
-análise e os princípios de \textit{design} discutidos no capítulo anterior. Além disso, é efetuada 
-uma análise cuidada dos resultados obtidos através das decisões anteriores, revelando os resultados 
+Este capítulo aprofunda o processo de desenvolvimento da solução para o problema do projeto e os 
+princípios de \textit{design} discutidos no capítulo anterior. Além disso, é efetuada uma análise 
+cuidada dos resultados obtidos através das decisões anteriores, revelando os resultados
 consequentes e a sua concordância com os objetivos discutidos anteriormente.
 
 \section{Tecnologias Utilizadas}
@@ -12,24 +12,23 @@ Durante o desenvolvimento do projeto, foram utilizadas várias tecnologias e fer
 implementação da solução. Entre as mais relevantes, destacam-se:
 
 \begin{itemize}
-  \item \textbf{Apache Storm \cite{storm}:} \textit{Framework} de processamento de 
+  \item \textbf{Apache Storm \cite{storm} \ref{sec:storm}:} \textit{Framework} de processamento de 
     \textit{streaming} em tempo real;
-  \item \textbf{Apache Kafka \cite{kafka}:} Plataforma de mensagens distribuída;
-  \item \textbf{Apache Zookeeper \cite{zookeeper}:} Serviço de coordenação distribuída;
-  \item \textbf{Grafana \cite{grafana}:} Plataforma de análise e visualização de dados;
-  \item \textbf{Jenkins \cite{jenkins}:} Servidor de automação de \textit{builds}; 
-  \item \textbf{Nimbus \cite{nimbus}:} Servidor centralizado que coordena e distribui as topologias 
+  \item \textbf{Apache Kafka \cite{kafka} \ref{sec:kafka}:} Plataforma de mensagens distribuída;
+  \item \textbf{Apache Zookeeper \cite{zookeeper} \ref{sec:zookeeper}:} Serviço de coordenação distribuída;
+  \item \textbf{Grafana \cite{grafana} \ref{sec:metrics}:} Plataforma de análise e visualização de dados;
+  \item \textbf{Jenkins \cite{jenkins} \ref{sec:ci-cd}:} Servidor de automação de \textit{builds}; 
+  \item \textbf{Nimbus \cite{nimbus} \ref{sec:storm}:} Servidor centralizado que coordena e distribui as topologias 
     do \textit{Apache Storm};
-  \item \textbf{Splunk \cite{splunk}:} Plataforma de análise de eventos e dados;
+  \item \textbf{Splunk \cite{splunk} \ref{sec:logs}:} Plataforma de análise de eventos e dados;
 \end{itemize}
 
 \section{Descrição da implementação}
 
-De forma a conseguir atingir os objetivos pretendidos, analisados no capítulo anterior, é
-necessário ter em conta vários processos que fazem parte da implementação da solução. Para 
-facilitar a compressão e análise dos mesmos vão ser apresentados os vários passos e algum 
-suporte, como diagramas, que ajudam a ter uma melhor compreensão de todo o processo necessário
-para atingir estes objetivos.
+De forma a conseguir atingir os objetivos pretendidos, é necessário ter em conta vários processos
+que fazem parte da implementação da solução. Para facilitar a compressão e análise dos mesmos vão 
+ser apresentados os vários passos e algum suporte, como diagramas, que ajudam a ter uma melhor 
+compreensão de todo o processo necessário para atingir estes objetivos.
 
 \subsection{Processo de \ac{CI} de um serviço}
 

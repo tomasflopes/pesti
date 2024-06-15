@@ -20,8 +20,8 @@ a libertar as equipas de desenvolvimento dos desafios ligados a infraestrutura \
 
 O sistema que é usado pela Blip deve estar preparado para lidar com um grande volume de dados em 
 tempo real e, por consequência, é bastante complexo. Ao longo deste relatório vai ser analisado 
-o sistema que lida com este dados que são recebidos de várias fontes e servem de base para a criação 
-de eventos e informações dos mesmos. Este sistema é baseado em \textit{Apache Storm} e 
+o sistema que lida com estes dados que são recebidos de várias fontes e servem de base para a 
+criação de eventos e informações dos mesmos. Este sistema é baseado em \textit{Apache Storm} e 
 \textit{Apache Kafka}, que são tecnologias que permitem processar e armazenar os dados em tempo 
 real de forma eficiente.
 
@@ -47,33 +47,34 @@ Assim, é necessário fazer uma análise da utilização dos recursos do sistema
 os principais problemas de performance e escalabilidade de forma a tentar encontrar soluções que 
 possam ser implementadas. 
 
-\subsection{Objetivos}
+\section{Objetivos}
 
 Os objetivos identificados têm como finalidade a resolução do problema apresentado. Desta forma, 
 os objetivos a atingir são os seguintes:
 
 \begin{itemize}
-  \item Identificar desafios de escalabilidade e performance
-  \item Familiarização com a ferramenta \textit{Apache Storm }
-  \item Testar e implementar Apps Storm \textit{(Java Tech Stack)}
-  \item Identificar e propor soluções de integração com \textit{Apache Kafka}
-  \item Ajudar a definir o planeamento de atualização e \textit{rollback}
+  \item Desenhar e implementar uma solução de \textit{clustering} com vista à resolução de problemas
+    de escalabilidade;
+  \item Desenhar e implementar solução de atualização e \textit{rollback};
+  \item Analisar e implementar otimizações de recursos do sistema;
+  \item Analisar e implementar sistemas de monitorização de métricas de sistema e aplicação.
 \end{itemize}
 
-\subsection{Abordagem}
+\section{Abordagem}
 
 Numa primeira fase, é necessário perceber como o sistema está implementado na infraestrutura da 
 empresa e fazer uma análise aos recursos usados por cada máquina que compõe o \gls{cluster} de 
 forma a perceber onde estão os principais problemas. 
 
-Primeiramente, será necessária fazer uma análise às métricas de sistema de forma a compreender
+Primeiramente, será necessário efetuar uma análise às métricas de sistema de forma a compreender
 o uso de recursos do \gls{cluster}. Para isso, é usada a ferramenta Grafana que permite
 monitorizar um conjunto de métricas de sistema e de aplicação, de forma a identificar os principais
 problemas de escalabilidade. Além disso, a monitorização destas métricas vai ser crucial para
 garantir que as alterações efetuadas no projeto não afetam o bom funcionamento do sistema.
 
-De seguida, será elaborado um plano de migração dos \glspl{cluster} de forma a minimizar o 
-impacto destas alterações nos sistemas que se encontram em produção para os clientes destes serviços.
+Numa fase posterior, será desenhado um plano de migração dos \glspl{cluster} de forma a minimizar 
+o impacto destas alterações nos sistemas que se encontram em produção para os clientes destes 
+serviços.
 
 No caso da Blip, os sistemas correm em vários ambientes e replicados em dois \textit{\glspl{dc}},
 logo, o plano de migração terá em conta estas questões de forma a tirar partido desta infraestrutura
@@ -84,14 +85,14 @@ iterativa e incremental que permite a adaptação a mudanças de forma rápida e
 é bastante utilizada em projetos de desenvolvimento de \textit{software} e permite a entrega de valor
 de forma rápida e eficiente.
 
-\subsection{Contributos}
+\section{Contributos}
 
 Este trabalho será crucial para ser possível manter o funcionamento destes sistemas na
 infraestrutura atual da empresa. Com o aumento do volume de dados que estes sistemas vão ser 
 sujeitos, é necessário garantir que as otimizações mencionadas são efetuadas com sucesso de forma
 a garantir que estes sistemas são capazes de lidar com o aumento de carga de trabalho.
 
-\subsection{Planeamento do Trabalho}
+\section{Planeamento}
 
 O planeamento do trabalho concentra-se na organização e divisão do tempo útil entre as várias etapas
 que serão concluídas de forma a atingir a solução final. A Tabela \ref{tab:plan}, apresenta a visão
@@ -106,18 +107,19 @@ geral do planeamento elaborado.
       \hline
       \textbf{Etapa} & \textbf{Data Início} & \textbf{Duração} \\ \hline
       Familiarização com Apache Storm  & 19/02/2024 & 2 semanas \\ \hline
-      Análise desafios de escalabilidade e performance & 04/03/2024 & 4 semanas \\ \hline
-      Análise das otimizações de recursos & 04/03/2024 & 4 semanas \\ \hline
-      Implementação das otimizações & 01/04/2024 & 6 semanas \\ \hline
+      Análise desafios de escalabilidade e performance & 04/03/2024 & 2 semanas \\ \hline
+      Análise das otimizações de recursos & 18/03/2024 & 2 semanas \\ \hline
+      Design das otimizações de recursos & 01/04/2024 & 4 semanas \\ \hline
+      Implementação das otimizações & 29/04/2024 & 6 semanas \\ \hline
     \end{tabular}
   \end{center}
 \end{table}
 
 \section{Estrutura do Relatório}
 
-O presente relatório apresenta cinco capítulos, sendo estes: \nameref{sec:1-Introducao},
-\nameref{sec:2-EstadoArte}, \nameref{sec:3-Analise}, \nameref{sec:4-Implementacao} e
-\nameref{sec:5-Conclusoes}.
+O presente relatório apresenta seis capítulos, sendo estes: \nameref{sec:1-Introducao},
+\nameref{sec:2-EstadoArte}, \nameref{sec:3-Analise}, \nameref{sec:4-Design}, 
+\nameref{sec:5-Implementacao} e \nameref{sec:6-Conclusoes}.
 
 O primeiro capítulo - \nameref{sec:1-Introducao} - faz uma breve contextualização do projeto de
 forma a dar a conhecer a organização onde este foi realizado e uma descrição do problema que motivou
@@ -132,11 +134,16 @@ O terceiro capítulo - \nameref{sec:3-Analise} - tem como propósito fornecer um
 do desenvolvimento da solução e como o projeto funcionará na sua totalidade, abordando tanto conceitos
 de domínio do problema como também os requisitos funcionais e não funcionais.
 
-O quarto capítulo - \nameref{sec:4-Implementacao} - visa apresentar a solução desenvolvida e 
+O quarto capítulo - \nameref{sec:4-Design} - apresenta os detalhes de desenho da solução,
+descrevendo a arquitetura do sistema, as decisões de design tomadas de forma a garantir a escalabilidade
+e a performance do sistema, bem como a descrição das otimizações de recursos e sistemas de monitorização
+de métricas de sistema e aplicação.
+
+O quinto capítulo - \nameref{sec:5-Implementacao} - visa apresentar a solução desenvolvida e 
 descrever detalhes de implementação, assim como explicações sobre as decisões tomadas durante o
 desenvolvimento do projeto e possíveis alternativas.
 
-O quinto, e último, capítulo - \nameref{sec:5-Conclusoes} - realiza uma síntese dos resultados 
+O sexto, e último, capítulo - \nameref{sec:6-Conclusoes} - realiza uma síntese dos resultados 
 alcançados com o desenvolvimento do projeto, limitações encontradas, bem como uma perspetiva de 
 futuras melhorias e considerações finais sobre o trabalho realizado.
 
