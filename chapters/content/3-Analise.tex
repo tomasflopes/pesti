@@ -166,7 +166,7 @@ específicos e processos de negócio.
 É importante compreender estes requisitos de forma a garantir que a solução desenvolvida vai de
 encontro com as necessidades apresentadas de um ponto de vista de negócio. Sem uma compreensão
 clara destes requisitos, a solução desenvolvida pode não ser a mais adequada para o problema
-e as otimizeções efetuadas podem desvirtuar o objetivo do projeto.
+e as otimizações efetuadas podem desvirtuar o objetivo do projeto.
 
 De forma a facilitar a compreensão dos requisitos funcionais, estes encontram-se descritos na 
 Tabela \ref{tab:reqfun} e na Figura \ref{dcu}, na forma de \textit{User Stories}.
@@ -203,13 +203,56 @@ Tabela \ref{tab:reqfun} e na Figura \ref{dcu}, na forma de \textit{User Stories}
 O sistema em análise é composto por vários \glspl{cluster} que suportam os serviços de catálogo
 disponibilizados pelas marcas do grupo Flutter. Estes \glspl{cluster} são compostos por várias
 \ac{VM} que executam as topologias responsáveis pelo processamento dos dados relativos a estes
-serviços. A Figura \ref{strat-current} apresenta o estado atual dos \glspl{cluster}.
+serviços. A Tabela \ref{tab:current_setup} apresenta o estado atual dos \glspl{cluster}.
 
-\begin{figure}[H]
-  \centerline{\includegraphics[scale=0.5]{media/content/analise/strat-current.png}}
-  \caption{Estado atual do sistema}
-  \label{strat-current}
-\end{figure}
+O número de \ac{CPU} apresentado representa o número de \ac{CPU} dedicados a cada \ac{VM}. Na
+última linha da tabela são apresentados os números de \ac{VM} "usadas" e \ac{VM} "totais" que são,
+respetivamente, o número de \ac{VM} que é necessário para as topologias conseguirem operar e 
+o número de \ac{VM} que são disponibilizadas realemente no \gls{cluster} de forma a garantir a 
+resiliência e recuperação em caso de falhas.
+
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{|l|l|l|l|}
+    \hline
+    \rowcolor[HTML]{FBE6A3} 
+    \multicolumn{4}{|c|}{\textbf{Configuração Atual}} \\ \hline
+    \rowcolor[HTML]{4EAC5B} 
+    \cellcolor{white} & \textbf{Cluster 1 - 8cpu16gb} & \textbf{Cluster 2 - 6cpu12GB} & \cellcolor{white} \\ \hline
+    \rowcolor[HTML]{A9D08E}
+    \cellcolor{white} & ELR * 2          & \cellcolor[HTML]{BDD7EE} TMT      & \cellcolor{white} \\ \hline
+    \rowcolor[HTML]{A9D08E}
+    \cellcolor{white} & ELM * 2          & \cellcolor[HTML]{BDD7EE} IMG\_EMT & \cellcolor{white} \\ \hline
+    \rowcolor[HTML]{A9D08E}
+    \cellcolor{white} & BFP             & \cellcolor[HTML]{BDD7EE} IMG\_LDT & \cellcolor{white} \\ \hline
+    \rowcolor[HTML]{A9D08E}
+    \cellcolor{white} & BETRADAR        & \cellcolor[HTML]{BDD7EE} FHG      & \cellcolor{white} \\ \hline
+    \rowcolor[HTML]{A9D08E}
+    \cellcolor{white} & PBT * 2 * 5        & \cellcolor[HTML]{BDD7EE} DOS      & \cellcolor{white} \\ \hline
+    \rowcolor[HTML]{A9D08E}
+    \cellcolor{white} & ESL * 2          & \cellcolor[HTML]{BDD7EE} CM * 2 * 5  & \cellcolor{white} \\ \hline
+    \rowcolor[HTML]{A9D08E}
+    \cellcolor{white} & EventType * 2    & \cellcolor[HTML]{BDD7EE} LMT * 2   & \cellcolor{white} \\ \hline
+    \rowcolor[HTML]{A9D08E}
+    \cellcolor{white} & FIP * 2 * 5        & \cellcolor[HTML]{BDD7EE} EXT      & \cellcolor{white} \\ \hline
+    \rowcolor[HTML]{A9D08E}
+    \cellcolor{white} & HKR * 2          & \cellcolor[HTML]{BDD7EE} ET       & \cellcolor{white} \\ \hline
+    \cellcolor{white} & \cellcolor{white} & \cellcolor[HTML]{BDD7EE} MTT *2  & \cellcolor{white} \\ \hline
+    \cellcolor{white} & \cellcolor{white} & \cellcolor[HTML]{BDD7EE} PBS *2 & \cellcolor{white} \\ \hline
+    \cellcolor{white} & \cellcolor{white} & \cellcolor[HTML]{BDD7EE} Sgm *3 & \cellcolor{white} \\ \hline
+    \cellcolor{white} & \cellcolor{white} & \cellcolor[HTML]{BDD7EE} TPD    & Total \cellcolor{white} \\ \hline
+    \rowcolor[HTML]{D9D9D9} 
+    \textbf{CPU} & \textbf{1280} & \textbf{432} & \textbf{1712} \\ \hline
+    \rowcolor[HTML]{D9D9D9} 
+    \textbf{RAM} & \textbf{2560} & \textbf{864} & \textbf{3424} \\ \hline
+    \rowcolor[HTML]{D9D9D9} 
+    \textbf{Used VM} & \textbf{160} & \textbf{72} & \textbf{232} \\ \hline
+    \rowcolor[HTML]{D9D9D9} 
+    \textbf{Total VM} & \textbf{185} & \textbf{77} & \textbf{262} \\ \hline
+  \end{tabular}
+  \caption{Current setup of OFSEC and OFS}
+  \label{tab:current_setup}
+\end{table}
 
 \subsection{Balanceadores de Carga}
 
@@ -234,7 +277,7 @@ recuperar de falhas.
 \end{figure}
 
 Como ilustrado na Figura \ref{lb} todo o sistema de balanço de carga é abstraído do utilizador
-final através da atribuição do DNS. Ao fazer um pedido ao endereço \textit{service.com} a primeira
+final através da atribuição do \ac{DNS}. Ao fazer um pedido ao endereço \textit{service.com} a primeira
 camada de balanço de carga decide qual é o \ac{DC} que vai ficar encarregue de processar o pedido,
 esta escolha pode seguir diversas estratégias como proximidade geográfica ao cliente que está a 
 efetuar o pedido, a disponibilidade atual do \ac{DC}, entre outras. De seguida, um dos 

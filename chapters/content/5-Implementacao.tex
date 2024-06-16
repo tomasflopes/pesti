@@ -13,19 +13,17 @@ implementação da solução. Entre as mais relevantes, destacam-se:
 
 \begin{itemize}
   \item \textbf{Apache Storm \cite{storm}:} \textit{Framework} de processamento de 
-    \textit{streaming} em tempo real - descrito na secção \nameref{sec:storm};
-  \item \textbf{Apache Kafka \cite{kafka}:} Plataforma de mensagens distribuída - descrita na 
-    secção \nameref{sec:kafka};
-  \item \textbf{Apache Zookeeper \cite{zookeeper}:} Serviço de coordenação distribuída - descrito 
-    na secção \nameref{sec:zookeeper};
-  \item \textbf{Grafana \cite{grafana}:} Plataforma de análise e visualização de dados - descrita 
-    na secção \nameref{sec:metrics};
-  \item \textbf{Jenkins \cite{jenkins}:} Servidor de automação de \textit{builds} - descrito na 
-    secção \nameref{sec:ci-cd};
+    \textit{streaming} em tempo real (cf. \ref{sec:storm});
+  \item \textbf{Apache Kafka \cite{kafka}:} Plataforma de mensagens distribuída (cf. \ref{sec:kafka});
+  \item \textbf{Apache Zookeeper \cite{zookeeper}:} Serviço de coordenação distribuída - (cf.
+    \ref{sec:zookeeper});
+  \item \textbf{Grafana \cite{grafana}:} Plataforma de análise e visualização de dados (cf. 
+    \ref{sec:metrics});
+  \item \textbf{Jenkins \cite{jenkins}:} Servidor de automação de \textit{builds} - (cf.
+    \ref{sec:ci-cd});
   \item \textbf{Nimbus \cite{nimbus}:} Servidor centralizado que coordena e distribui as topologias 
-    do \textit{Apache Storm} - descrito na secção \nameref{sec:storm};
-  \item \textbf{Splunk \cite{splunk}:} Plataforma de análise de eventos e dados - descrita na 
-    secção \nameref{sec:logs};
+    do \textit{Apache Storm} (cf. \ref{sec:storm});
+  \item \textbf{Splunk \cite{splunk}:} Plataforma de análise de eventos e dados (cf. \ref{sec:logs}).
 \end{itemize}
 
 \section{Descrição da implementação}
@@ -61,7 +59,7 @@ alterações a nível do código do serviço e das suas configurações e é nec
 faseada destas alterações nos diferentes ambientes, por exemplo.
 
 \begin{figure}[H]
-  \centerline{\includegraphics[scale=1.2]{media/content/impl/package.png}}
+  \centerline{\includegraphics[scale=0.5]{media/content/impl/service-composition.png}}
   \caption{Composição típica do pacote de um serviço}
   \label{package}
 \end{figure}

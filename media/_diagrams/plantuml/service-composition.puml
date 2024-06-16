@@ -1,0 +1,10 @@
+@startuml service-composition
+
+package "Service Package" {
+  folder #FFF2CC {
+    package "Infrastructure Configurations" as INFRA #F8CECC {}
+    package "Service Configurations" as CONFS #E1D5E7{}
+  }
+}
+
+@enduml
