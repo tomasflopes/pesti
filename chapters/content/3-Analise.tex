@@ -211,46 +211,30 @@ respetivamente, o número de \ac{VM} que é necessário para as topologias conse
 o número de \ac{VM} que são disponibilizadas realemente no \gls{cluster} de forma a garantir a 
 resiliência e recuperação em caso de falhas.
 
-\begin{table}[h!]
+\begin{table}[H]
   \centering
-  \begin{tabular}{|l|l|l|l|}
-    \hline
-    \rowcolor[HTML]{FBE6A3} 
-    \multicolumn{4}{|c|}{\textbf{Configuração Atual}} \\ \hline
-    \rowcolor[HTML]{4EAC5B} 
-    \cellcolor{white} & \textbf{Cluster 1 - 8cpu16gb} & \textbf{Cluster 2 - 6cpu12GB} & \cellcolor{white} \\ \hline
-    \rowcolor[HTML]{A9D08E}
-    \cellcolor{white} & ELR * 2          & \cellcolor[HTML]{BDD7EE} TMT      & \cellcolor{white} \\ \hline
-    \rowcolor[HTML]{A9D08E}
-    \cellcolor{white} & ELM * 2          & \cellcolor[HTML]{BDD7EE} IMG\_EMT & \cellcolor{white} \\ \hline
-    \rowcolor[HTML]{A9D08E}
-    \cellcolor{white} & BFP             & \cellcolor[HTML]{BDD7EE} IMG\_LDT & \cellcolor{white} \\ \hline
-    \rowcolor[HTML]{A9D08E}
-    \cellcolor{white} & BETRADAR        & \cellcolor[HTML]{BDD7EE} FHG      & \cellcolor{white} \\ \hline
-    \rowcolor[HTML]{A9D08E}
-    \cellcolor{white} & PBT * 2 * 5        & \cellcolor[HTML]{BDD7EE} DOS      & \cellcolor{white} \\ \hline
-    \rowcolor[HTML]{A9D08E}
-    \cellcolor{white} & ESL * 2          & \cellcolor[HTML]{BDD7EE} CM * 2 * 5  & \cellcolor{white} \\ \hline
-    \rowcolor[HTML]{A9D08E}
-    \cellcolor{white} & EventType * 2    & \cellcolor[HTML]{BDD7EE} LMT * 2   & \cellcolor{white} \\ \hline
-    \rowcolor[HTML]{A9D08E}
-    \cellcolor{white} & FIP * 2 * 5        & \cellcolor[HTML]{BDD7EE} EXT      & \cellcolor{white} \\ \hline
-    \rowcolor[HTML]{A9D08E}
-    \cellcolor{white} & HKR * 2          & \cellcolor[HTML]{BDD7EE} ET       & \cellcolor{white} \\ \hline
-    \cellcolor{white} & \cellcolor{white} & \cellcolor[HTML]{BDD7EE} MTT *2  & \cellcolor{white} \\ \hline
-    \cellcolor{white} & \cellcolor{white} & \cellcolor[HTML]{BDD7EE} PBS *2 & \cellcolor{white} \\ \hline
-    \cellcolor{white} & \cellcolor{white} & \cellcolor[HTML]{BDD7EE} Sgm *3 & \cellcolor{white} \\ \hline
-    \cellcolor{white} & \cellcolor{white} & \cellcolor[HTML]{BDD7EE} TPD    & Total \cellcolor{white} \\ \hline
-    \rowcolor[HTML]{D9D9D9} 
-    \textbf{CPU} & \textbf{1280} & \textbf{432} & \textbf{1712} \\ \hline
-    \rowcolor[HTML]{D9D9D9} 
-    \textbf{RAM} & \textbf{2560} & \textbf{864} & \textbf{3424} \\ \hline
-    \rowcolor[HTML]{D9D9D9} 
-    \textbf{Used VM} & \textbf{160} & \textbf{72} & \textbf{232} \\ \hline
-    \rowcolor[HTML]{D9D9D9} 
-    \textbf{Total VM} & \textbf{185} & \textbf{77} & \textbf{262} \\ \hline
+  \begin{tabular}{|l|l|l|l|l|}
+    \cellcolor{white} & \multicolumn{2}{|c|}{\cellcolor[HTML]{FBE6A3}\textbf{Estado atual}}                              \\ \cline{1-4} 
+    & \cellcolor[HTML]{4EAC5B}Cluster 1 - 8cpu16GB          & \cellcolor[HTML]{4EAC5B}Cluster 2 - 6cpu12GB          &                            \\ \cline{1-4} 
+    & \cellcolor[HTML]{A9D08E}ELR * 2                       & \cellcolor[HTML]{BDD7EE}TMT                           &                            \\ \cline{1-4} 
+    & \cellcolor[HTML]{A9D08E}ELM * 2                       & \cellcolor[HTML]{BDD7EE}IMG\_EMT                      &                            \\ \cline{1-4} 
+    & \cellcolor[HTML]{A9D08E}BFP                           & \cellcolor[HTML]{BDD7EE}FHG                           &                            \\ \cline{1-4} 
+    & \cellcolor[HTML]{A9D08E}BETRADAR                      & \cellcolor[HTML]{BDD7EE}DOS                           &                            \\ \cline{1-4} 
+    & \cellcolor[HTML]{A9D08E}PBT * 2 * 5                   & \cellcolor[HTML]{BDD7EE}CM * 2 * 5                    &                            \\ \cline{1-4} 
+    & \cellcolor[HTML]{A9D08E}ESL * 2                       & \cellcolor[HTML]{BDD7EE}LMT * 2                       &                            \\ \cline{1-4} 
+    & \cellcolor[HTML]{A9D08E}EventType * 2                 & \cellcolor[HTML]{BDD7EE}EXT                           &                            \\ \cline{1-4} 
+    & \cellcolor[HTML]{A9D08E}FIP * 2 * 5                   & \cellcolor[HTML]{BDD7EE}ET                            &                            \\ \cline{1-4} 
+    & \cellcolor[HTML]{A9D08E}HKR * 2                       & \cellcolor[HTML]{BDD7EE}MTT * 2                       &                            \\ \cline{1-4} 
+    &                                                       & \cellcolor[HTML]{BDD7EE}PBS * 2                       &                            \\ \cline{1-4} 
+    &                                                       & \cellcolor[HTML]{BDD7EE}SGM * 3                       &                            \\ \cline{1-4} 
+    &                                                       & \cellcolor[HTML]{BDD7EE}IMG\_LDT                       &                            \\ \cline{1-4} 
+    &                                                       & \cellcolor[HTML]{BDD7EE}TPD                           & Total                      \\ \cline{1-4}
+    \cellcolor[HTML]{C0C0C0}CPU                             & 1280                                                     & 432                                                     & \textbf{1712}                 \\ \cline{1-4}
+    \cellcolor[HTML]{C0C0C0}RAM                             & 2560                                                    & 864                                                     & \textbf{3424}                \\ \cline{1-4}
+    \cellcolor[HTML]{C0C0C0}Used VM                         & 160                                                     & 72                                                      & \textbf{232}                 \\ \cline{1-4}
+    \cellcolor[HTML]{C0C0C0}Total VM                        & 185                                                     & 77                                                      & \textbf{262}                 \\ \cline{1-4}
   \end{tabular}
-  \caption{Current setup of OFSEC and OFS}
+  \caption{Estado atual dos \textit{clusters}}
   \label{tab:current_setup}
 \end{table}
 
