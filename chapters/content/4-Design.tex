@@ -45,7 +45,7 @@ conjunto, pois é efetuada a transição de um conjunto de \ac{VM} com uma espec
 anterior, assumindo um \gls{cluster} com 100 máquinas, teriamos uma redução de 50 \ac{CPU} e 20GB 
 de RAM.
 
-\begin{table}[h!]
+\begin{table}[H]
   \centering
   \begin{tabular}{|l|l|l|l|l|}
     \hline
@@ -85,7 +85,7 @@ funciona o \textit{Apache Storm} a alteração numa topologia implica o processo
 todo o \gls{cluster} e, logicamente, quanto maior a quantidade de \ac{VM} que devem ser criadas
 durante o processo, mais demorado se tornará.
 
-\begin{table}[h!]
+\begin{table}[H]
   \centering
   \begin{tabular}{|l|l|l|l|l|}
     \hline
@@ -122,7 +122,7 @@ analisada anteriormente.
 
 A terceira, e última, alternativa está representada na Tabela \ref{tab:proposal-3}.
 
-\begin{table}[h!]
+\begin{table}[H]
   \centering
   \begin{tabular}{|l|l|l|l|l|}
     \hline
@@ -168,7 +168,7 @@ Após uma análise cuidada de todas estas alternativas acabou por ser escolhida 
 com a alteração da memória RAM do primeiro \gls{cluster} chegando à opção ilustrada na Tabela
 \ref{tab:proposal-final}.
 
-\begin{table}[h!]
+\begin{table}[H]
   \centering
   \begin{tabular}{|l|l|l|l|l|}
     \hline
@@ -191,15 +191,70 @@ com a alteração da memória RAM do primeiro \gls{cluster} chegando à opção 
   \label{tab:proposal-final}
 \end{table}
 
-Podemos observar na Figura \ref{comparison-proposal} a comparação entre todas as propostas
-analisadas em termos de uso total de recursos em todos os ambientes, bem como a percentagem de 
-redução de recursos em cada um dos parâmetros analisados (CPU e RAM).
+Podemos observar nas Tabelas \ref{tab:comparison-proposal-1}, \ref{tab:comparison-proposal-2} e 
+\ref{tab:comparison-proposal-3} a comparação entre todas as propostas analisadas em termos de uso 
+total de recursos em todos os ambientes, bem como a percentagem de redução de recursos em cada um 
+dos parâmetros analisados (\ac{CPU} e RAM).
 
-\begin{figure}[H]
-  \centerline{\includegraphics[scale=0.4]{media/content/analise/proposal-comparison.png}}
-  \caption{Comparação de propostas de atualização}
-  \label{comparison-proposal}
-\end{figure}
+\begin{table}[H]
+  \centering
+  \small 
+  \setlength{\extrarowheight}{3pt} 
+  \begin{tabularx}{\textwidth}{|l|*{10}{X|}}
+    \hline
+    \rowcolor[HTML]{4EAC5B} 
+    \multicolumn{11}{|c|}{\cellcolor[HTML]{4EAC5B}\textbf{Otimizações por ambiente - Alternativa 1}} \\
+    \hline
+    \rowcolor[HTML]{C0C0C0} 
+    \cellcolor[HTML]{C0C0C0} & PRD & PRD (novo) & QA & QA (novo) & NXT & NXT (novo) & PRF & Total env & Total env (novo) & \% otimizações \\
+    \cellcolor[HTML]{C0C0C0} CPU & 1712 & 712 & 252 & 252 & 670 & 320 & -\- & 2634 & 1284 & \cellcolor[HTML]{4371C4}{\textbf{51\%}} \\
+    \cellcolor[HTML]{C0C0C0} RAM & 3424 & 4248 & 504 & 504 & 1340 & 1186 & -\- & 5268 & 4938 & \cellcolor[HTML]{4371C4}{\textbf{6\%}} \\
+    \hline
+  \end{tabularx}
+
+  \caption{Comparação de propostas de atualização - Alternativa 1}
+  \label{tab:comparison-proposal-1}
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \small 
+  \setlength{\extrarowheight}{3pt} 
+  \begin{tabularx}{\textwidth}{|l|*{10}{X|}}
+    \hline
+    \rowcolor[HTML]{4EAC5B} 
+    \multicolumn{11}{|c|}{\cellcolor[HTML]{4EAC5B}\textbf{Otimizações por ambiente - Alternativa 2}} \\
+    \hline
+    \rowcolor[HTML]{C0C0C0} 
+    \cellcolor[HTML]{C0C0C0} & PRD & PRD (novo) & QA & QA (novo) & NXT & NXT (novo) & PRF & Total env & Total env (novo) & \% otimizações \\
+    \cellcolor[HTML]{C0C0C0} CPU & 1712 & 796 & 252 & 252 & 670 & 339 & -\- & 2634 & 1387 & \cellcolor[HTML]{4371C4}{\textbf{47\%}} \\
+    \cellcolor[HTML]{C0C0C0} RAM & 3424 & 3384 & 504 & 504 & 1340 & 1262 & -\- & 5268 & 5150 & \cellcolor[HTML]{4371C4}{\textbf{2\%}} \\
+    \hline
+  \end{tabularx}
+
+  \caption{Comparação de propostas de atualização - Alternativa 2}
+  \label{tab:comparison-proposal-2}
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \small 
+  \setlength{\extrarowheight}{3pt} 
+  \begin{tabularx}{\textwidth}{|l|*{10}{X|}}
+    \hline
+    \rowcolor[HTML]{4EAC5B} 
+    \multicolumn{11}{|c|}{\cellcolor[HTML]{4EAC5B}\textbf{Otimizações por ambiente - Alternativa 3}} \\
+    \hline
+    \rowcolor[HTML]{C0C0C0} 
+    \cellcolor[HTML]{C0C0C0} & PRD & PRD (novo) & QA & QA (novo) & NXT & NXT (novo) & PRF & Total env & Total env (novo) & \% otimizações \\
+    \cellcolor[HTML]{C0C0C0} CPU & 1712 & 642 & 252 & 252 & 670 & 307 & -\- & 2634 & 1201 & \cellcolor[HTML]{4371C4}{\textbf{54\%}} \\
+    \cellcolor[HTML]{C0C0C0} RAM & 3424 & 3080 & 504 & 504 & 1340 & 1136 & -\- & 5268 & 4720 & \cellcolor[HTML]{4371C4}{\textbf{10\%}} \\
+    \hline
+  \end{tabularx}
+
+  \caption{Comparação de propostas de atualização - Alternativa 3}
+  \label{tab:comparison-proposal-3}
+\end{table}
 
 \section{Processo de implantação}
 
@@ -217,52 +272,173 @@ ambos os \glspl{dc}. Esta simplificação foi feita já que todas estas variáve
 ser desprezadas dadas as semelhanças entre ambientes e a dimensão total da infraestrutura em
 análise.
 
-Como analisado anteriormente, a Figura \ref{strat-current} representa o estado atual dos 
+Como analisado anteriormente, a Tabela \ref{tab:current_setup} representa o estado atual dos 
 \glspl{cluster}. Este é o ponto de partida para esta intervenção. 
 
-No primeiro passo, representado na Figura \ref{strat-1}, é efetuada uma redução de recursos 
+No primeiro passo, representado na Tabela \ref{tab:strat-1}, é efetuada uma redução de recursos 
 de ambos os \glspl{cluster}. Esta redução parte do princípio de que, sendo possível aplicar a 
 solução final apresentada anteriormente, então, por definição, as topologias devem ser capazes de
 operar sem problemas usando estes novos \glspl{flavour}. Esta intervenção só por si, representa
 46\% de redução no uso total de \ac{CPU} (no ambiente de produção).
 
-\begin{figure}[H]
-  \centerline{\includegraphics[scale=0.5]{media/content/analise/strat-1.png}}
+\begin{table}[H]
+  \centering
+  \small 
+  \setlength{\extrarowheight}{3pt}
+  \setlength{\arrayrulewidth}{1pt} 
+  
+  \begin{tabular}{|l|l|l|l|l|}
+    \hline
+    \cellcolor{white} & \multicolumn{2}{|c|}{\cellcolor[HTML]{FBE6A3}Passo 1} & \cellcolor{white}              & \cellcolor{white}               \\ \cline{2-3} 
+    & \cellcolor[HTML]{4EAC5B}Cluster 1 - 4cpu16GB          & \cellcolor[HTML]{4EAC5B}Cluster 2 - 4cpu12GB          &               &               \\ \cline{2-3} 
+    & \cellcolor[HTML]{A9D08E}ELR * 2                       & \cellcolor[HTML]{BDD7EE}TMT                           &               &               \\ \cline{2-3} 
+    & \cellcolor[HTML]{A9D08E}ELM * 2                       & \cellcolor[HTML]{BDD7EE}IMG\_EMT                      &               &               \\ \cline{2-3} 
+    & \cellcolor[HTML]{A9D08E}BFP                           & \cellcolor[HTML]{BDD7EE}FHG                           &               &               \\ \cline{2-3} 
+    & \cellcolor[HTML]{A9D08E}BETRADAR                      & \cellcolor[HTML]{BDD7EE}DOS                           &               &               \\ \cline{2-3} 
+    & \cellcolor[HTML]{A9D08E}PBT * 2 * 5                   & \cellcolor[HTML]{BDD7EE}CM * 2 * 5                    &               &               \\ \cline{2-3} 
+    & \cellcolor[HTML]{A9D08E}ESL * 2                       & \cellcolor[HTML]{BDD7EE}LMT * 2                       &               &               \\ \cline{2-3} 
+    & \cellcolor[HTML]{A9D08E}EventType * 2                 & \cellcolor[HTML]{BDD7EE}EXT                           &               &               \\ \cline{2-3} 
+    & \cellcolor[HTML]{A9D08E}FIP * 2 * 5                   & \cellcolor[HTML]{BDD7EE}ET                            &               &               \\ \cline{2-3} 
+    & \cellcolor[HTML]{A9D08E}HKR * 2                       & \cellcolor[HTML]{BDD7EE}MTT * 2                       &               &               \\ \cline{3-3} 
+    &                                                       & \cellcolor[HTML]{BDD7EE}PBS * 2                       &               &               \\ \cline{3-3} 
+    &                                                       & \cellcolor[HTML]{BDD7EE}SGM * 3                       &               &               \\ \cline{3-3} 
+    &                                                       & \cellcolor[HTML]{BDD7EE}IMG\_LDT                       &               &               \\ \cline{3-3} 
+    &                                                       & \cellcolor[HTML]{BDD7EE}TPD                           & Total         &               \\ \cline{1-4}
+    \cellcolor[HTML]{C0C0C0}CPU                             & 640                                                     & 288                                                     & \textbf{928}  &               \\ \cline{1-4}
+    \cellcolor[HTML]{C0C0C0}RAM                             & 2560                                                    & 864                                                     & \textbf{3424} &               \\ \cline{1-4}
+    \cellcolor[HTML]{C0C0C0}Used VM                         & 160                                                     & 72                                                      & \textbf{232}  &               \\ \cline{1-4}
+    \cellcolor[HTML]{C0C0C0}Total VM                        & 185                                                     & 77                                                      & \textbf{262}  &               \\ \cline{1-4}
+      &                                              &                                              &               &               \\ \cline{1-5}
+    \multicolumn{3}{c}{\cellcolor[HTML]{C0C0C0}Comparação}                       & Total         & \%            \\ \cline{1-5}
+    \cellcolor[HTML]{C0C0C0}CPU                             & -640                                                    & -144                                                    & \textbf{-784} & \textbf{46\%} \\ \cline{1-5}
+    \cellcolor[HTML]{C0C0C0}RAM                             & 0                                                       & 0                                                       & \textbf{0}    & \textbf{0}    \\ \cline{1-5}
+    \cellcolor[HTML]{C0C0C0}VM                              & 0                                                       & 0                                                       & \textbf{0}    & \textbf{0}    \\ \cline{1-5}
+  \end{tabular}
+  
   \caption{Processo de implantação - Passo 1}
-  \label{strat-1}
-\end{figure}
+  \label{tab:strat-1}
+\end{table}
 
 O segundo passo foi dividido em duas etapas - a criação do novo \gls{cluster}, representado na 
-Figura \ref{strat-2} e a migração das topologias entre \glspl{cluster} (Figura \ref{strat-2_1}).
+Tabela \ref{tab:strat-2} e a migração das topologias entre \glspl{cluster} (Tabela 
+\ref{tab:strat-2_1}).
 
-\begin{figure}[H]
-  \centerline{\includegraphics[scale=0.5]{media/content/analise/strat-2.png}}
+\begin{table}[H]
+  \centering
+  \small
+  \setlength{\extrarowheight}{3pt}
+  \setlength{\arrayrulewidth}{1pt}
+  
+  \begin{tabular}{|l|l|l|l|l|}
+    \hline
+    \cellcolor{white} & \multicolumn{3}{|c|}{\cellcolor[HTML]{FBE6A3}Passo 2} & \cellcolor{white}              \\ \cline{2-5} 
+                                     & \cellcolor[HTML]{4EAC5B}Cluster 1 - 2cpu8GB & \cellcolor[HTML]{4EAC5B}Cluster 2 - 4cpu16GB & \cellcolor[HTML]{4EAC5B}Cluster 3 - 4cpu12GB &                              \\ \cline{3-4}
+                                     &                                             & \cellcolor[HTML]{A9D08E}ELR * 2              & \cellcolor[HTML]{BDD7EE}TMT                  &                              \\ \cline{3-4}
+                                     &                                             & \cellcolor[HTML]{A9D08E}ELM * 2              & \cellcolor[HTML]{BDD7EE}IMG\_EMT             &                              \\ \cline{3-4}
+                                     &                                             & \cellcolor[HTML]{A9D08E}BFP                  & \cellcolor[HTML]{BDD7EE}FHG                  &                              \\ \cline{3-4}
+                                     &                                             & \cellcolor[HTML]{A9D08E}BETRADAR             & \cellcolor[HTML]{BDD7EE}DOS                  &                              \\ \cline{3-4}
+                                     &                                             & \cellcolor[HTML]{A9D08E}PBT * 2 * 5          & \cellcolor[HTML]{BDD7EE}CM * 2 * 5           &                              \\ \cline{3-4}
+                                     &                                             & \cellcolor[HTML]{A9D08E}ESL * 2              & \cellcolor[HTML]{BDD7EE}LMT * 2              &                              \\ \cline{3-4}
+                                     &                                             & \cellcolor[HTML]{A9D08E}EventType * 2        & \cellcolor[HTML]{BDD7EE}EXT                  &                              \\ \cline{3-4}
+                                     &                                             & \cellcolor[HTML]{A9D08E}FIP * 2 * 5          & \cellcolor[HTML]{BDD7EE}ET                   &                              \\ \cline{3-4}
+                                     &                                             & \cellcolor[HTML]{A9D08E}HKR * 2              & \cellcolor[HTML]{BDD7EE}MTT * 2              &                              \\ \cline{4-4}
+                                     &                                             &                                              & \cellcolor[HTML]{BDD7EE}PBS * 2              &                              \\ \cline{4-4}
+                                     &                                             &                                              & \cellcolor[HTML]{BDD7EE}SGM * 3              &                              \\ \cline{4-4}
+                                     &                                             &                                              & \cellcolor[HTML]{BDD7EE}IMG\_LDT                  & \\ \cline{4-4}
+                                     &                                             &                                              & \cellcolor[HTML]{BDD7EE}TPD                  & Total                        \\ \cline{1-5}
+    \cellcolor[HTML]{C0C0C0}CPU      & 32                                          & 640                                          & 288                                          & \textbf{960}                 \\ \cline{1-5}
+    \cellcolor[HTML]{C0C0C0}RAM      & 128                                         & 2560                                         & 864                                          & \textbf{3552}                \\ \cline{1-5}
+    \cellcolor[HTML]{C0C0C0}Used VM  & 16                                          & 160                                          & 72                                           & \textbf{248}                 \\ \cline{1-5}
+    \cellcolor[HTML]{C0C0C0}Total VM & 18                                          & 185                                          & 77                                           & \textbf{280}                 \\ \cline{1-5}
+  \end{tabular}
   \caption{Processo de implantação - Passo 2}
-  \label{strat-2}
-\end{figure}
+  \label{tab:strat-2}
+\end{table}
 
 A segunda etapa deste passo é a etapa mais crítica de todo o processo, isto porque, nesta fase, é
 crucial ter a total compreensão dos processos de replicação e \gls{failover} de cada topologia de
 forma a minimizar o tempo de indisponibilidade de cada serviço.
 
-\begin{figure}[H]
-  \centerline{\includegraphics[scale=0.4]{media/content/analise/strat-2_1.png}}
+\begin{table}[H]
+  \centering
+  \small
+  \setlength{\extrarowheight}{3pt}
+  \setlength{\arrayrulewidth}{1pt}
+  
+  \begin{tabular}{|l|l|l|l|l|l|}
+    \hline
+    \cellcolor{white} & \multicolumn{3}{|c|}{\cellcolor[HTML]{FBE6A3}Passo 2.1} & \cellcolor{white}             & \cellcolor{white}  \\ \cline{2-5} 
+                                     & \cellcolor[HTML]{4EAC5B}Cluster 1 - 2cpu8GB & \cellcolor[HTML]{4EAC5B}Cluster 2 - 4cpu12GB & \cellcolor[HTML]{4EAC5B}Cluster 3 - 4cpu16GB &                              & \\ \cline{3-4}
+                                     & \cellcolor[HTML]{A9D08E}ELR * 2             & \cellcolor[HTML]{BDD7EE}TMT                & \cellcolor[HTML]{A9D08E}FIP * 2 * 5       &                              & \\ \cline{3-4}
+                                     & \cellcolor[HTML]{A9D08E}ELM * 2             & \cellcolor[HTML]{BDD7EE}IMG\_EMT           & \cellcolor[HTML]{A9D08E}HKR * 2           &                              & \\ \cline{3-4}
+                                     & \cellcolor[HTML]{A9D08E}BFP                 & \cellcolor[HTML]{BDD7EE}FHG                & \cellcolor[HTML]{BDD7EE}LMT * 2           &                              & \\ \cline{3-4}
+                                     & \cellcolor[HTML]{A9D08E}BETRADAR            & \cellcolor[HTML]{BDD7EE}DOS                & \cellcolor[HTML]{BDD7EE}EXT               &                              & \\ \cline{3-4}
+                                     & \cellcolor[HTML]{BDD7EE}MTT * 2             & \cellcolor[HTML]{BDD7EE}CM * 2 * 5         &                                           &                              & \\ 
+                                     & \cellcolor[HTML]{BDD7EE}PBS * 2             & \cellcolor[HTML]{BDD7EE}ET                 &                                           &                              & \\ 
+                                     & \cellcolor[HTML]{BDD7EE}TPD                 & \cellcolor[HTML]{BDD7EE}IMG\_LDT           &                                           &                              & \\ 
+                                     & \cellcolor[HTML]{BDD7EE}SGM * 3             & \cellcolor[HTML]{A9D08E}EventType * 2      &            &                              & \\ 
+                                     &                                             & \cellcolor[HTML]{A9D08E}PBT * 2 * 5        &              &                              & \\ 
+                                     &                                             & \cellcolor[HTML]{A9D08E}ESL * 2            &                 & & \\ 
+                                     &                                             &                                            &              &                              & \\ 
+                                     &                                             &                                            &              &                              & \\ 
+                                     &                                             &                                            &                  & Total                        & \\ \cline{1-5}
+    \cellcolor[HTML]{C0C0C0}CPU      & 32                                          & 186                                        & 492                                          & \textbf{710}                 & \\ \cline{1-5}
+    \cellcolor[HTML]{C0C0C0}RAM      & 128                                         & 1116                                       & 1968                                          & \textbf{3212}                & \\ \cline{1-5}
+    \cellcolor[HTML]{C0C0C0}Used VM  & 16                                          & 93                                        & 123                                           & \textbf{232}                 & \\ \cline{1-5}
+    \cellcolor[HTML]{C0C0C0}Total VM & 18                                          & 98                                        & 148                                           & \textbf{264}                 & \\ \cline{1-5}
+      &                                              &                                              &               &               & \\ \cline{1-6}
+    \multicolumn{4}{c}{\cellcolor[HTML]{C0C0C0}Comparação}                       & Total         & \%             \\ \cline{1-6}
+    \cellcolor[HTML]{C0C0C0}CPU                             & N/a                                                    & N/a                                                    & N/a & \textbf{-186} & \textbf{21\%} \\ \cline{1-6}
+    \cellcolor[HTML]{C0C0C0}RAM                             & N/a                                                    & N/a                                                    & N/a    & \textbf{0}    & \textbf{0\%} \\ \cline{1-6}
+    \cellcolor[HTML]{C0C0C0}VM                              & N/a                                                    & N/a                                                    & N/a    & \textbf{0}    & \textbf{0\%} \\ \cline{1-6}
+  \end{tabular}
   \caption{Processo de implantação - Passo 2.1}
-  \label{strat-2_1}
-\end{figure}
+  \label{tab:strat-2_1}
+\end{table}
 
-O terceiro, e último, passo, representando na Figura \ref{strat-3}, representa uma nova redução 
+O terceiro, e último, passo, representando na Tabela \ref{tab:strat-3}, representa uma nova redução 
 do \gls{flavour} de um dos \glspl{cluster}. Este passo é em todo semelhante ao primeiro, mas é
 apenas necessário efetuar esta redução no segundo \gls{cluster}.
 
-\begin{figure}[H]
-  \centerline{\includegraphics[scale=0.5]{media/content/analise/strat-3.png}}
+\begin{table}[H]
+  \centering
+  \small
+  \setlength{\extrarowheight}{3pt}
+  \setlength{\arrayrulewidth}{1pt}
+  
+  \begin{tabular}{|l|l|l|l|l|l|}
+    \hline
+    \cellcolor{white} & \multicolumn{3}{|c|}{\cellcolor[HTML]{FBE6A3}Passo 3} & \cellcolor{white}             & \cellcolor{white}  \\ \cline{2-5} 
+                                     & \cellcolor[HTML]{4EAC5B}Cluster 1 - 2cpu8GB & \cellcolor[HTML]{4EAC5B}Cluster 2 - 2cpu12GB & \cellcolor[HTML]{4EAC5B}Cluster 3 - 4cpu16GB &                              & \\ \cline{3-4}
+                                     & \cellcolor[HTML]{A9D08E}ELR * 2             & \cellcolor[HTML]{BDD7EE}TMT                & \cellcolor[HTML]{A9D08E}FIP * 2 * 5       &                              & \\ \cline{3-4}
+                                     & \cellcolor[HTML]{A9D08E}ELM * 2             & \cellcolor[HTML]{BDD7EE}IMG\_EMT           & \cellcolor[HTML]{A9D08E}HKR * 2           &                              & \\ \cline{3-4}
+                                     & \cellcolor[HTML]{A9D08E}BFP                 & \cellcolor[HTML]{BDD7EE}FHG                & \cellcolor[HTML]{BDD7EE}LMT * 2           &                              & \\ \cline{3-4}
+                                     & \cellcolor[HTML]{A9D08E}BETRADAR            & \cellcolor[HTML]{BDD7EE}DOS                & \cellcolor[HTML]{BDD7EE}EXT               &                              & \\ \cline{3-4}
+                                     & \cellcolor[HTML]{BDD7EE}MTT * 2             & \cellcolor[HTML]{BDD7EE}CM * 2 * 5         &                                           &                              & \\ 
+                                     & \cellcolor[HTML]{BDD7EE}PBS * 2             & \cellcolor[HTML]{BDD7EE}ET     &                                           &                              & \\ 
+                                     & \cellcolor[HTML]{BDD7EE}TPD                 & \cellcolor[HTML]{BDD7EE}IMG\_LDT          &                                           &                              & \\ 
+                                     & \cellcolor[HTML]{BDD7EE}SGM * 3             & \cellcolor[HTML]{A9D08E}EventType * 2                &            &                              & \\ 
+                                     &                                             & \cellcolor[HTML]{A9D08E}PBT * 2 * 5                                            &              &                              & \\ 
+                                     &                                             & \cellcolor[HTML]{A9D08E}ESL * 2 &                 & & \\ 
+                                     &                                             &                                           &              &                              & \\ 
+                                     &                                             &      &              &                              & \\ 
+                                     &                                             &                                            &                  & Total                        & \\ \cline{1-5}
+    \cellcolor[HTML]{C0C0C0}CPU      & 32                                          & 186                                        & 288                                          & \textbf{960}                 & \\ \cline{1-5}
+    \cellcolor[HTML]{C0C0C0}RAM      & 128                                         & 2560                                       & 864                                          & \textbf{3552}                & \\ \cline{1-5}
+    \cellcolor[HTML]{C0C0C0}Used VM  & 16                                          & 160                                        & 72                                           & \textbf{248}                 & \\ \cline{1-5}
+    \cellcolor[HTML]{C0C0C0}Total VM & 18                                          & 185                                        & 77                                           & \textbf{280}                 & \\ \cline{1-5}
+      &                                              &                                              &               &               & \\ \cline{1-6}
+    \multicolumn{4}{c}{\cellcolor[HTML]{C0C0C0}Comparação}                       & Total         & \%             \\ \cline{1-6}
+    \cellcolor[HTML]{C0C0C0}CPU                             & N/a                                                    & N/a                                                    & N/a & \textbf{-32} & \textbf{3\%} \\ \cline{1-6}
+    \cellcolor[HTML]{C0C0C0}RAM                             & N/a                                                    & N/a                                                    & N/a    & \textbf{-212}    & \textbf{6\%} \\ \cline{1-6}
+    \cellcolor[HTML]{C0C0C0}VM                              & N/a                                                    & N/a                                                    & N/a    & \textbf{0}    & \textbf{0\%} \\ \cline{1-6}
+  \end{tabular}
   \caption{Processo de implantação - Passo 3}
-  \label{strat-3}
-\end{figure}
+  \label{tab:strat-3}
+\end{table}
 
 De forma a ser mais simples acompanhar as alterações efetuadas em cada passo, uma visualização
-com a comparação simplificada está disponível no Anexo \ref{appedix-b}.
+com a comparação simplificada está disponível no Anexo \ref{appendix-b}.
 
 Após todo este processo a estrutura em que estão hospedadas as topologias encontra-se na forma
 otimizada proposta anteriormente. Este processo sofre pequenas alterações entre ambientes já que 
